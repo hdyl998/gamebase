@@ -13,8 +13,8 @@ import android.view.View;
 public abstract class BaseActivity extends FragmentActivity implements View.OnClickListener {
 
     @Override
-    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(setLayoutID());
         initViews();
         initClickListener();
@@ -24,9 +24,7 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
     public abstract void initViews();
 
     //需要重写的方法
-    public int setLayoutID() {
-        return 0;
-    }
+    public abstract int setLayoutID();
 
 
     /***
