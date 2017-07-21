@@ -1,0 +1,129 @@
+<resources>
+
+    <!-- 滚动指示器的属性 -->
+    <declare-styleable name="PagerSlidingTabStrip">
+
+        <!-- 指示器颜色 -->
+        <attr name="pstsIndicatorColor" format="color" />
+        <!-- 下划线颜色 -->
+        <attr name="pstsUnderlineColor" format="color" />
+        <!-- 竖线分隔线颜色 -->
+        <attr name="pstsDividerColor" format="color" />
+        <!-- 指示的文字的颜色 -->
+        <attr name="pstsIndicatorTextColor" format="color" />
+        <!-- 指示器的高度 -->
+        <attr name="pstsIndicatorHeight" format="dimension" />
+        <!-- 下线的高度 -->
+        <attr name="pstsUnderlineHeight" format="dimension" />
+        <!-- 竖线的padding -->
+        <attr name="pstsDividerPadding" format="dimension" />
+        <attr name="pstsTabPaddingLeftRight" format="dimension" />
+        <attr name="pstsScrollOffset" format="dimension" />
+
+        <attr name="pstsScrollCenter" format="boolean" />
+
+        <!-- 指示器长度 -->
+        <attr name="pstsIndicatorLenth" format="dimension" />
+        <attr name="pstsIndicatorOffset" format="dimension" />
+        <!--指示器长度包裹内容-->
+        <attr name="pstsIndicatorWrapText" format="boolean" />
+
+        <!-- tab背景 -->
+        <attr name="pstsTabBackground" format="reference" />
+
+
+        <!-- 是否满屏 -->
+        <attr name="pstsShouldExpand" format="boolean" />
+        <!-- 字符大写 -->
+        <attr name="pstsTextAllCaps" format="boolean" />
+
+        <!-- textSize -->
+        <attr name="pstsTextSize" format="dimension" />
+        <!-- textColor -->
+        <attr name="pstsTextColor" format="color" />
+
+
+    </declare-styleable>
+
+    <!-- 背景颜色 -->
+    <attr name="appBgColor" format="color" />
+    <!-- 边角幅度 -->
+    <attr name="appRadius" format="dimension" />
+
+    <!-- 是否有边框 -->
+    <attr name="appBorderWidth" format="dimension" />
+    <!-- 边框线条的粗细 -->
+    <attr name="appBorderColor" format="color" />
+
+    <!--  圆角矩形TextView-->
+    <declare-styleable name="ShapeCornerBgView">
+        <!-- 是否有边框 -->
+        <attr name="appBorder" format="boolean" />
+        <!-- 边框线条的粗细 -->
+        <attr name="appBorderWidth" />
+        <!-- 边框线条的颜色 -->
+        <attr name="appBorderColor" />
+        <!-- 背景的颜色 -->
+        <attr name="appBgColor" />
+        <!-- 圆角度数 -->
+        <attr name="appRadius" />
+        <!-- 是否有圆角，默认，真 -->
+        <attr name="appTopLeftCorner" format="boolean" />
+        <!-- 是否有圆角，默认，真 -->
+        <attr name="appBottomLeftCorner" format="boolean" />
+        <!-- 是否有圆角，默认，真 -->
+        <attr name="appTopRightCorner" format="boolean" />
+        <!-- 是否有圆角，默认，真 -->
+        <attr name="appBottomRightCorner" format="boolean" />
+        <!--默认是不禁用的-->
+        <!-- 禁用时的背景颜色 -->
+        <attr name="appEnableFalseBgColor" format="color" />
+        <!-- 禁用时的文字颜色 -->
+        <attr name="appEnableFalseTextColor" format="color" />
+        <!-- 没选中时边框颜色 -->
+        <attr name="appEnableFalseBorderColor" format="color" />
+        <!-- 没选中时是否有边框 -->
+        <attr name="appEnableFalseBorder" format="boolean" />
+
+        <!--默认是选中的-->
+        <!-- 没选中时背景颜色 -->
+        <attr name="appUnCheckedBgColor" format="color" />
+        <!-- 没选中时文字颜色 -->
+        <attr name="appUnCheckedTextColor" format="color" />
+        <!-- 没选中时边框颜色 -->
+        <attr name="appUnCheckedBorderColor" format="color" />
+        <!-- 没选中时是否有边框 -->
+        <attr name="appUnCheckedBorder" format="boolean" />
+        <!-- 是否选中 -->
+        <attr name="appChecked" format="boolean" />
+    </declare-styleable>
+
+    <!-- 圆角矩形可以选择的选择器 -->
+    <declare-styleable name="ShapeCornerSelectView">
+        <attr name="appsBorder" format="boolean" />
+        <!-- 是否有边框，默认有 -->
+        <attr name="appsDivider" format="boolean" />
+        <!-- 是否有分割线，默认无 -->
+        <attr name="appsDividerColor" format="boolean" />
+        <!-- 分割线颜色 -->
+        <attr name="appsBorderWidth" format="dimension" />
+        <!-- 边框线条的粗细 -->
+        <attr name="appsBorderColor" format="color" />
+        <!-- 边框线条的颜色 -->
+        <attr name="appsBgColor" format="color" />
+        <!-- 背景的颜色 （默认） -->
+        <attr name="appsBgColorSelect" format="color" />
+        <!-- 背景的颜色（选中） -->
+        <attr name="appsRadius" format="dimension" />
+        <!-- 圆角度数 -->
+        <attr name="appsTextColorSelect" format="color" />
+        <!-- 文本颜色（选中） -->
+        <attr name="appsTextSizeSelect" format="dimension" />
+        <!-- 文本字的大小（选中） -->
+        <attr name="appsTextColor" format="color" />
+        <!-- 文本颜色（默认） -->
+        <attr name="appsTextSize" format="dimension" />
+        <!-- 文本颜色（默认） -->
+    </declare-styleable>
+
+</resources>

@@ -2,12 +2,29 @@ package com.hdyl.baselib.utils;
 
 import android.content.Context;
 
+import com.hdyl.baselib.base.App;
+
 /**
  * Created by liugd on 2017/7/21.
  */
 
 public class Tools {
+    /**
+     * 得到demo的px大小
+     *
+     * @param dimen
+     * @return
+     */
+    @Deprecated
+    public static int getDimen750Px(Context context, int dimen) {
+        float dp = dimen * 360f / 750;//除以750表示用的是750的标注
+        return dip2px(context, dp);
+    }
 
+    public static int getDimen750Px(int dimen) {
+        float dp = dimen * 360f / 750;//除以750表示用的是750的标注
+        return dip2px(App.getContext(), dp);
+    }
 
     /**
      * 根据手机的分辨率从 dp 的单位 转成为 px(像素)
