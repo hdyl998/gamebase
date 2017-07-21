@@ -6,8 +6,7 @@ import android.os.StatFs;
 import android.text.TextUtils;
 
 import com.alibaba.fastjson.JSON;
-import com.caiyu.qqsd.lib.common.MyConfig;
-import com.caiyu.qqsd.util.ohter.MD5;
+import com.hdyl.baselib.utils.MD5;
 
 import java.io.File;
 import java.io.IOException;

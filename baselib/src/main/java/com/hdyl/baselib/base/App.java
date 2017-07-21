@@ -15,7 +15,7 @@ public class App extends Application {
 
     private static App app;
 
-    public static App getApp() {
+    public static App getContext() {
         return app;
     }
 

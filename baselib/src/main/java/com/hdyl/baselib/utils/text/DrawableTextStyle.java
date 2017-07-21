@@ -1,12 +1,12 @@
 package com.hdyl.baselib.utils.text;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.DimenRes;
 import android.support.annotation.DrawableRes;
 import android.text.Spannable;
 import android.text.SpannableString;
-
-import com.caiyu.qqsd.model.face.EmojiconSpan;
+import android.text.style.ImageSpan;
 
 /**
  * Created by liugd on 2017/5/8.
@@ -52,7 +52,9 @@ public class DrawableTextStyle extends ITextStyle {
             throw new IllegalArgumentException("resourceId不能为0");
         }
         SpannableString ss = new SpannableString(mStr);
-        ss.setSpan(new EmojiconSpan(mContext, resourceId, pxSize), 0, ss.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        Drawable drawable = mContext.getResources().getDrawable(resourceId);
+        drawable.setBounds(0, 0, pxSize, pxSize);
+        ss.setSpan(new ImageSpan(drawable), 0, ss.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         return ss;
     }
 }

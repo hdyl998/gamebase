@@ -1,6 +1,6 @@
 package com.hdyl.baselib.cache;
 
-import com.caiyu.qqsd.common.App;
+import com.hdyl.baselib.base.App;
 
 /**
  * 双缓存，首先从内存中取，如果没有则从sp中取

@@ -2,7 +2,7 @@ package com.hdyl.baselib.utils.convert;
 
 public class NumberUtil {
 
-    public static int convertToint(String intStr, int defValue) {
+    public static int convertToInt(String intStr, int defValue) {
         try {
             return Integer.parseInt(intStr);
         } catch (NumberFormatException e) {
@@ -11,7 +11,7 @@ public class NumberUtil {
         return defValue;
     }
 
-    public static long convertTolong(String longStr, long defValue) {
+    public static long convertToLong(String longStr, long defValue) {
         try {
             return Long.parseLong(longStr);
         } catch (NumberFormatException e) {
@@ -20,7 +20,7 @@ public class NumberUtil {
         return defValue;
     }
 
-    public static float convertTofloat(String fStr, float defValue) {
+    public static float convertToFloat(String fStr, float defValue) {
         try {
             return Float.parseFloat(fStr);
         } catch (NumberFormatException e) {
@@ -29,7 +29,7 @@ public class NumberUtil {
         return defValue;
     }
 
-    public static double convertTodouble(String dStr, double defValue) {
+    public static double convertToDouble(String dStr, double defValue) {
         try {
             return Double.parseDouble(dStr);
         } catch (NumberFormatException e) {
@@ -39,40 +39,20 @@ public class NumberUtil {
     }
 
 
-    public static Integer convertToInteger(String intStr) {
-        try {
-            return Integer.valueOf(intStr);
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-        }
-        return null;
+    public static int convertToInteger(String intStr) {
+        return convertToInt(intStr, 0);
     }
 
-    public static Long convertToLong(String longStr) {
-        try {
-            return Long.valueOf(longStr);
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-        }
-        return null;
+    public static long convertToLong(String longStr) {
+        return convertToLong(longStr, 0l);
     }
 
-    public static Float convertToFloat(String fStr) {
-        try {
-            return Float.valueOf(fStr);
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-        }
-        return null;
+    public static float convertToFloat(String fStr) {
+        return convertToFloat(fStr, 0f);
     }
 
-    public static Double convertToDouble(String dStr) {
-        try {
-            return Double.valueOf(dStr);
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-        }
-        return null;
+    public static double convertToDouble(String dStr) {
+        return convertToDouble(dStr, 0d);
     }
 
 }

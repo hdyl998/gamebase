@@ -3,7 +3,6 @@ package com.hdyl.baselib.utils.text;
 import android.text.SpannableStringBuilder;
 import android.widget.TextView;
 
-import com.caiyu.qqsd.util.ohter.Tools;
 
 /**
  * 文本样式的基类
@@ -33,7 +32,7 @@ public abstract class ITextStyle {
         textView.setText(sb);
         //最后使用
         if (isLink == true)
-            textView.setMovementMethod(Tools.LinkMovementClickMethod.getInstance());// textView的块链接生效
+            textView.setMovementMethod(LinkMovementClickMethod.getInstance());// textView的块链接生效
     }
 
     /***
@@ -128,6 +127,7 @@ public abstract class ITextStyle {
     public static DrawableTextStyle createDrawableText(String mStr) {
         return new DrawableTextStyle(mStr);
     }
+
     public static ImageTextStyle createImageText(String mStr) {
         return new ImageTextStyle(mStr);
     }
