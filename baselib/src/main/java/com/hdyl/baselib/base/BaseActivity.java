@@ -1,7 +1,6 @@
 package com.hdyl.baselib.base;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.IdRes;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
@@ -15,7 +14,9 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(setLayoutID());
+        int layoutID = setLayoutID();
+        if (layoutID != 0)
+            setContentView(layoutID);
         initViews();
         initClickListener();
     }
