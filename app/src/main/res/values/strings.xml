@@ -1,3 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">gamebase</string>
+
+    <string name="app_name">经典扫雷</string>
+    <string name="action_settings">Settings</string>
+    <string name="update_note">更新说明：\n1、新增背景切换功能\n2、当扫雷快完成时，缩略图高亮显示空格方块功能，方便查找</string>
+    <string name="copy_right">Copy Right 2017\n寒冬已至*CAT 威 联合出品\n@爱扫雷 伤心已成往事\n986850427@qq.com\n打包时间2017年7月4日</string>
+    <string name="tips">\n\n以上应用完全免费，请放心下载使用!\n\n寒冬已至 2016年\n\n</string>
+    <string name="introduce">《扫雷》是一款大众类的益智小游戏，于1992年发行。
+游戏目标是在最短的时间内根据点击格子出现的数字找出所有非雷格子，同时避免踩雷
+\n雷诀八条
+\n第一条：基本定式不要忘，现场推理真够呛。
+\n第二条：鼠标点击不要快，稳定节奏把空开。
+\n第三条：顺手标雷不要惯，积累下来记录悬。
+\n第四条：无从下手不要愣，就近猜雷把心横。
+\n第五条：遇到猜雷不要怕，爆了脸上不留疤。
+\n第六条：猜雷猜错不要悔，哭天抢地也白费。
+\n第七条：碰上好局不要慌，紧盯局部慢扩张。
+\n第八条：痛失好局不要恨，既然有缘定有份。</string>
+
 </resources>

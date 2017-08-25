@@ -1,20 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.hdyl.gamebase">
+    package="com.hdyl.mine"
+    android:versionCode="13"
+    android:versionName="2.7">
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="18" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:name="com.hdyl.baselib.base.App"
+        android:name="com.hdyl.mine.base.MyApplication"
         android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name="com.hdyl.mine.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.hdyl.mine.game.GameActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name="com.hdyl.mine.set.SetActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name="com.hdyl.mine.top.TopActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name="com.hdyl.mine.about.AboutActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".tuijian.TuijianAcitivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".learn.LearnActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".tuijian.WebActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="57bab458e0f55a0f3b0030a1"></meta-data>
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="Umeng"></meta-data>
     </application>
 
 </manifest>

@@ -1,5 +1,6 @@
 package com.hdyl.baselib.base;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v4.app.FragmentActivity;
@@ -11,9 +12,12 @@ import android.view.View;
 
 public abstract class BaseActivity extends FragmentActivity implements View.OnClickListener {
 
+    protected Context mContext;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mContext = this;
         int layoutID = setLayoutID();
         if (layoutID != 0)
             setContentView(layoutID);

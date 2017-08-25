@@ -1,20 +1,140 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.hdyl.gamebase.MainActivity">
+    android:padding="16dp"
+    tools:context=".MainActivity" >
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_log" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="点雷开始游戏"
+        android:textColor="@color/green"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="@string/copy_right"
+        android:textColor="@color/gray"
+        android:textSize="12sp" />
 
+    <TextView
+        android:id="@+id/imageViewSet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/bye_shape_corner_bg_fill_bg"
+        android:drawableTop="@drawable/ic_set"
+        android:gravity="center_horizontal"
+        android:padding="5dp"
+        android:text="设置"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/textViewTopbang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/imageViewSet"
+        android:background="@drawable/bye_shape_corner_bg_fill_bg"
+        android:drawableTop="@drawable/ic_top"
+        android:padding="5dp"
+        android:text="排行"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/textViewTuijian"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/textViewTopbang"
+        android:background="@drawable/bye_shape_corner_bg_fill_bg"
+        android:drawableTop="@drawable/ic_flag1"
+        android:padding="5dp"
+        android:text="精选"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/textViewScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/textViewTuijian"
+        android:background="@drawable/bye_shape_corner_bg_fill_bg"
+        android:drawableTop="@drawable/ic_wa"
+        android:padding="5dp"
+        android:text="评分"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/textViewLearn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/textViewScore"
+        android:background="@drawable/bye_shape_corner_bg_fill_bg"
+        android:drawableTop="@drawable/ic_shuolve"
+        android:padding="5dp"
+        android:text="学习"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/textViewUpdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/textViewLearn"
+        android:background="@drawable/bye_shape_corner_bg_fill_bg"
+        android:drawableTop="@drawable/ic_back"
+        android:padding="5dp"
+        android:text="关于"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/textViewChangeName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bye_shape_corner_bg_fill_bg"
+        android:padding="10dp"
+        android:text="你好！!"
+        android:textColor="@color/yellow"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/TextView01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewChangeName"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="轻击我更换名字"
+        android:textColor="@color/gray"
+        android:textSize="12sp" />
 
 </RelativeLayout>
