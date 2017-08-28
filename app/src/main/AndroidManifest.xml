@@ -43,13 +43,13 @@
             android:name="com.hdyl.mine.about.AboutActivity"
             android:screenOrientation="portrait"></activity>
         <activity
-            android:name=".tuijian.TuijianAcitivity"
+            android:name="com.hdyl.mine.tuijian.TuijianAcitivity"
             android:screenOrientation="portrait"></activity>
         <activity
-            android:name=".learn.LearnActivity"
+            android:name="com.hdyl.mine.learn.LearnActivity"
             android:screenOrientation="portrait"></activity>
         <activity
-            android:name=".tuijian.WebActivity"
+            android:name="com.hdyl.mine.tuijian.WebActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />

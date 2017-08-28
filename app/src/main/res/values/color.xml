@@ -8,4 +8,6 @@
     <color name="orange">#AA1B2B</color>
     <color name="yellow">#ffff00</color>
     <color name="green">#11FF11</color>
+
+    <color name="white_gray">#ffffff</color>
 </resources>

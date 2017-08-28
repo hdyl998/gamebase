@@ -7,47 +7,48 @@ import com.hdyl.mine.tools.MySharepreferences;
 
 public class AppSet {
 
-	public static AppSet instence;
+    public static AppSet instence;
 
-	public synchronized static AppSet getInstence() {
-		if (instence == null) {
-			instence = new AppSet();
-		}
-		return instence;
-	}
+    public static AppSet getInstence() {
+        if (instence == null) {
+            instence = new AppSet();
+        }
+        return instence;
+    }
 
-	public int theme=0;
-
-
-	public int themeBg=0;
+    public int theme = 0;
 
 
-	int resid[]={R.drawable.bg1,R.drawable.bg2,R.drawable.bg3,R.drawable.bg4,R.drawable.bg_1};
+    public int themeBg = 0;
 
-	String sss[] = { "深蓝之吻", "红色之恋","苍白灰色","紫色波浪","蓝色经典" };
 
-	public int getBgId(){
+    int resid[] = {R.drawable.bg1, R.drawable.bg2, R.drawable.bg3, R.drawable.bg4, R.drawable.bg_1};
 
-		return resid[themeBg];
-	}
+    String sss[] = {"主题1", "主题2", "主题3", "主题4", "经典蓝色"};
 
-	public String getBgText(){
-		return sss[themeBg];
-	}
+    public int getBgId() {
 
-	public void  increaceBg(){
-		themeBg++;
-		themeBg=(themeBg)%resid.length;
-	}
+        return resid[themeBg];
+    }
 
-	private AppSet(){
-		theme = MySharepreferences.getInt(App.getContext(), "aa", "themetype");
-		themeBg= MySharepreferences.getInt(App.getContext(), "aa", "themetype_bg");
+    public String getBgText() {
+        return sss[themeBg];
+    }
 
-	}
-	public void saveTheme(){
-		MySharepreferences.putInt(App.getContext(), "aa", "themetype",theme);
-		MySharepreferences.putInt(App.getContext(), "aa", "themetype_bg",themeBg);
-	}
+    public void increaceBg() {
+        themeBg++;
+        themeBg = (themeBg) % resid.length;
+    }
+
+    private AppSet() {
+        theme = MySharepreferences.getInt(App.getContext(), "aa", "themetype");
+        themeBg = MySharepreferences.getInt(App.getContext(), "aa", "themetype_bg");
+
+    }
+
+    public void saveTheme() {
+        MySharepreferences.putInt(App.getContext(), "aa", "themetype", theme);
+        MySharepreferences.putInt(App.getContext(), "aa", "themetype_bg", themeBg);
+    }
 
 }

@@ -286,7 +286,7 @@
                         android:ems="10"
                         android:hint="横向格子数量"
                         android:inputType="number"
-                        android:textColor="@color/white"
+                        android:textColor="@color/white_gray"
                         android:textColorHint="@color/gray" />
                 </LinearLayout>
 
@@ -311,7 +311,7 @@
                         android:ems="10"
                         android:hint="纵向格子数量"
                         android:inputType="number"
-                        android:textColor="@color/white"
+                        android:textColor="@color/white_gray"
                         android:textColorHint="@color/gray" />
                 </LinearLayout>
 
@@ -336,7 +336,7 @@
                         android:ems="10"
                         android:hint="总雷数量"
                         android:inputType="number"
-                        android:textColor="@color/white"
+                        android:textColor="@color/white_gray"
                         android:textColorHint="@color/gray" />
                 </LinearLayout>
             </LinearLayout>

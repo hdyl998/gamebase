@@ -274,7 +274,7 @@ public class SetActivity extends BaseActivity implements OnClickListener {
 	 * 设置UI
 	 */
 	private void initThemeUI() {
-		String sss[] = { "经典风格", "WIN7风格" };
+		String sss[] = { "XP风格", "WIN7风格" };
 		tvTheme.setText(sss[theamType]);
 	}
 
