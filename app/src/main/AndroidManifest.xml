@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hdyl.mine"
-    android:versionCode="13"
-    android:versionName="2.7">
+    android:versionCode="14"
+    android:versionName="2.7.1">
 
     <uses-sdk
         android:minSdkVersion="8"
@@ -33,16 +33,19 @@
         </activity>
         <activity
             android:name="com.hdyl.mine.game.GameActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.hdyl.mine.TestActivity"
             android:screenOrientation="portrait"></activity>
         <activity
             android:name="com.hdyl.mine.set.SetActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.hdyl.mine.top.TopActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.hdyl.mine.about.AboutActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.hdyl.mine.tuijian.TuijianAcitivity"
             android:screenOrientation="portrait"></activity>

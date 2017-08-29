@@ -2,6 +2,8 @@ package com.hdyl.mine.base;
 
 import android.app.Application;
 
+import com.hdyl.baselib.appconfig.AppConfigFactory;
+import com.hdyl.baselib.appconfig.TestAppConfig;
 import com.hdyl.baselib.base.App;
 
 public class MyApplication extends App {
@@ -14,6 +16,7 @@ public class MyApplication extends App {
 	public void onCreate() {
 		super.onCreate();
 		instance = this;
+		AppConfigFactory.setAppConfig(new TestAppConfig());
 //		ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this).build();
 //		ImageLoader.getInstance().init(config);
 //		options = new DisplayImageOptions.Builder().showStubImage(R.drawable.ic_launcher) // 设置图片下载期间显示的图片
