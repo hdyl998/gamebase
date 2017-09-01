@@ -1,7 +1,7 @@
 package com.hdyl.mine.learn;
 
-import android.app.AlertDialog;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;

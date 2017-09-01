@@ -1,13 +1,13 @@
 package com.hdyl.mine.game;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Handler;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.HorizontalScrollView;
@@ -218,6 +218,7 @@ public class GameActivity extends BaseActivity implements OnClickListener {
         if (timer != null) {
             timer.cancel();
         }
+        handler.removeMessages(0);
     }
 
     @Override
