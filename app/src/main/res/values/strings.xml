@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">经典扫雷</string>
+    <string name="app_name">寒冬游戏</string>
+    <string name="app_name_tetris2">俄罗斯方块2</string>
+    <string name="app_name_mine">经典扫雷</string>
     <string name="action_settings">Settings</string>
     <string name="update_note">更新说明：\n1、更换精美的背景图片\n2、升级主题适配至Android7.0\n3、修正若干个Bug</string>
     <string name="copy_right">Copy Right 2017\n寒冬已至*CAT 威 联合出品\n@爱扫雷 伤心已成往事\n986850427@qq.com\n打包时间2017年8月29日</string>

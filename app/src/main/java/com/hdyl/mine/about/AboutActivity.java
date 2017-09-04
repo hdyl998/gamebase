@@ -22,7 +22,7 @@ public class AboutActivity extends BaseActivity {
         switch (arg0.getId()) {
             case R.id.textViewUpdate:
                 String urlString = "http://openbox.mobilem.360.cn/qcms/view/t/detail?sid=3281879";
-                WebActivity.launch(mContext, getString(R.string.app_name), urlString);
+                WebActivity.launch(mContext, getString(R.string.app_name_mine), urlString);
                 break;
             default:
                 finish();

@@ -24,7 +24,7 @@ import com.hdyl.mine.top.TopActivity;
 import com.hdyl.mine.top.TopObject;
 import com.hdyl.mine.tuijian.TuijianAcitivity;
 
-public class MainActivity extends BaseActivity implements OnClickListener {
+public class MainMineActivity extends BaseActivity implements OnClickListener {
     View view;
     Context context;
 

@@ -1,5 +1,6 @@
 package com.hdyl.baselib.base;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
@@ -12,7 +13,7 @@ import android.view.View;
 
 public abstract class BaseActivity extends FragmentActivity implements View.OnClickListener {
 
-    protected Context mContext;
+    protected Activity mContext;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
