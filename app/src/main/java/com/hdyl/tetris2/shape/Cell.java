@@ -49,7 +49,7 @@ public class Cell {
      * @param canvas
      * @param rect
      */
-    public void draw(Canvas canvas, RectF rect) {
+    public void draw(Canvas canvas, Rect rect) {
         if (value == 0) {
             canvas.drawBitmap(GameColor.getBitmapBlack(), null, rect, null);
         } else {

@@ -5,7 +5,6 @@ import com.hdyl.tetris2.shape.GameShape;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Created by liugd on 2017/9/4.
@@ -19,12 +18,28 @@ public class GameBoard {
     public int pointX;
     public int pointY;
 
+
+    public GameShape gameShape;
+
     public int mScore;
     public Cell maps[][] = new Cell[HGIGHT][WIDTH];
 
     public GameBoard() {
         init();
     }
+
+
+    public GameShape getGameShape() {
+        if (gameShape == null) {
+            return createNewGameShape();
+        }
+        return gameShape;
+    }
+
+    public GameShape createNewGameShape() {
+        return gameShape = GameShape.createRandomShape();
+    }
+
 
     private void init() {
         for (int i = 0; i < HGIGHT; i++) {
@@ -41,6 +56,7 @@ public class GameBoard {
     public void newGame() {
         initArr();
         mScore = 0;
+        createNewGameShape();
         newGameInitAll();
     }
 
@@ -92,7 +108,6 @@ public class GameBoard {
         } else {
 
         }
-
     }
 
     public void clearX(int y) {

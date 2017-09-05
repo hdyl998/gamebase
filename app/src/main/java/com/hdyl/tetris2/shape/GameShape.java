@@ -20,7 +20,8 @@ public class GameShape {
         for (int i = 0; i < arrs.length; i++) {
             String tt = arrs[i];
             for (int j = 0; j < tt.length(); j++) {
-                Cell cell = arr[i][j];
+                Cell cell = new Cell();
+                arr[i][j] = cell;
                 cell.setValue((byte) (tt.charAt(j) - '0'));
                 cell.setColor(resIndex);
             }
