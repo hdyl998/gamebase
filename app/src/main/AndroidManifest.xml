@@ -25,16 +25,22 @@
             android:icon="@drawable/icon_tetris"
             android:label="@string/app_name_tetris2"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
 
         <activity
             android:name="com.hdyl.tetris.MainTetrisActivity"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name="com.hdyl.m2048.Main2048Activity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme2048">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name="com.hdyl.mine.MainMineActivity"
             android:hardwareAccelerated="false"

@@ -8,6 +8,7 @@ import android.widget.ListView;
 import com.hdyl.baselib.base.BaseActivity;
 import com.hdyl.baselib.base.adapterbase.BaseViewHolder;
 import com.hdyl.baselib.base.adapterbase.SuperAdapter;
+import com.hdyl.m2048.Main2048Activity;
 import com.hdyl.mine.MainMineActivity;
 import com.hdyl.mine.R;
 import com.hdyl.tetris.MainTetrisActivity;
@@ -67,6 +68,7 @@ public class MainInActivity extends BaseActivity {
         listDatas.add(new DataItem().setAppName(getString(R.string.app_name_mine)).setIconRes(R.drawable.icon_mine).setRank(R.drawable.point3).setGoClazz(MainMineActivity.class));
         listDatas.add(new DataItem().setAppName(getString(R.string.app_name_tetris)).setIconRes(R.drawable.icon_tetris).setRank(R.drawable.point2).setGoClazz(MainTetrisActivity.class));
         listDatas.add(new DataItem().setAppName(getString(R.string.app_name_tetris2)).setIconRes(R.drawable.icon_tetris).setRank(R.drawable.point3).setGoClazz(MainTetris2Activity.class));
+        listDatas.add(new DataItem().setAppName(getString(R.string.app_name_2048)).setIconRes(R.drawable.icon_2048).setRank(R.drawable.point3).setGoClazz(Main2048Activity.class));
 
 
         listView.setAdapter(new SuperAdapter<DataItem>(mContext, listDatas, R.layout.item_app) {

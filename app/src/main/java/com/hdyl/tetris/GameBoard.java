@@ -628,9 +628,9 @@ public class GameBoard {
         return data;
     }
 
-    public final static String KEY_CACHE_TEMP = "gamelogic";
-    public final static String KEY_CACHE_SHAPE_CUR = "gamelogic_shap1";
-    public final static String KEY_CACHE_SHAPE_NEXT = "gamelogic_shap2";
+    public final static String KEY_CACHE_TEMP = "gamelogic_tetris";
+    public final static String KEY_CACHE_SHAPE_CUR = "gamelogic_shap1_tetris";
+    public final static String KEY_CACHE_SHAPE_NEXT = "gamelogic_shap2_tetris";
 
     private void setGameData(GameData gameData) {
         this.gameData = gameData;

@@ -10,4 +10,7 @@
     <color name="green">#11FF11</color>
 
     <color name="white_gray">#ffffff</color>
+
+    <color name="text_white">#f9f6f2</color>
+    <color name="text_black">#776e65</color>
 </resources>

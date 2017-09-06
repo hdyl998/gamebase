@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include
+        android:id="@+id/_001"
+        layout="@layout/include_item"
+        />
+    <include
+        android:id="@+id/_002"
+        layout="@layout/include_item"
+        />
+    <include
+        android:id="@+id/_003"
+        layout="@layout/include_item"
+        />
+    <include
+        android:id="@+id/_004"
+        layout="@layout/include_item"
+        />
+</LinearLayout>
