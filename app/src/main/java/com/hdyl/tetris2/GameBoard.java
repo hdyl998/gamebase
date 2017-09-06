@@ -15,8 +15,8 @@ import java.util.List;
 
 public class GameBoard {
 
-    public final static int WIDTH = 12;
-    public final static int HEIGHT = 12;
+    public final static int WIDTH = 10;
+    public final static int HEIGHT = 10;
 
 
     public GameShape gameShapes[] = new GameShape[3];
@@ -67,9 +67,9 @@ public class GameBoard {
         }
     }
 
-    public void initLocation() {
-
-    }
+//    public void initLocation() {
+//
+//    }
 
     private boolean isAllEmpty() {
         for (GameShape shape : gameShapes) {

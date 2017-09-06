@@ -12,6 +12,7 @@ import com.hdyl.baselib.base.adapterbase.BaseViewHolder;
 import com.hdyl.baselib.base.adapterbase.SuperAdapter;
 import com.hdyl.mine.MainMineActivity;
 import com.hdyl.mine.R;
+import com.hdyl.tetris.MainTetrisActivity;
 import com.hdyl.tetris2.MainTetris2Activity;
 
 import java.util.ArrayList;
@@ -66,7 +67,10 @@ public class MainInActivity extends BaseActivity {
         listView = findViewByID(R.id.listView);
         listDatas = new ArrayList<>();
         listDatas.add(new DataItem().setAppName("经典扫雷").setIconRes(R.drawable.ic_launcher).setRank(R.drawable.point3).setGoClazz(MainMineActivity.class));
-        listDatas.add(new DataItem().setAppName(getString(R.string.app_name_tetris2)).setIconRes(R.drawable.ic_game_icon).setRank(R.drawable.point1).setGoClazz(MainTetris2Activity.class));
+        listDatas.add(new DataItem().setAppName(getString(R.string.app_name_tetris)).setIconRes(R.drawable.ic_game_icon).setRank(R.drawable.point2).setGoClazz(MainTetrisActivity.class));
+        listDatas.add(new DataItem().setAppName(getString(R.string.app_name_tetris2)).setIconRes(R.drawable.ic_game_icon).setRank(R.drawable.point3).setGoClazz(MainTetris2Activity.class));
+
+
         listView.setAdapter(new SuperAdapter<DataItem>(mContext, listDatas, R.layout.item_app) {
             @Override
             protected void onBind(BaseViewHolder holder, DataItem item, int position) {

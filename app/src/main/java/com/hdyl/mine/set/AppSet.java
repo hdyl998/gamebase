@@ -2,7 +2,6 @@ package com.hdyl.mine.set;
 
 import com.hdyl.baselib.base.App;
 import com.hdyl.mine.R;
-import com.hdyl.mine.base.MyApplication;
 import com.hdyl.mine.tools.MySharepreferences;
 
 public class AppSet {

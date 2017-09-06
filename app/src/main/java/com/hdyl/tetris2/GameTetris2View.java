@@ -45,8 +45,6 @@ public class GameTetris2View extends View {
         }
         drawDeleteIcon(canvas);
         gameBoard.drawGameShapes(canvas);
-
-
     }
 
     private Bitmap bitmap;
@@ -70,8 +68,6 @@ public class GameTetris2View extends View {
         rectDelete.left = (getWidth() - bitmap.getWidth()) / 2;
         rectDelete.right = rectDelete.left + bitmap.getWidth();
         rectDelete.bottom = rectDelete.top + bitmap.getHeight();
-
-
         gameBoard.setOneSize(oneSize);
         gameBoard.newGame();
     }

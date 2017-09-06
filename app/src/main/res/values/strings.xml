@@ -2,7 +2,8 @@
 <resources>
 
     <string name="app_name">寒冬游戏</string>
-    <string name="app_name_tetris2">俄罗斯方块2</string>
+    <string name="app_name_tetris">俄罗斯方块</string>
+    <string name="app_name_tetris2">神奇方块</string>
     <string name="app_name_mine">经典扫雷</string>
     <string name="action_settings">Settings</string>
     <string name="update_note">更新说明：\n1、更换精美的背景图片\n2、升级主题适配至Android7.0\n3、修正若干个Bug</string>

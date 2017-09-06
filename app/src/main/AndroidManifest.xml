@@ -16,7 +16,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:name="com.hdyl.mine.base.MyApplication"
+        android:name="com.hdyl.MyApp"
         android:allowBackup="true"
         android:theme="@style/AppTheme">
         <activity
@@ -30,6 +30,9 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name="com.hdyl.tetris.MainTetrisActivity"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name="com.hdyl.mine.MainMineActivity"
