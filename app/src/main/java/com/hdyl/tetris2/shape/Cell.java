@@ -1,6 +1,7 @@
 package com.hdyl.tetris2.shape;
 
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 
@@ -62,9 +63,14 @@ public class Cell {
     }
 
     public void drawNoZero(Canvas canvas, Rect rect) {
-        if (value != 0)
-            canvas.drawBitmap(GameColor.getBitmapAtIndex(color), null, rect, null);
+        drawNoZero(canvas, rect, null);
     }
+
+    public void drawNoZero(Canvas canvas, Rect rect, Paint paint) {
+        if (value != 0)
+            canvas.drawBitmap(GameColor.getBitmapAtIndex(color), null, rect, paint);
+    }
+
 
     public final static byte VALUE_NONE = 0;
     public final static byte VALUE_FULL = 1;

@@ -1,11 +1,9 @@
 package com.hdyl;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.hdyl.baselib.base.BaseActivity;
 import com.hdyl.baselib.base.adapterbase.BaseViewHolder;
@@ -66,7 +64,7 @@ public class MainInActivity extends BaseActivity {
     public void initViews() {
         listView = findViewByID(R.id.listView);
         listDatas = new ArrayList<>();
-        listDatas.add(new DataItem().setAppName("经典扫雷").setIconRes(R.drawable.ic_launcher).setRank(R.drawable.point3).setGoClazz(MainMineActivity.class));
+        listDatas.add(new DataItem().setAppName(getString(R.string.app_name_mine)).setIconRes(R.drawable.icon_mine).setRank(R.drawable.point3).setGoClazz(MainMineActivity.class));
         listDatas.add(new DataItem().setAppName(getString(R.string.app_name_tetris)).setIconRes(R.drawable.icon_tetris).setRank(R.drawable.point2).setGoClazz(MainTetrisActivity.class));
         listDatas.add(new DataItem().setAppName(getString(R.string.app_name_tetris2)).setIconRes(R.drawable.icon_tetris).setRank(R.drawable.point3).setGoClazz(MainTetris2Activity.class));
 

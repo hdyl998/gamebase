@@ -2,6 +2,7 @@ package com.hdyl.tetris2.shape;
 
 
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.Rect;
 
 import com.hdyl.tetris2.GameColor;
@@ -86,11 +87,24 @@ public class GameShape {
         Rect rect = new Rect();
         rect.left = locateX;
         rect.top = locateY;
-        rect.right = locateX + this.getArr()[0].length * oneSize;
-        rect.bottom = locateY + this.getArr().length * oneSize;
+        rect.right = locateX + getXCount() * oneSize;
+        rect.bottom = locateY + getYCount() * oneSize;
         return rect;
     }
 
+
+    public int getXCount() {
+        return this.getArr()[0].length;
+    }
+
+    public int getYCount() {
+        return this.getArr().length;
+    }
+
+
+    public boolean isPositionCellFull(int x, int y) {
+        return getArr()[y][x].isValueFull();
+    }
 
     public void move(int x, int y) {
         locateX += x;
@@ -116,5 +130,19 @@ public class GameShape {
         }
     }
 
-
+    public void drawWithLocate(Canvas canvas, Paint paint) {
+        Rect rect = new Rect();
+        Cell cells[][] = this.getArr();
+        int locateX = getX();
+        int locateY = getY();
+        for (int i = 0; i < cells.length; i++) {
+            for (int j = 0; j < cells[0].length; j++) {
+                rect.left = (j + locateX) * oneSize;
+                rect.right = rect.left + oneSize;
+                rect.top = (i + locateY) * oneSize;
+                rect.bottom = rect.top + oneSize;
+                cells[i][j].drawNoZero(canvas, rect, paint);
+            }
+        }
+    }
 }

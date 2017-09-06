@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -20,9 +21,11 @@ import com.hdyl.tetris2.shape.GameShape;
 public class GameTetris2View extends View {
 
     GameBoard gameBoard;
+    Paint paint = new Paint();
 
     public GameTetris2View(Context context, AttributeSet attrs) {
         super(context, attrs);
+        paint.setAlpha(128);
     }
 
 
@@ -44,7 +47,18 @@ public class GameTetris2View extends View {
             curGameShape.setOneSize(oneSize);
         }
         drawDeleteIcon(canvas);
+        drawShadow(canvas);
         gameBoard.drawGameShapes(canvas);
+
+
+    }
+
+    private void drawShadow(Canvas canvas) {
+        if (curGameShape != null) {
+            if (gameBoard.canLocation(curGameShape)) {
+                curGameShape.drawWithLocate(canvas, paint);
+            }
+        }
     }
 
     private Bitmap bitmap;
@@ -88,7 +102,7 @@ public class GameTetris2View extends View {
             if (gameShape != null) {
                 gameShape.locateX = getWidth() / 3 * count + getWidth() / 12;
                 gameShape.locateY = (GameBoard.HEIGHT + 1) * oneSize;
-                gameShape.setOneSize(3 * oneSize / 4);
+                gameShape.setOneSize(getWidth() / 12);
             }
             count++;
         }
@@ -134,6 +148,7 @@ public class GameTetris2View extends View {
                 }
                 moveIndex = -1;
                 isMoveOne = false;
+                curGameShape = null;
                 invalidate();
                 break;
 

@@ -1,8 +1,10 @@
 package com.hdyl.tetris2;
 
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.Rect;
 
+import com.hdyl.baselib.utils.log.LogUitls;
 import com.hdyl.tetris2.shape.Cell;
 import com.hdyl.tetris2.shape.GameShape;
 
@@ -67,9 +69,6 @@ public class GameBoard {
         }
     }
 
-//    public void initLocation() {
-//
-//    }
 
     private boolean isAllEmpty() {
         for (GameShape shape : gameShapes) {
@@ -80,11 +79,9 @@ public class GameBoard {
     }
 
     public void createNewGameShape() {
-        if (isAllEmpty()) {
-            gameShapes[0] = GameShape.createRandomShape();
-            gameShapes[1] = GameShape.createRandomShape();
-            gameShapes[2] = GameShape.createRandomShape();
-        }
+        gameShapes[0] = GameShape.createRandomShape();
+        gameShapes[1] = GameShape.createRandomShape();
+        gameShapes[2] = GameShape.createRandomShape();
     }
 
 
@@ -122,6 +119,41 @@ public class GameBoard {
         newGameInitAll();
     }
 
+
+    public boolean isGameOver() {
+        for (GameShape shape : gameShapes) {
+            if (shape != null)
+                if (hasPlace(shape)) {
+                    return false;
+                }
+        }
+        return true;
+    }
+
+    private boolean hasPlace(GameShape gameShape) {
+        for (int i = 0; i < HEIGHT; i++) {
+            for (int j = 0; j < WIDTH; j++) {
+                int maxX = gameShape.getXCount() + j;
+                int maxY = gameShape.getYCount() + i;
+                a:
+                if (maxY <= HEIGHT && maxX <= WIDTH) {//无越界
+                    for (int y = 0; y < gameShape.getYCount(); y++)
+                        for (int x = 0; x < gameShape.getXCount(); x++) {
+                            //不能摆放
+                            if (gameShape.isPositionCellFull(x, y) && this.maps[i + y][x + j].isValueFull()) {
+                                LogUitls.print("gameShape", x + "////" + y + "");
+                                LogUitls.print("gameShape", (i + y) + "////" + (x + j) + "");
+                                break a;
+                            }
+                        }
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+
     private void newGameInitAll() {
         onGameListener.onScoreChange(0, mScore);
         onGameListener.invalidateGameBoard();
@@ -132,16 +164,15 @@ public class GameBoard {
         for (int i = 0; i < HEIGHT; i++) {
             for (int j = 0; j < WIDTH; j++) {
                 maps[i][j].reset();
-//                Random random = new Random();
-//                maps[i][j].value = (byte) random.nextInt(2);
-//                maps[i][j].color = GameColor.getRandomResIndex();
             }
         }
     }
 
     public void deleteGameShape(int index) {
         gameShapes[index] = null;
-        createNewGameShape();//创建一个新的
+        if (isAllEmpty()) {
+            createNewGameShape();//创建一个新的
+        }
     }
 
 
@@ -171,6 +202,9 @@ public class GameBoard {
         }
         deleteGameShape(index);
         xiaohang();
+        if (isGameOver()) {
+            onGameListener.onGameOver();
+        }
         onGameListener.invalidateGameBoard();
         return true;
     }
@@ -202,8 +236,11 @@ public class GameBoard {
             x = 0;
             for (Cell cell : cells) {
                 boolean xx1 = isRightX(x + addX);
+                if (!xx1) {
+                    return false;
+                }
                 boolean yy1 = isRightY(y + addY);
-                if (xx1 == false || yy1 == false) {
+                if (!yy1) {
                     return false;
                 }
                 int xx = x + addX;

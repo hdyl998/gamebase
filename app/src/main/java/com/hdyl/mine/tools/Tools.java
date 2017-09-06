@@ -179,8 +179,8 @@ public class Tools {
 		Notification.Builder builder = new Notification.Builder(context);
 		builder.setContentTitle(title);
 		builder.setContentText(message);
-		builder.setSmallIcon(R.drawable.ic_launcher);
+		builder.setSmallIcon(R.drawable.icon_mine);
 		Notification notification = builder.getNotification();
-		manager.notify(tag, R.drawable.ic_launcher, notification);
+		manager.notify(tag, R.drawable.icon_mine, notification);
 	}
 }
