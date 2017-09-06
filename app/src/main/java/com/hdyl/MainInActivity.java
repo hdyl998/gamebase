@@ -67,8 +67,8 @@ public class MainInActivity extends BaseActivity {
         listView = findViewByID(R.id.listView);
         listDatas = new ArrayList<>();
         listDatas.add(new DataItem().setAppName("经典扫雷").setIconRes(R.drawable.ic_launcher).setRank(R.drawable.point3).setGoClazz(MainMineActivity.class));
-        listDatas.add(new DataItem().setAppName(getString(R.string.app_name_tetris)).setIconRes(R.drawable.ic_game_icon).setRank(R.drawable.point2).setGoClazz(MainTetrisActivity.class));
-        listDatas.add(new DataItem().setAppName(getString(R.string.app_name_tetris2)).setIconRes(R.drawable.ic_game_icon).setRank(R.drawable.point3).setGoClazz(MainTetris2Activity.class));
+        listDatas.add(new DataItem().setAppName(getString(R.string.app_name_tetris)).setIconRes(R.drawable.icon_tetris).setRank(R.drawable.point2).setGoClazz(MainTetrisActivity.class));
+        listDatas.add(new DataItem().setAppName(getString(R.string.app_name_tetris2)).setIconRes(R.drawable.icon_tetris).setRank(R.drawable.point3).setGoClazz(MainTetris2Activity.class));
 
 
         listView.setAdapter(new SuperAdapter<DataItem>(mContext, listDatas, R.layout.item_app) {
