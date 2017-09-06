@@ -55,7 +55,7 @@ public class MainTetris2Activity extends BaseActivity implements GameBoard.OnGam
 
     @Override
     public void onScoreChange(int addScore, int finalScore) {
-        tvScore.setText(finalScore + "");
+        tvScore.setText("得分：" + finalScore);
         if (addScore != 0) {
             soundPlayer.play(SOUND_KEY_ADD);
         }
@@ -73,6 +73,5 @@ public class MainTetris2Activity extends BaseActivity implements GameBoard.OnGam
 
     @Override
     public void onNewGame() {
-        ToastUtils.makeTextAndShow("新游戏!");
     }
 }

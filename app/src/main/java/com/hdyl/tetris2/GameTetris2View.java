@@ -1,14 +1,16 @@
 package com.hdyl.tetris2;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.hdyl.baselib.utils.ToastUtils;
-import com.hdyl.tetris2.shape.Cell;
+import com.hdyl.baselib.utils.log.LogUitls;
+import com.hdyl.mine.R;
 import com.hdyl.tetris2.shape.GameShape;
 
 /**
@@ -28,7 +30,6 @@ public class GameTetris2View extends View {
         this.gameBoard = gameBoard;
     }
 
-    Rect rect = new Rect();
 
     @Override
     protected void onDraw(Canvas canvas) {
@@ -36,50 +37,24 @@ public class GameTetris2View extends View {
         if (getWidth() == 0) {
             return;
         }
-        for (int i = 0; i < GameBoard.HGIGHT; i++) {
-            for (int j = 0; j < GameBoard.WIDTH; j++) {
-                rect.left = j * oneSize;
-                rect.right = rect.left + oneSize;
-                rect.top = i * oneSize;
-                rect.bottom = rect.top + oneSize;
-                this.gameBoard.getMaps()[i][j].draw(canvas, rect);
-            }
+        gameBoard.drawBoard(canvas);
+        if (!isMoveOne) {
+            initLocation();
+        } else {
+            curGameShape.setOneSize(oneSize);
         }
+        drawDeleteIcon(canvas);
+        gameBoard.drawGameShapes(canvas);
 
-        GameShape gameShape = this.gameBoard.getGameShape();
-        Cell cells[][] = gameShape.getArr();
-        for (int i = 0; i < cells.length; i++) {
-            for (int j = 0; j < cells[0].length; j++) {
-
-                if (isMoveOne) {
-                    rect.left = realX;
-                    rect.top = realY;
-                    rect.right = realX;
-                    rect.bottom = realY;
-                } else {
-                    rect.left = 0;
-                    rect.top = 0;
-                    rect.right = 0;
-                    rect.bottom = 0;
-                }
-
-                rect.left += j * oneSize;
-                rect.right += rect.left + oneSize;
-                rect.top += (i + GameBoard.HGIGHT + 1) * oneSize;
-                rect.bottom += rect.top + oneSize;
-                cells[i][j].draw(canvas, rect);
-            }
-        }
 
     }
 
-    private boolean isMoveShape(GameShape gameShape, int x, int y) {
-        Rect rect = new Rect();
-        rect.left = 0;
-        rect.top = (GameBoard.HGIGHT + 1) * oneSize;
-        rect.right = gameShape.getArr()[0].length * oneSize;
-        rect.bottom = (GameBoard.HGIGHT + 1 + gameShape.getArr().length) * oneSize;
-        return rect.contains(x, y);
+    private Bitmap bitmap;
+
+    Rect rectDelete = new Rect();
+
+    private void drawDeleteIcon(Canvas canvas) {
+        canvas.drawBitmap(bitmap, null, rectDelete, null);
     }
 
 
@@ -89,6 +64,16 @@ public class GameTetris2View extends View {
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
         oneSize = getWidth() / GameBoard.WIDTH;
+
+        bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.delete_press);
+        rectDelete.top = oneSize * (GameBoard.HEIGHT + 4);
+        rectDelete.left = (getWidth() - bitmap.getWidth()) / 2;
+        rectDelete.right = rectDelete.left + bitmap.getWidth();
+        rectDelete.bottom = rectDelete.top + bitmap.getHeight();
+
+
+        gameBoard.setOneSize(oneSize);
+        gameBoard.newGame();
     }
 
 
@@ -100,11 +85,23 @@ public class GameTetris2View extends View {
     boolean isMoveOne = false;
     int startX, startY;
 
-    int mStartX, mStartY;
 
-    int differX, differY;
+    public void initLocation() {
+        int count = 0;
+        for (GameShape gameShape : gameBoard.gameShapes) {
+            if (gameShape != null) {
+                gameShape.locateX = getWidth() / 3 * count + getWidth() / 12;
+                gameShape.locateY = (GameBoard.HEIGHT + 1) * oneSize;
+                gameShape.setOneSize(3 * oneSize / 4);
+            }
+            count++;
+        }
+    }
 
-    int realX, realY;
+
+    GameShape curGameShape;
+
+    int moveIndex;
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -112,33 +109,39 @@ public class GameTetris2View extends View {
         int y = (int) event.getY();
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                if (isMoveShape(this.gameBoard.getGameShape(), x, y)) {
+                if ((moveIndex = gameBoard.contains(x, y)) != -1) {
                     isMoveOne = true;
-                    mStartX = startX = x;
-                    mStartY = startY = y;
-                    differX = (int) (x - event.getRawX());
-                    differY = (int) (x - event.getRawY());
+                    startX = x;
+                    startY = y;
+                    curGameShape = gameBoard.getGameShape(moveIndex);
+                    invalidate();
                 }
                 break;
             case MotionEvent.ACTION_MOVE:
                 if (isMoveOne) {
                     int dx = x - startX;
                     int dy = y - startY;
-
-                    realX = mStartX + differX + dx;
-                    realY = mStartY + differY + dy;
-
-                    invalidate();
-
+                    curGameShape.move(dx, dy);
                     startX = x;
                     startY = y;
+                    invalidate();
                 }
                 break;
             default:
+                if (moveIndex != -1) {
+                    //判定是否有交集
+                    if (Rect.intersects(rectDelete, curGameShape.getLocateRect())) {
+                        gameBoard.deleteGameShape(moveIndex);
+                    } else {
+                        gameBoard.addShapeOnBoard(moveIndex);
+                    }
+                }
+                moveIndex = -1;
                 isMoveOne = false;
+                invalidate();
                 break;
 
         }
-        return super.onTouchEvent(event);
+        return true;
     }
 }

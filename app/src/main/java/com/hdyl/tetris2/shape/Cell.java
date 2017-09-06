@@ -39,6 +39,10 @@ public class Cell {
         this.value = value;
     }
 
+    public void setValueFull() {
+        this.value = VALUE_FULL;
+    }
+
     public void reset() {
         this.value = VALUE_NONE;
     }
@@ -55,7 +59,11 @@ public class Cell {
         } else {
             canvas.drawBitmap(GameColor.getBitmapAtIndex(color), null, rect, null);
         }
+    }
 
+    public void drawNoZero(Canvas canvas, Rect rect) {
+        if (value != 0)
+            canvas.drawBitmap(GameColor.getBitmapAtIndex(color), null, rect, null);
     }
 
     public final static byte VALUE_NONE = 0;
