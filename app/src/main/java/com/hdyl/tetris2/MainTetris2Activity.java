@@ -1,10 +1,12 @@
 package com.hdyl.tetris2;
 
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.TextView;
 
 import com.hdyl.baselib.base.BaseActivity;
 import com.hdyl.baselib.sound.SoundPlayer;
+import com.hdyl.baselib.utils.TextViewUtils;
 import com.hdyl.baselib.utils.ToastUtils;
 import com.hdyl.mine.R;
 
@@ -15,6 +17,7 @@ import com.hdyl.mine.R;
 public class MainTetris2Activity extends BaseActivity implements GameBoard.OnGameEvent {
 
     TextView tvScore;
+    TextView tvHighScore;
     GameTetris2View gameView;
     GameBoard gameBoard = new GameBoard();
     SoundPlayer soundPlayer = new SoundPlayer();
@@ -25,6 +28,7 @@ public class MainTetris2Activity extends BaseActivity implements GameBoard.OnGam
     @Override
     public void initViews() {
         tvScore = findViewByID(R.id.tvScore);
+        tvHighScore=findViewByID(R.id.tvHighScore);
         gameView = findViewByID(R.id.gameView);
         gameView.setGameBoard(gameBoard);
         gameBoard.setOnGameEvent(this);
@@ -55,10 +59,19 @@ public class MainTetris2Activity extends BaseActivity implements GameBoard.OnGam
 
     @Override
     public void onScoreChange(int addScore, int finalScore) {
-        tvScore.setText("得分：" + finalScore);
-        if (addScore != 0) {
+        tvScore.setText("得分: " + finalScore);
+        if (addScore >=100) {
             soundPlayer.play(SOUND_KEY_ADD);
         }
+    }
+
+
+    @Override
+    public void onHighScore(boolean isInited,int highScore) {
+        tvHighScore.setText("最高分: "+highScore);
+        if(isInited==false)
+        new AlertDialog.Builder(mContext).setTitle("打破记录").setMessage("最高分: "+highScore)
+                .setPositiveButton("确定",null).show();
     }
 
     @Override
@@ -68,7 +81,8 @@ public class MainTetris2Activity extends BaseActivity implements GameBoard.OnGam
 
     @Override
     public void onGameOver() {
-        ToastUtils.makeTextAndShow("gameover!");
+        new AlertDialog.Builder(mContext).setTitle("消息").setMessage("游戏结束")
+                .setPositiveButton("确定",null).show();
     }
 
     @Override

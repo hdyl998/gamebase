@@ -18,9 +18,10 @@
 
 
     <LinearLayout
-        android:padding="10dp"
-        android:layout_margin="10dp"
+        android:padding="5dp"
+        android:layout_margin="5dp"
         android:id="@+id/ll_menu"
+        android:layout_below="@+id/toolBar"
         android:layout_width="100dp"
         android:layout_height="match_parent"
         android:layout_alignParentRight="true"
@@ -35,6 +36,7 @@
         <com.hdyl.tetris.NextShapeView
             android:id="@+id/nextShapeView"
             android:layout_width="match_parent"
+            android:padding="5dp"
             android:layout_height="50dp" />
 
         <TextView
@@ -82,6 +84,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/buttonNewGame" />
+
+
+        <Button
+            android:text="Pause/Play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonPause" />
+
         <Button
             android:text="Rotate"
             android:layout_width="wrap_content"
@@ -92,12 +102,14 @@
     <com.hdyl.tetris.GameView
         android:id="@+id/gameView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="100dp"
         android:layout_toLeftOf="@+id/ll_menu"
         android:text="Hello World!"
-        android:layout_above="@+id/linearLayout2" />
+        android:layout_below="@+id/toolBar"
+        />
 
     <LinearLayout
+        android:layout_below="@+id/gameView"
         android:id="@+id/linearLayout2"
         android:orientation="horizontal"
         android:layout_width="match_parent"

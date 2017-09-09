@@ -103,6 +103,18 @@ public abstract class TetrisShape {
         }
     }
 
+    public void drawPx(Canvas canvas, float size, int xOffSet, int yOffset) {
+        CellArray array = this.getCellArray();
+        RectF rectF = new RectF();
+        for (PositionCell cell : array.cells) {
+            rectF.left =  cell.getX() * size+xOffSet;
+            rectF.right = rectF.left + size;
+            rectF.top = yOffset + cell.getY() * size;
+            rectF.bottom = rectF.top + size;
+            cell.draw(canvas, rectF);
+        }
+    }
+
     public void draw(Canvas canvas, float size) {
         draw(canvas, size, 0, 0);
     }

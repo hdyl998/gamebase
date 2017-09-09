@@ -16,6 +16,19 @@ public class GameConfig {
 
     public boolean isNishi = true;//是否方向是逆时针
 
+
+    public boolean isAnimDown=true;
+    public boolean isAnimXiaohang=true;
+
+
+    public boolean isAnimXiaohang() {
+        return isAnimXiaohang;
+    }
+
+    public boolean isAnimDown() {
+        return isAnimDown;
+    }
+
     static GameConfig gameConfig;
 
     public boolean isBgMusic() {

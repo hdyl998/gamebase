@@ -2,7 +2,6 @@ package com.hdyl.tetris;
 
 import android.content.SharedPreferences;
 import android.graphics.Canvas;
-import android.graphics.Rect;
 import android.graphics.RectF;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -32,6 +31,9 @@ public class GameBoard {
     public final static int xCount = 10;
     public final static int yCount = 20;
 
+
+    LineDispearAnim lineDispearAnim =new LineDispearAnim();
+    DownAnim downAnim=new DownAnim();
     private OnGameEvent onGameEvent;
 
     GameData gameData = new GameData();
@@ -98,6 +100,7 @@ public class GameBoard {
      * 新游戏
      */
     public void newGame() {
+        lineDispearAnim.clearAnim();
         gameData.initDatas();
         nextShape = TetrisShapeFactory.createRandomShape();
         nextTetrisShape();
@@ -141,6 +144,7 @@ public class GameBoard {
         if (isGamePlaying() == false) {
             return;
         }
+        downAnim.clearAnim();
         switch (direction) {
             case DIRECTION_LEFT:
                 SoundManager.getInstance().playSound(SoundManager.SOUND_LEFT_RIGHT);
@@ -151,21 +155,37 @@ public class GameBoard {
                 moveRight();
                 break;
             case DIRECTION_DOWN:
-                SoundManager.getInstance().playSound(SoundManager.SOUND_DOWN);
-                downALine();
-                downALine();
-                downALine();//一次下降三次
+
+                int distence0 = getDistenceToBottom(curShape);
+                int downCount=3;
+                if(distence0<downCount){
+                    fastDown();
+                }
+                else {
+                    SoundManager.getInstance().playSound(SoundManager.SOUND_DOWN);
+                    downALine(downCount);
+                }
                 break;
             case DIRECTION_FAST_DOWN:
-                SoundManager.getInstance().playSound(SoundManager.SOUND_FASTDOWN);
-                //把当前的方块添加到面板上
-                addTetrisShape();
+                fastDown();
                 break;
             case DIRECTION_ROTATE:
                 rotate();
                 break;
         }
     }
+
+
+    private void fastDown(){
+        SoundManager.getInstance().playSound(SoundManager.SOUND_FASTDOWN);
+        //把当前的方块添加到面板上
+        int distence = getDistenceToBottom(curShape);
+        if(GameConfig.getInstance().isAnimDown()) {
+            downAnim.addAnim(cellArrs, curShape, distence, gameData.xOffset, gameData.yOffset);
+        }addTetrisShape();
+    }
+
+
 
     /***
      * 获得图形到底部方块的距离的最小值，用于下落
@@ -276,16 +296,20 @@ public class GameBoard {
     /***
      * 方块向下移动一格,外部计时器调用
      */
-    public void downALine() {
+    public void downALine(int count) {
         if (isGamePlaying() == false) {
             return;
         }
-        if (!checkCanMove(DIRECTION_DOWN)) {
-            //不能再向下了，则已到极限了，则把方块加到面板上
-            addTetrisShape();
-            return;
+        for(int i=0;i<count;i++) {
+            if (!checkCanMove(DIRECTION_DOWN)) {
+                //不能再向下了，则已到极限了，则把方块加到面板上
+                addTetrisShape();
+                return;
+            }
         }
-        gameData.yOffset++;
+        if(GameConfig.getInstance().isAnimDown())
+        downAnim.addAnim(cellArrs,curShape,count,gameData.xOffset,gameData.yOffset);
+        gameData.yOffset+=count;
         onGameEvent.invalidateGameBoard();
     }
 
@@ -326,6 +350,9 @@ public class GameBoard {
                 SoundManager.getInstance().playSound(SoundManager.SOUND_DELETE4);
                 addScore = 1500;
                 break;
+        }
+        if(GameConfig.getInstance().isAnimXiaohang()) {
+            lineDispearAnim.addAnim(cellArrs, list);
         }
         if (list.size() > 0) {
             //清掉满的一行
@@ -559,6 +586,12 @@ public class GameBoard {
         return gameData.gameState == GAME_STATE_PLAYING;
     }
 
+    public void doPauseGame(){
+        if(isGamePlaying()){
+            exchangePausePlayingGameState();
+        }
+    }
+
     /***
      * 交换游戏状态，用于控件暂停及恢复游戏状态
      */
@@ -566,11 +599,17 @@ public class GameBoard {
         if (!isGameOver()) {
             if (isGamePause()) {
                 setGameState(GAME_STATE_PLAYING);
+                onGameEvent.onGamePauseResume();
+                onGameEvent.invalidateGameBoard();
             } else {
                 setGameState(GAME_STATE_PAUSE);
+                onGameEvent.onGamePause();
+                onGameEvent.invalidateGameBoard();
             }
         }
     }
+
+
 
     public int getGameState() {
         return gameData.gameState;
@@ -595,6 +634,9 @@ public class GameBoard {
         void invalidateNextBoard();//绘制下一个方块的小面板
 
         void onNewGame();
+
+        void onGamePause();
+        void onGamePauseResume();
     }
 
 

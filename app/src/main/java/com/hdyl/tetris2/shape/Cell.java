@@ -40,6 +40,11 @@ public class Cell {
         this.value = value;
     }
 
+    public void setValue(Cell cell){
+        this.value=cell.value;
+        this.color=cell.color;
+    }
+
     public void setValueFull() {
         this.value = VALUE_FULL;
     }

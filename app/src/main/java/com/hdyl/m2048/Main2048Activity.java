@@ -73,7 +73,7 @@ public class Main2048Activity extends AppCompatActivity implements View.OnClickL
                         Dialog dialog = new AlertDialog.Builder(Main2048Activity.this).setTitle("转置设置")
                                 .setView(R.layout.dialog_zhuanzhi)
                                 .setPositiveButton("确定", null)
-                                .create();
+                                .show();
                         View.OnClickListener clickListener = new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
@@ -98,7 +98,6 @@ public class Main2048Activity extends AppCompatActivity implements View.OnClickL
                         dialog.findViewById(R.id.button_updown).setOnClickListener(clickListener);
                         dialog.findViewById(R.id.button_xy).setOnClickListener(clickListener);
                         dialog.findViewById(R.id.button_all).setOnClickListener(clickListener);
-                        dialog.show();
                         break;
                     case R.id.action_exit:
                         finish();

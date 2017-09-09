@@ -4,6 +4,8 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 
+import com.hdyl.baselib.base.App;
+import com.hdyl.baselib.utils.MySharepreferences;
 import com.hdyl.baselib.utils.log.LogUitls;
 import com.hdyl.tetris2.shape.Cell;
 import com.hdyl.tetris2.shape.GameShape;
@@ -20,11 +22,14 @@ public class GameBoard {
     public final static int WIDTH = 10;
     public final static int HEIGHT = 10;
 
+    public boolean isGaming=false;
 
     public GameShape gameShapes[] = new GameShape[3];
 
-
+    public LineDispearAnim lineDispearAnim=new LineDispearAnim();
     public int mScore;
+
+    public int mHighScore;
     public Cell maps[][] = new Cell[HEIGHT][WIDTH];
 
     public int oneSize;
@@ -37,6 +42,13 @@ public class GameBoard {
         this.oneSize = oneSize;
     }
 
+    {
+        mHighScore= MySharepreferences.getInt(App.getContext(),"tetris2","highscore",0);
+    }
+
+    public void saveHighScore(){
+        MySharepreferences.putInt(App.getContext(),"tetris2","highscore",mHighScore);
+    }
 
 //    public void setGameShapesOneSize(int oneSize) {
 //        for (GameShape gameShape : gameShapes) {
@@ -117,6 +129,8 @@ public class GameBoard {
         mScore = 0;
         createNewGameShape();
         newGameInitAll();
+        isGaming=true;
+        lineDispearAnim.clearAnim();
     }
 
 
@@ -141,8 +155,6 @@ public class GameBoard {
                         for (int x = 0; x < gameShape.getXCount(); x++) {
                             //不能摆放
                             if (gameShape.isPositionCellFull(x, y) && this.maps[i + y][x + j].isValueFull()) {
-                                LogUitls.print("gameShape", x + "////" + y + "");
-                                LogUitls.print("gameShape", (i + y) + "////" + (x + j) + "");
                                 break a;
                             }
                         }
@@ -156,6 +168,7 @@ public class GameBoard {
 
     private void newGameInitAll() {
         onGameListener.onScoreChange(0, mScore);
+        onGameListener.onHighScore(true,mHighScore);
         onGameListener.invalidateGameBoard();
         onGameListener.onNewGame();
     }
@@ -201,15 +214,30 @@ public class GameBoard {
             y++;
         }
         deleteGameShape(index);
-        xiaohang();
+
+        int addScore1=shape.countFullPoint()*10;
+       int addScore= xiaohang();
+        addScore+=addScore1;
+        mScore += addScore;
+        onGameListener.onScoreChange(addScore, mScore);
         if (isGameOver()) {
+            isGaming=false;
             onGameListener.onGameOver();
+            if(mScore>mHighScore){
+                mHighScore=mScore;
+                saveHighScore();
+                onGameListener.onHighScore(false,mHighScore);
+            }
         }
         onGameListener.invalidateGameBoard();
         return true;
     }
 
-//
+    public boolean isGaming() {
+        return isGaming;
+    }
+
+    //
 //    public int shape2Index(GameShape shape) {
 //        int count = 0;
 //        for (GameShape shape1 : gameShapes) {
@@ -296,7 +324,7 @@ public class GameBoard {
     }
 
 
-    public void xiaohang() {
+    public int xiaohang() {
         List<Integer> listY = new ArrayList<>(HEIGHT);
         for (int y = 0; y < HEIGHT; y++) {
             if (isFullX(y)) {
@@ -311,18 +339,17 @@ public class GameBoard {
         }
         //行号大于0
         if (listX.size() > 0 || listY.size() > 0) {
+            lineDispearAnim.addAnim(maps,listX,listY);
             for (int y : listY) {
                 clearX(y);
             }
             for (int x : listX) {
                 clearY(x);
             }
-            int score = (listX.size() + listY.size()) * 100;
-            mScore += score;
-            onGameListener.onScoreChange(score, mScore);
-            onGameListener.invalidateGameBoard();
-        } else {
+            return (listX.size()+listY.size())*100;
+
         }
+        return 0;
     }
 
     public void clearX(int y) {
@@ -363,6 +390,8 @@ public class GameBoard {
 
     public interface OnGameEvent {
         void onScoreChange(int addScore, int finalScore);
+
+        void onHighScore(boolean isInited,int highScore );
 
         void invalidateGameBoard();
 

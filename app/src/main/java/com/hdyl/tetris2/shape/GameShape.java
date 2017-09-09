@@ -69,6 +69,18 @@ public class GameShape {
         return colorIndex;
     }
 
+
+    public int countFullPoint(){
+        int count=0;
+        for( Cell cells[]:arr){
+            for(Cell cell:cells){
+                if(cell.isValueFull()){
+                    count++;
+                }
+            }
+        }
+        return  count;
+    }
     /***
      * 随机产生方块
      *

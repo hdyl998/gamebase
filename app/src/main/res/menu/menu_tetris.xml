@@ -1,0 +1,28 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_new_game"
+        android:title="新游戏"
+        app:showAsAction="collapseActionView" />
+
+    <item
+        android:id="@+id/action_rotate"
+        android:title="旋转设置"
+        app:showAsAction="collapseActionView" />
+
+    <item
+        android:id="@+id/action_sound"
+        android:title="声音设置"
+        app:showAsAction="collapseActionView" />
+
+    <item
+        android:id="@+id/action_anim"
+        android:title="动画设置"
+        app:showAsAction="collapseActionView" />
+    <item
+        android:id="@+id/action_exit"
+        android:title="退出"
+        app:showAsAction="collapseActionView" />
+
+</menu>

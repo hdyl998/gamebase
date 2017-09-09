@@ -23,6 +23,7 @@ public class GameTetris2View extends View {
     GameBoard gameBoard;
     Paint paint = new Paint();
 
+
     public GameTetris2View(Context context, AttributeSet attrs) {
         super(context, attrs);
         paint.setAlpha(128);
@@ -37,18 +38,30 @@ public class GameTetris2View extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        if(isInEditMode()){
+            return;
+        }
         if (getWidth() == 0) {
             return;
         }
-        gameBoard.drawBoard(canvas);
-        if (!isMoveOne) {
-            initLocation();
-        } else {
-            curGameShape.setOneSize(oneSize);
+        if(gameBoard.lineDispearAnim.isAnim()){
+            gameBoard.lineDispearAnim.draw(canvas,oneSize);
+            gameBoard.lineDispearAnim.ticker(30);
+            drawDeleteIcon(canvas);
+            gameBoard.drawGameShapes(canvas);
+            invalidate();
         }
-        drawDeleteIcon(canvas);
-        drawShadow(canvas);
-        gameBoard.drawGameShapes(canvas);
+        else {
+            gameBoard.drawBoard(canvas);
+            if (!isMoveOne) {
+                initLocation();
+            } else {
+                curGameShape.setOneSize(oneSize);
+            }
+            drawDeleteIcon(canvas);
+            drawShadow(canvas);
+            gameBoard.drawGameShapes(canvas);
+        }
 
 
     }
@@ -75,6 +88,10 @@ public class GameTetris2View extends View {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
+        if(isInEditMode()){
+            return;
+        }
+
         oneSize = getWidth() / GameBoard.WIDTH;
 
         bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.delete_press);
@@ -119,7 +136,7 @@ public class GameTetris2View extends View {
         int y = (int) event.getY();
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                if ((moveIndex = gameBoard.contains(x, y)) != -1) {
+                if (gameBoard.isGaming()&&(moveIndex = gameBoard.contains(x, y)) != -1) {
                     isMoveOne = true;
                     startX = x;
                     startY = y;

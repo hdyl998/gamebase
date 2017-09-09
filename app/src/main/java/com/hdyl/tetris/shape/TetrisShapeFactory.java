@@ -25,7 +25,7 @@ public class TetrisShapeFactory {
                     SShape.class,
                     TShape.class,
                     ZShape.class,
-                    PointShape.class/*,
+                   /* PointShape.class,
                     SuperSShape.class,
                     SuperTShape.class,
                     SuperZShape.class*/

@@ -3,13 +3,14 @@ package com.hdyl.tetris;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.hdyl.tetris.shape.CellArray;
-import com.hdyl.tetris.shape.TetrisShape;
+import com.hdyl.mine.tools.Tools;
 import com.hdyl.tetris2.GameColor;
 
 /**
@@ -26,7 +27,8 @@ public class GameView extends View {
     public GameBoard getGameBoard() {
         return gameBoard;
     }
-
+    LineDispearAnim lineDispearAnim;
+    DownAnim downAnim;
 
     public GameView(Context context) {
         super(context);
@@ -35,6 +37,8 @@ public class GameView extends View {
     public GameView(Context context, AttributeSet attrs) {
         super(context, attrs);
         gameBoard.setOnGameEvent((GameBoard.OnGameEvent) context);
+        lineDispearAnim =gameBoard.lineDispearAnim;
+        downAnim=gameBoard.downAnim;
     }
 
     Bitmap bitmapBg = null;
@@ -56,6 +60,8 @@ public class GameView extends View {
         }
     }
 
+    Paint paint=new Paint(Paint.ANTI_ALIAS_FLAG);
+
     @Override
     protected void onDraw(Canvas canvas) {
         if (getWidth() == 0) {
@@ -63,8 +69,28 @@ public class GameView extends View {
         }
         checkBg();
         canvas.drawBitmap(bitmapBg, 0, 0, null);
-        gameBoard.drawBoard(canvas, size);
-        gameBoard.drawCurTetris(canvas, size);
+
+        if(downAnim.isAnim()){
+            downAnim.draw(canvas,size);
+            downAnim.ticker(30);
+            invalidate();
+        }
+        else if(lineDispearAnim.isAnim()){
+            lineDispearAnim.draw(canvas,size);
+            lineDispearAnim.ticker(30);
+            invalidate();
+        }
+        else {
+            gameBoard.drawBoard(canvas, size);
+            gameBoard.drawCurTetris(canvas, size);
+            if(gameBoard.isGamePause()){
+                paint.setTextSize(dip2px(40));
+                paint.setColor(Color.WHITE);
+                paint.setTextAlign(Paint.Align.CENTER);
+                canvas.drawText("游戏暂停",getWidth()/2,getHeight()/2,paint);
+            }
+
+        }
 
     }
 
@@ -74,8 +100,7 @@ public class GameView extends View {
         super.onSizeChanged(w, h, oldw, oldh);
 //        int hsize = h / GameBoard.yCount;
 
-        int wsize = w / GameBoard.xCount;
-        size = wsize;
+        size =  1f*w / GameBoard.xCount;
         //新游戏
 //        gameBoard.newGame();
     }

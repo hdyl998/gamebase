@@ -1,15 +1,25 @@
 package com.hdyl.tetris;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.hdyl.baselib.utils.ToastUtils;
+import com.hdyl.m2048.Main2048Activity;
 import com.hdyl.mine.R;
+import com.hdyl.tetris.common.GameConfig;
 import com.hdyl.tetris.shape.TetrisShape;
 import com.hdyl.tetris.shape.TetrisShapeFactory;
 import com.hdyl.tetris.sound.SoundManager;
@@ -21,11 +31,86 @@ public class MainTetrisActivity extends AppCompatActivity implements GameBoard.O
 
     NextShapeView nextShapeView;
     GameBoard gameBoard;
+    Activity mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mContext=this;
         setContentView(R.layout.activity_main_tetris);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolBar);
+        toolbar.setTitle(R.string.app_name_tetris);
+        setSupportActionBar(toolbar);
+
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                gameBoard.doPauseGame();
+                switch (item.getItemId()){
+                    case R.id.action_new_game:
+                        gameBoard.newGame();
+                        break;
+                    case R.id.action_rotate:
+                        new AlertDialog.Builder(mContext).setTitle(item.getTitle())
+                                .setSingleChoiceItems(new String[]{"逆时针","顺时针"}, GameConfig.getInstance().isNishi() ? 0 : 1, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        GameConfig.getInstance().setNishi(which==0);
+                                        GameConfig.getInstance().save();
+                                    }
+                                }).show();
+
+                        break;
+                    case R.id.action_anim:
+                        new AlertDialog.Builder(mContext).setTitle(item.getTitle()).setMultiChoiceItems(new String[]{"下落动画","消行动画"},
+                                new boolean[]{GameConfig.getInstance().isAnimDown(), GameConfig.getInstance().isAnimXiaohang()},
+                                new DialogInterface.OnMultiChoiceClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                                        if(which==0) {
+                                            GameConfig.getInstance().isAnimDown=isChecked;
+                                        }
+                                        else if(which==1){
+                                            GameConfig.getInstance().isAnimXiaohang=isChecked;
+                                        }
+                                        GameConfig.getInstance().save();
+                                    }
+                                }
+                        ).setPositiveButton("确定",null).show();
+
+                        break;
+                    case R.id.action_sound:
+                        new AlertDialog.Builder(mContext).setTitle(item.getTitle()).setMultiChoiceItems(new String[]{"音乐","音效"},
+                                new boolean[]{GameConfig.getInstance().isBgMusic(), GameConfig.getInstance().isSoundEffect()},
+                                new DialogInterface.OnMultiChoiceClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                                        if(which==0) {
+                                            GameConfig.getInstance().isBgMusic=isChecked;
+                                            if(isChecked){
+                                                SoundManager.getInstance().playPlayingBgMusic();
+                                            }
+                                            else {
+                                                SoundManager.getInstance().releaseBgMusic();
+                                            }
+                                        }
+                                        else if(which==1){
+                                            GameConfig.getInstance().isSoundEffect=isChecked;
+                                        }
+                                        GameConfig.getInstance().save();
+                                    }
+                                }
+                        ).setPositiveButton("确定",null).show();
+                        break;
+                    case R.id.action_exit:
+                        finish();
+                        break;
+                }
+                return true;
+            }
+        });
+
 
         gameView = (GameView) findViewById(R.id.gameView);
 
@@ -41,6 +126,14 @@ public class MainTetrisActivity extends AppCompatActivity implements GameBoard.O
         findViewById(R.id.buttonNewGame).setOnClickListener(this);
         findViewById(R.id.buttonRotate).setOnClickListener(this);
         findViewById(R.id.buttonFastDown).setOnClickListener(this);
+        findViewById(R.id.buttonPause).setOnClickListener(this);
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_tetris, menu);//加载menu文件到布局
+        return true;
     }
 
     @Override
@@ -72,6 +165,9 @@ public class MainTetrisActivity extends AppCompatActivity implements GameBoard.O
             case R.id.buttonFastDown:
                 gameBoard.move(GameBoard.DIRECTION_FAST_DOWN);
                 break;
+            case R.id.buttonPause:
+                gameBoard.exchangePausePlayingGameState();
+                break;
         }
     }
 
@@ -86,7 +182,8 @@ public class MainTetrisActivity extends AppCompatActivity implements GameBoard.O
     public void onGameOver() {
         //停止时间跳动
         stopRun();
-        ToastUtils.makeTextAndShow("GameOver");
+        new AlertDialog.Builder(mContext).setTitle("消息").setMessage("游戏结束")
+                .setPositiveButton("确定",null).show();
     }
 
     @Override
@@ -106,6 +203,18 @@ public class MainTetrisActivity extends AppCompatActivity implements GameBoard.O
         startRun();
     }
 
+    @Override
+    public void onGamePause() {
+        stopRun();
+        SoundManager.getInstance().releaseBgMusic();
+    }
+
+    @Override
+    public void onGamePauseResume() {
+        startRun();
+        SoundManager.getInstance().playPlayingBgMusic();
+    }
+
 
     Handler handler = new Handler();
 
@@ -114,7 +223,7 @@ public class MainTetrisActivity extends AppCompatActivity implements GameBoard.O
         @Override
         public void run() {
             handler.postDelayed(this, TIME_DELAY);
-            gameBoard.downALine();
+            gameBoard.downALine(1);
         }
     };
 
@@ -142,8 +251,8 @@ public class MainTetrisActivity extends AppCompatActivity implements GameBoard.O
     @Override
     protected void onResume() {
         super.onResume();
-        TetrisShape nextShape = TetrisShapeFactory.createRandomShape();
-        System.out.println(JSON.toJSONString(nextShape));
+//        TetrisShape nextShape = TetrisShapeFactory.createRandomShape();
+//        System.out.println(JSON.toJSONString(nextShape));
         SoundManager.getInstance().playPlayingBgMusic();
         gameBoard.read();
         if (gameBoard.isGamePlaying()) {

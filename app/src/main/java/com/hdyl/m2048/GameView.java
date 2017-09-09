@@ -82,12 +82,8 @@ public class GameView extends View {
     float halfDivider;
     Bitmap bitmapBackground;
 
-    @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        if (getWidth() == 0 || isInEditMode()) {
-            return;
-        }
+
+    private void createBg(){
         //背景一次性去绘制
         if (bitmapBackground == null) {
             bitmapBackground = Bitmap.createBitmap(getWidth(), getHeight(), Bitmap.Config.ARGB_8888);
@@ -112,6 +108,15 @@ public class GameView extends View {
             }
 
         }
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        if (getWidth() == 0 || isInEditMode()) {
+            return;
+        }
+        createBg();
         canvas.drawBitmap(bitmapBackground, 0, 0, null);
         //画变化的
         Cell[][] arrData = logic.arrData;
@@ -119,9 +124,6 @@ public class GameView extends View {
         for (int i = 0; i < GameLogic.yCOUNT; i++) {
             for (int j = 0; j < GameLogic.xCOUNT; j++) {
                 Cell cell = arrData[i][j];
-                if (cell == null) {
-                    return;
-                }
                 if (!cell.isValueZero()) {
                     AnimManager manager = animBoard.getAnimManager(j, i);
                     //无动画
