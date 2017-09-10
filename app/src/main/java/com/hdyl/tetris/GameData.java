@@ -38,8 +38,6 @@ public class GameData {
             }
         }
         curScore = 0;
-        highScore = 0;
-        curScore = 0;
         xiaoLine = 0;
         hashMapCounts.clear();
         gameState = GameBoard.GAME_STATE_PLAYING;

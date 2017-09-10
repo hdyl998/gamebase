@@ -89,7 +89,6 @@ public class GameView extends View {
                 paint.setTextAlign(Paint.Align.CENTER);
                 canvas.drawText("游戏暂停",getWidth()/2,getHeight()/2,paint);
             }
-
         }
 
     }
@@ -129,6 +128,9 @@ public class GameView extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        if(!gameBoard.isGamePlaying()){
+            return true;
+        }
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 tempx = x = event.getX();
@@ -152,6 +154,9 @@ public class GameView extends View {
 
             break;
             default:
+                if(gameBoard.isGamePause()){
+                    gameBoard.exchangePausePlayingGameState();
+                }
 //            case MotionEvent.ACTION_UP:
                 float upx = event.getX();
                 float upy = event.getY();

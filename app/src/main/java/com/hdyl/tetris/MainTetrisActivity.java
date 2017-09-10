@@ -46,7 +46,6 @@ public class MainTetrisActivity extends AppCompatActivity implements GameBoard.O
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                gameBoard.doPauseGame();
                 switch (item.getItemId()){
                     case R.id.action_new_game:
                         gameBoard.newGame();
@@ -129,6 +128,12 @@ public class MainTetrisActivity extends AppCompatActivity implements GameBoard.O
         findViewById(R.id.buttonPause).setOnClickListener(this);
     }
 
+
+    @Override
+    public boolean onMenuOpened(int featureId, Menu menu) {
+        gameBoard.doPauseGame();
+        return super.onMenuOpened(featureId, menu);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
