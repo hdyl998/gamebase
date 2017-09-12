@@ -14,6 +14,7 @@ import com.hdyl.mine.R;
 import com.hdyl.pintu.MainPintuActivity;
 import com.hdyl.tetris.MainTetrisActivity;
 import com.hdyl.tetris2.MainTetris2Activity;
+import com.hdyl.xiaoxiaole.MainXxlActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,6 +72,8 @@ public class MainInActivity extends BaseActivity {
         listDatas.add(new DataItem().setAppName(getString(R.string.app_name_tetris2)).setIconRes(R.drawable.icon_tetris).setRank(R.drawable.point3).setGoClazz(MainTetris2Activity.class));
         listDatas.add(new DataItem().setAppName(getString(R.string.app_name_2048)).setIconRes(R.drawable.icon_2048).setRank(R.drawable.point3).setGoClazz(Main2048Activity.class));
         listDatas.add(new DataItem().setAppName(getString(R.string.app_name_pintu)).setIconRes(R.drawable.icon_tetris).setRank(R.drawable.point3).setGoClazz(MainPintuActivity.class));
+        listDatas.add(new DataItem().setAppName(getString(R.string.app_name_xxl)).setIconRes(R.drawable.fruit2).setRank(R.drawable.point3).setGoClazz(MainXxlActivity.class));
+
 
         listView.setAdapter(new SuperAdapter<DataItem>(mContext, listDatas, R.layout.item_app) {
             @Override
