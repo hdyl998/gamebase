@@ -17,9 +17,19 @@ public class GameConfig {
     public boolean isNishi = true;//是否方向是逆时针
 
 
-    public boolean isAnimDown=true;
-    public boolean isAnimXiaohang=true;
+    public boolean isAnimDown = true;
+    public boolean isAnimXiaohang = true;
 
+    public boolean isShadow = true;
+
+
+    public boolean isShadow() {
+        return isShadow;
+    }
+
+    public void setShadow(boolean shadow) {
+        isShadow = shadow;
+    }
 
     public boolean isAnimXiaohang() {
         return isAnimXiaohang;

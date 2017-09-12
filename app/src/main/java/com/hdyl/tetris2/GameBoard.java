@@ -1,7 +1,6 @@
 package com.hdyl.tetris2;
 
 import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.graphics.Rect;
 
 import com.hdyl.baselib.base.App;
@@ -137,14 +136,14 @@ public class GameBoard {
     public boolean isGameOver() {
         for (GameShape shape : gameShapes) {
             if (shape != null)
-                if (hasPlace(shape)) {
+                if (canPlace(shape)) {
                     return false;
                 }
         }
         return true;
     }
 
-    private boolean hasPlace(GameShape gameShape) {
+    private boolean canPlace(GameShape gameShape) {
         for (int i = 0; i < HEIGHT; i++) {
             for (int j = 0; j < WIDTH; j++) {
                 int maxX = gameShape.getXCount() + j;

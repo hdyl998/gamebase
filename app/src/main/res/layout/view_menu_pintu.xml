@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:gravity="bottom" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha="0.9"
+        android:background="@drawable/roundbg_gray"
+        android:orientation="vertical"
+        android:padding="10dp" >
+
+        <TextView
+            android:id="@+id/imageViewExit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/ic_exit"
+            android:gravity="center_horizontal"
+            android:padding="5dp"
+            android:text="退出"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/imageViewAbout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/ic_info"
+            android:gravity="center_horizontal"
+            android:padding="5dp"
+            android:text="关于"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/imageViewHelp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/ic_about"
+            android:gravity="center_horizontal"
+            android:padding="5dp"
+            android:text="帮助"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/imageViewTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/ic_top"
+            android:gravity="center_horizontal"
+            android:padding="5dp"
+            android:text="排行榜"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/imageViewClass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/ic_newgame"
+            android:gravity="center_horizontal"
+            android:padding="5dp"
+            android:text="经典"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/imageViewNewStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/ic_newgame"
+            android:gravity="center_horizontal"
+            android:padding="5dp"
+            android:text="新开始"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+</LinearLayout>

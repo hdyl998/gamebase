@@ -11,6 +11,8 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.hdyl.mine.tools.Tools;
+import com.hdyl.tetris.common.GameConfig;
+import com.hdyl.tetris.shape.TetrisShape;
 import com.hdyl.tetris2.GameColor;
 
 /**
@@ -27,6 +29,7 @@ public class GameView extends View {
     public GameBoard getGameBoard() {
         return gameBoard;
     }
+
     LineDispearAnim lineDispearAnim;
     DownAnim downAnim;
 
@@ -37,8 +40,8 @@ public class GameView extends View {
     public GameView(Context context, AttributeSet attrs) {
         super(context, attrs);
         gameBoard.setOnGameEvent((GameBoard.OnGameEvent) context);
-        lineDispearAnim =gameBoard.lineDispearAnim;
-        downAnim=gameBoard.downAnim;
+        lineDispearAnim = gameBoard.lineDispearAnim;
+        downAnim = gameBoard.downAnim;
     }
 
     Bitmap bitmapBg = null;
@@ -60,7 +63,7 @@ public class GameView extends View {
         }
     }
 
-    Paint paint=new Paint(Paint.ANTI_ALIAS_FLAG);
+    Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
     @Override
     protected void onDraw(Canvas canvas) {
@@ -70,27 +73,40 @@ public class GameView extends View {
         checkBg();
         canvas.drawBitmap(bitmapBg, 0, 0, null);
 
-        if(downAnim.isAnim()){
-            downAnim.draw(canvas,size);
+        if (downAnim.isAnim()) {
+            downAnim.draw(canvas, size);
             downAnim.ticker(30);
+            //画阴影
+            if (downAnim.isDitenece1()) {
+                drawShadow(canvas, downAnim.getShape());
+            }
             invalidate();
-        }
-        else if(lineDispearAnim.isAnim()){
-            lineDispearAnim.draw(canvas,size);
+        } else if (lineDispearAnim.isAnim()) {
+            lineDispearAnim.draw(canvas, size);
             lineDispearAnim.ticker(30);
             invalidate();
-        }
-        else {
+        } else {
             gameBoard.drawBoard(canvas, size);
             gameBoard.drawCurTetris(canvas, size);
-            if(gameBoard.isGamePause()){
+            if (gameBoard.isGamePause()) {
+                paint.setAlpha(256);
                 paint.setTextSize(dip2px(40));
                 paint.setColor(Color.WHITE);
                 paint.setTextAlign(Paint.Align.CENTER);
-                canvas.drawText("游戏暂停",getWidth()/2,getHeight()/2,paint);
+                canvas.drawText("游戏暂停", getWidth() / 2, getHeight() / 2, paint);
+            } else {
+                drawShadow(canvas, gameBoard.getCurShape());
             }
         }
 
+    }
+
+    private void drawShadow(Canvas canvas, TetrisShape shape) {
+        //画阴影
+        if (GameConfig.getInstance().isShadow()) {
+            paint.setAlpha(100);
+            gameBoard.drawCurTetrisShadow(canvas, shape, size, paint);
+        }
     }
 
 
@@ -99,7 +115,7 @@ public class GameView extends View {
         super.onSizeChanged(w, h, oldw, oldh);
 //        int hsize = h / GameBoard.yCount;
 
-        size =  1f*w / GameBoard.xCount;
+        size = 1f * w / GameBoard.xCount;
         //新游戏
 //        gameBoard.newGame();
     }
@@ -128,9 +144,6 @@ public class GameView extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if(!gameBoard.isGamePlaying()){
-            return true;
-        }
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 tempx = x = event.getX();
@@ -154,8 +167,9 @@ public class GameView extends View {
 
             break;
             default:
-                if(gameBoard.isGamePause()){
+                if (gameBoard.isGamePause()) {
                     gameBoard.exchangePausePlayingGameState();
+                    return true;
                 }
 //            case MotionEvent.ACTION_UP:
                 float upx = event.getX();

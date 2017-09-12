@@ -1,0 +1,144 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="5dp">
+
+    <RelativeLayout
+        android:id="@+id/lltop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:padding="5dp">
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/ex1" />
+
+        <TextView
+            android:id="@+id/tv_current_mode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="18dp"
+            android:drawableTop="@drawable/ic_jd"
+            android:gravity="center"
+            android:text="经典"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/red"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/textViewHighScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/imageView1"
+            android:layout_centerHorizontal="true"
+            android:text="BEST:24"
+            android:textColor="@color/red" />
+
+        <TextView
+            android:id="@+id/textViewCurrentScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:text="0"
+            android:textColor="@color/orange"
+            android:textSize="40sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/llbottom"
+        android:layout_below="@+id/lltop"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.hdyl.pintu.GameView15
+            android:id="@+id/gameView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/tv_note"
+            android:layout_marginTop="20dp" />
+
+        <TextView
+            android:id="@+id/tv_note"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:text="@string/app_author_info"
+            android:textColor="@color/red" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/llbottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/iv_toos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="8dp"
+            android:drawableTop="@drawable/ic_meun_1"
+            android:gravity="center"
+            android:text="锦囊"
+            android:textColor="@color/red" />
+
+        <TextView
+            android:id="@+id/iv_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:drawableTop="@drawable/ic_menu"
+            android:gravity="center"
+            android:text="宝箱"
+            android:textColor="@color/red" />
+
+        <TextView
+            android:id="@+id/iv_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:drawableTop="@drawable/ic_top_2"
+            android:gravity="center"
+            android:text="排行榜"
+            android:textColor="@color/red" />
+    </RelativeLayout>
+
+    <include
+        android:id="@+id/ll_menu"
+        layout="@layout/view_menu_pintu"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/llbottom"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/ll_menu_tool"
+        layout="@layout/view_menu_tool_pintu"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/llbottom"
+        android:layout_alignParentRight="true"
+        android:visibility="gone" />
+
+</RelativeLayout>

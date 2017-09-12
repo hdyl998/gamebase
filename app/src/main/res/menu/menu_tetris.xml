@@ -21,6 +21,10 @@
         android:title="动画设置"
         app:showAsAction="collapseActionView" />
     <item
+        android:id="@+id/action_other"
+        android:title="其它设置"
+        app:showAsAction="collapseActionView" />
+    <item
         android:id="@+id/action_exit"
         android:title="退出"
         app:showAsAction="collapseActionView" />

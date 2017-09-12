@@ -36,7 +36,7 @@ public class MainTetrisActivity extends AppCompatActivity implements GameBoard.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mContext=this;
+        mContext = this;
         setContentView(R.layout.activity_main_tetris);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolBar);
@@ -46,61 +46,73 @@ public class MainTetrisActivity extends AppCompatActivity implements GameBoard.O
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.action_new_game:
                         gameBoard.newGame();
                         break;
                     case R.id.action_rotate:
                         new AlertDialog.Builder(mContext).setTitle(item.getTitle())
-                                .setSingleChoiceItems(new String[]{"逆时针","顺时针"}, GameConfig.getInstance().isNishi() ? 0 : 1, new DialogInterface.OnClickListener() {
+                                .setSingleChoiceItems(new String[]{"逆时针", "顺时针"}, GameConfig.getInstance().isNishi() ? 0 : 1, new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
-                                        GameConfig.getInstance().setNishi(which==0);
+                                        GameConfig.getInstance().setNishi(which == 0);
                                         GameConfig.getInstance().save();
                                     }
                                 }).show();
 
                         break;
+                    case R.id.action_other:
+                        new AlertDialog.Builder(mContext).setTitle(item.getTitle()).setMultiChoiceItems(new String[]{"方块投影"},
+                                new boolean[]{GameConfig.getInstance().isShadow()},
+                                new DialogInterface.OnMultiChoiceClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                                        if (which == 0) {
+                                            GameConfig.getInstance().setShadow(isChecked);
+                                        }
+                                        GameConfig.getInstance().save();
+                                    }
+                                }
+                        ).setPositiveButton("确定", null).show();
+
+                        break;
                     case R.id.action_anim:
-                        new AlertDialog.Builder(mContext).setTitle(item.getTitle()).setMultiChoiceItems(new String[]{"下落动画","消行动画"},
+                        new AlertDialog.Builder(mContext).setTitle(item.getTitle()).setMultiChoiceItems(new String[]{"下落动画", "消行动画"},
                                 new boolean[]{GameConfig.getInstance().isAnimDown(), GameConfig.getInstance().isAnimXiaohang()},
                                 new DialogInterface.OnMultiChoiceClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which, boolean isChecked) {
-                                        if(which==0) {
-                                            GameConfig.getInstance().isAnimDown=isChecked;
-                                        }
-                                        else if(which==1){
-                                            GameConfig.getInstance().isAnimXiaohang=isChecked;
+                                        if (which == 0) {
+                                            GameConfig.getInstance().isAnimDown = isChecked;
+                                        } else if (which == 1) {
+                                            GameConfig.getInstance().isAnimXiaohang = isChecked;
                                         }
                                         GameConfig.getInstance().save();
                                     }
                                 }
-                        ).setPositiveButton("确定",null).show();
+                        ).setPositiveButton("确定", null).show();
 
                         break;
                     case R.id.action_sound:
-                        new AlertDialog.Builder(mContext).setTitle(item.getTitle()).setMultiChoiceItems(new String[]{"音乐","音效"},
+                        new AlertDialog.Builder(mContext).setTitle(item.getTitle()).setMultiChoiceItems(new String[]{"音乐", "音效"},
                                 new boolean[]{GameConfig.getInstance().isBgMusic(), GameConfig.getInstance().isSoundEffect()},
                                 new DialogInterface.OnMultiChoiceClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which, boolean isChecked) {
-                                        if(which==0) {
-                                            GameConfig.getInstance().isBgMusic=isChecked;
-                                            if(isChecked){
+                                        if (which == 0) {
+                                            GameConfig.getInstance().isBgMusic = isChecked;
+                                            if (isChecked) {
                                                 SoundManager.getInstance().playPlayingBgMusic();
-                                            }
-                                            else {
+                                            } else {
                                                 SoundManager.getInstance().releaseBgMusic();
                                             }
-                                        }
-                                        else if(which==1){
-                                            GameConfig.getInstance().isSoundEffect=isChecked;
+                                        } else if (which == 1) {
+                                            GameConfig.getInstance().isSoundEffect = isChecked;
                                         }
                                         GameConfig.getInstance().save();
                                     }
                                 }
-                        ).setPositiveButton("确定",null).show();
+                        ).setPositiveButton("确定", null).show();
                         break;
                     case R.id.action_exit:
                         finish();
@@ -188,7 +200,7 @@ public class MainTetrisActivity extends AppCompatActivity implements GameBoard.O
         //停止时间跳动
         stopRun();
         new AlertDialog.Builder(mContext).setTitle("消息").setMessage("游戏结束")
-                .setPositiveButton("确定",null).show();
+                .setPositiveButton("确定", null).show();
     }
 
     @Override

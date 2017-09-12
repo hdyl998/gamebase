@@ -3,6 +3,7 @@ package com.hdyl.tetris;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 
@@ -57,7 +58,11 @@ public class Cell {
 
 
     public void draw(Canvas canvas, RectF rect) {
+        draw(canvas, rect, null);
+    }
+
+    public void draw(Canvas canvas, RectF rect, Paint paint) {
         Bitmap bitmap = GameColor.getBitmapAtIndex(this.getResIndex());
-        canvas.drawBitmap(bitmap, null, rect, null);
+        canvas.drawBitmap(bitmap, null, rect, paint);
     }
 }

@@ -1,6 +1,7 @@
 package com.hdyl.tetris.shape;
 
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.util.Log;
@@ -91,6 +92,18 @@ public abstract class TetrisShape {
     }
 
 
+    public void draw(Canvas canvas, float size, int xOffSet, int yOffset, Paint paint) {
+        CellArray array = this.getCellArray();
+        RectF rectF = new RectF();
+        for (PositionCell cell : array.cells) {
+            rectF.left = (xOffSet + cell.getX()) * size;
+            rectF.right = rectF.left + size;
+            rectF.top = (yOffset + cell.getY()) * size;
+            rectF.bottom = rectF.top + size;
+            cell.draw(canvas, rectF, paint);
+        }
+    }
+
     public void draw(Canvas canvas, float size, int xOffSet, int yOffset) {
         CellArray array = this.getCellArray();
         RectF rectF = new RectF();
@@ -99,7 +112,7 @@ public abstract class TetrisShape {
             rectF.right = rectF.left + size;
             rectF.top = (yOffset + cell.getY()) * size;
             rectF.bottom = rectF.top + size;
-            cell.draw(canvas, rectF);
+            cell.draw(canvas, rectF, null);
         }
     }
 
@@ -107,7 +120,7 @@ public abstract class TetrisShape {
         CellArray array = this.getCellArray();
         RectF rectF = new RectF();
         for (PositionCell cell : array.cells) {
-            rectF.left =  cell.getX() * size+xOffSet;
+            rectF.left = cell.getX() * size + xOffSet;
             rectF.right = rectF.left + size;
             rectF.top = yOffset + cell.getY() * size;
             rectF.bottom = rectF.top + size;

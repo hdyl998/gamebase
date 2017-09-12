@@ -2,6 +2,7 @@ package com.hdyl.tetris;
 
 import android.content.SharedPreferences;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.RectF;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -32,8 +33,8 @@ public class GameBoard {
     public final static int yCount = 20;
 
 
-    LineDispearAnim lineDispearAnim =new LineDispearAnim();
-    DownAnim downAnim=new DownAnim();
+    LineDispearAnim lineDispearAnim = new LineDispearAnim();
+    DownAnim downAnim = new DownAnim();
     private OnGameEvent onGameEvent;
 
     GameData gameData = new GameData();
@@ -65,6 +66,12 @@ public class GameBoard {
                 }
             }
         }
+    }
+
+    public void drawCurTetrisShadow(Canvas canvas, TetrisShape shape, float size, Paint paint) {
+        int yOffset1 = getDistenceToBottom(shape);
+        if (yOffset1 >= 5)//超过5再绘制
+            shape.draw(canvas, size, getXOffset(), getYOffset() + yOffset1, paint);
     }
 
     public void drawCurTetris(Canvas canvas, float size) {
@@ -155,13 +162,11 @@ public class GameBoard {
                 moveRight();
                 break;
             case DIRECTION_DOWN:
-
                 int distence0 = getDistenceToBottom(curShape);
-                int downCount=3;
-                if(distence0<downCount){
+                int downCount = 3;
+                if (distence0 < downCount) {
                     fastDown();
-                }
-                else {
+                } else {
                     SoundManager.getInstance().playSound(SoundManager.SOUND_DOWN);
                     downALine(downCount);
                 }
@@ -176,15 +181,15 @@ public class GameBoard {
     }
 
 
-    private void fastDown(){
+    private void fastDown() {
         SoundManager.getInstance().playSound(SoundManager.SOUND_FASTDOWN);
         //把当前的方块添加到面板上
         int distence = getDistenceToBottom(curShape);
-        if(GameConfig.getInstance().isAnimDown()) {
+        if (GameConfig.getInstance().isAnimDown()) {
             downAnim.addAnim(cellArrs, curShape, distence, gameData.xOffset, gameData.yOffset);
-        }addTetrisShape();
+        }
+        addTetrisShape();
     }
-
 
 
     /***
@@ -300,16 +305,16 @@ public class GameBoard {
         if (isGamePlaying() == false) {
             return;
         }
-        for(int i=0;i<count;i++) {
+        for (int i = 0; i < count; i++) {
             if (!checkCanMove(DIRECTION_DOWN)) {
                 //不能再向下了，则已到极限了，则把方块加到面板上
                 addTetrisShape();
                 return;
             }
         }
-        if(GameConfig.getInstance().isAnimDown())
-        downAnim.addAnim(cellArrs,curShape,count,gameData.xOffset,gameData.yOffset);
-        gameData.yOffset+=count;
+        if (GameConfig.getInstance().isAnimDown())
+            downAnim.addAnim(cellArrs, curShape, count, gameData.xOffset, gameData.yOffset);
+        gameData.yOffset += count;
         onGameEvent.invalidateGameBoard();
     }
 
@@ -351,7 +356,7 @@ public class GameBoard {
                 addScore = 1500;
                 break;
         }
-        if(GameConfig.getInstance().isAnimXiaohang()) {
+        if (GameConfig.getInstance().isAnimXiaohang()) {
             lineDispearAnim.addAnim(cellArrs, list);
         }
         if (list.size() > 0) {
@@ -586,8 +591,8 @@ public class GameBoard {
         return gameData.gameState == GAME_STATE_PLAYING;
     }
 
-    public void doPauseGame(){
-        if(isGamePlaying()){
+    public void doPauseGame() {
+        if (isGamePlaying()) {
             exchangePausePlayingGameState();
         }
     }
@@ -610,6 +615,13 @@ public class GameBoard {
     }
 
 
+    public int getXOffset() {
+        return gameData.xOffset;
+    }
+
+    public int getYOffset() {
+        return gameData.yOffset;
+    }
 
     public int getGameState() {
         return gameData.gameState;
@@ -636,6 +648,7 @@ public class GameBoard {
         void onNewGame();
 
         void onGamePause();
+
         void onGamePauseResume();
     }
 
