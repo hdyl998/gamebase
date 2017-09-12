@@ -103,8 +103,18 @@
             android:screenOrientation="portrait"></activity>
         <activity
             android:name="com.hdyl.xiaoxiaole.MainXxlActivity"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"></activity>
+
+
+        <activity
+            android:name="com.hdyl.llk.MainLlkActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name="com.hdyl.llk.StartLlkActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name="com.hdyl.llk.LevelActivity"
+            android:screenOrientation="portrait"></activity>
 
         <meta-data
             android:name="UMENG_APPKEY"

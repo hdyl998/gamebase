@@ -8,6 +8,8 @@ import android.widget.ListView;
 import com.hdyl.baselib.base.BaseActivity;
 import com.hdyl.baselib.base.adapterbase.BaseViewHolder;
 import com.hdyl.baselib.base.adapterbase.SuperAdapter;
+import com.hdyl.llk.MainLlkActivity;
+import com.hdyl.llk.StartLlkActivity;
 import com.hdyl.m2048.Main2048Activity;
 import com.hdyl.mine.MainMineActivity;
 import com.hdyl.mine.R;
@@ -73,7 +75,7 @@ public class MainInActivity extends BaseActivity {
         listDatas.add(new DataItem().setAppName(getString(R.string.app_name_2048)).setIconRes(R.drawable.icon_2048).setRank(R.drawable.point3).setGoClazz(Main2048Activity.class));
         listDatas.add(new DataItem().setAppName(getString(R.string.app_name_pintu)).setIconRes(R.drawable.icon_tetris).setRank(R.drawable.point3).setGoClazz(MainPintuActivity.class));
         listDatas.add(new DataItem().setAppName(getString(R.string.app_name_xxl)).setIconRes(R.drawable.fruit2).setRank(R.drawable.point3).setGoClazz(MainXxlActivity.class));
-
+        listDatas.add(new DataItem().setAppName(getString(R.string.app_name_llk)).setIconRes(R.drawable.aa42).setRank(R.drawable.point3).setGoClazz(StartLlkActivity.class));
 
         listView.setAdapter(new SuperAdapter<DataItem>(mContext, listDatas, R.layout.item_app) {
             @Override

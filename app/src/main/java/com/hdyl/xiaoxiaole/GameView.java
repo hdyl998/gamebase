@@ -125,7 +125,6 @@ public class GameView extends View {
                     }
                 }
             if (msgNotice == 1) {
-
                 for (Point p : listPoint) {
                     canvas.drawRect(p.y * SWidth, p.x * SHeight, (p.y + 1) * SWidth, (p.x + 1) * SHeight, p1);
                 }

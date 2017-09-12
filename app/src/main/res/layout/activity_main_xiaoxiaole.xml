@@ -45,11 +45,11 @@
 
         <TextView
             android:id="@+id/textScore"
-            android:layout_width="80dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="0"
-            android:textAlignment="center"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/textView5"
@@ -61,12 +61,11 @@
 
         <TextView
             android:id="@+id/textHighScore"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="0"
-            android:textAlignment="center"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:textSize="12sp" />
 
     </LinearLayout>
 
@@ -74,9 +73,7 @@
         android:id="@+id/gameView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/linearLayout2"
-        android:layout_below="@+id/linearLayout1"
-        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
         android:layout_marginBottom="5dp"
         android:layout_marginTop="5dp" />
 

@@ -18,4 +18,10 @@
     <color name="red">#dd1111</color>
     <color name="white_press">#cccccc</color>
     <color name="main_bg">#d3daed</color>
+
+
+    <color name="black">#666666</color>
+
+
+    <color name="purple">#aa00aa</color>
 </resources>

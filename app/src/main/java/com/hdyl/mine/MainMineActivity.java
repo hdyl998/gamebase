@@ -15,7 +15,6 @@ import android.widget.TextView;
 
 import com.hdyl.mine.about.AboutActivity;
 import com.hdyl.mine.base.BaseActivity;
-import com.hdyl.mine.base.InputNameDialog;
 import com.hdyl.mine.base.ScoreUtils;
 import com.hdyl.mine.game.GameActivity;
 import com.hdyl.mine.learn.LearnActivity;
@@ -146,7 +145,7 @@ public class MainMineActivity extends BaseActivity implements OnClickListener {
 
     @Override
     protected int setView() {
-        return R.layout.activity_main;
+        return R.layout.activity_main_mine;
     }
 
     @Override

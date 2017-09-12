@@ -10,7 +10,7 @@
 //import android.widget.TextView;
 //
 //
-//public class StartActivity extends BaseActivity implements Runnable {
+//public class StartLlkActivity extends BaseActivity implements Runnable {
 //
 //	TextView textView, textViewTitle, textViewBotton;
 //

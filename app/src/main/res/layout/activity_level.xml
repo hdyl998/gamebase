@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg4"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:drawableLeft="@drawable/ic_luncher_2"
+            android:gravity="center_vertical"
+            android:text="@string/app_name"
+            android:textColor="@color/orange"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/ll_finish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_margin="5dp"
+            android:drawableRight="@drawable/ic_luncher_2"
+            android:gravity="center_vertical"
+            android:text="@string/app_name"
+            android:textColor="@color/yellow"
+            android:textSize="24sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/textViewInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="5dp"
+        android:drawablePadding="10dp"
+        android:drawableRight="@drawable/user_menu"
+        android:gravity="center_vertical"
+        android:text="请选择关卡"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+    <GridView
+        android:id="@+id/gv_select_level"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:horizontalSpacing="5dp"
+        android:numColumns="5"
+        android:padding="5dp"
+        android:verticalSpacing="5dp" >
+    </GridView>
+
+</LinearLayout>
