@@ -140,7 +140,7 @@ public class GameView extends View {
     /***
      * 灵敏度
      */
-    int sensibility = dip2px(15);
+    int sensibility = dip2px(20);
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -183,8 +183,11 @@ public class GameView extends View {
                         gameBoard.move(y > upy ? GameBoard.DIRECTION_DOWN : GameBoard.DIRECTION_FAST_DOWN);
                     }
                 } else {//单击
-                    gameBoard.move(GameBoard.DIRECTION_ROTATE);
+                    if (senX < sensibility / 5 && senY < sensibility / 5) {
+                        gameBoard.move(GameBoard.DIRECTION_ROTATE);
+                    }
                 }
+
                 break;
         }
         return true;

@@ -59,7 +59,7 @@ public class Constants {
 		}
 		// 加载默认图片
 		if (defaultBitmap == null)
-			defaultBitmap = BitmapFactory.decodeResource(App.getContext().getResources(), R.drawable.ex1);
+			defaultBitmap = BitmapFactory.decodeResource(App.getContext().getResources(), R.drawable.app2);
 		loadBitmaps(defaultBitmap);
 	}
 

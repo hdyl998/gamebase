@@ -19,7 +19,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:scaleType="fitXY"
-            android:src="@drawable/ex1" />
+            android:src="@drawable/app2" />
 
         <TextView
             android:id="@+id/tv_current_mode"
