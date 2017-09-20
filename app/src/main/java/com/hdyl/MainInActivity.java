@@ -1,7 +1,11 @@
 package com.hdyl;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
@@ -76,22 +80,31 @@ public class MainInActivity extends BaseActivity {
         listDatas.add(new DataItem().setAppName(getString(R.string.app_name_pintu)).setIconRes(R.drawable.icon_tetris).setRank(R.drawable.point3).setGoClazz(MainPintuActivity.class));
         listDatas.add(new DataItem().setAppName(getString(R.string.app_name_xxl)).setIconRes(R.drawable.fruit2).setRank(R.drawable.point3).setGoClazz(MainXxlActivity.class));
         listDatas.add(new DataItem().setAppName(getString(R.string.app_name_llk)).setIconRes(R.drawable.aa42).setRank(R.drawable.point3).setGoClazz(StartLlkActivity.class));
-
+        listDatas.add(null);
         listView.setAdapter(new SuperAdapter<DataItem>(mContext, listDatas, R.layout.item_app) {
             @Override
             protected void onBind(BaseViewHolder holder, DataItem item, int position) {
-                holder.setText(R.id.tvTitle, item.appName);
-                holder.setText(R.id.tvNote, item.strNote);
-                holder.setImageResource(R.id.imageView, item.iconRes);
-                holder.setImageResource(R.id.ivRank, item.rank);
+
+                if (item != null) {
+                    holder.setText(R.id.tvTitle, item.appName);
+                    holder.setText(R.id.tvNote, item.strNote);
+                    holder.setImageResource(R.id.imageView, item.iconRes);
+                    holder.setImageResource(R.id.ivRank, item.rank);
+                }
             }
         });
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                startActivity(new Intent(mContext, listDatas.get(position).goClazz));
+                if (listDatas.get(position) == null) {
+                    Dialog dialog = new AlertDialog.Builder(mContext, R.style.dialog).setView(R.layout.layout_test).create();
+                    dialog.getWindow().setGravity(Gravity.RIGHT | Gravity.TOP);
+                    dialog.show();
+                } else
+                    startActivity(new Intent(mContext, listDatas.get(position).goClazz));
             }
         });
+
 
     }
 

@@ -10,7 +10,6 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.hdyl.mine.tools.Tools;
 import com.hdyl.tetris.common.GameConfig;
 import com.hdyl.tetris.shape.TetrisShape;
 import com.hdyl.tetris2.GameColor;
@@ -98,7 +97,6 @@ public class GameView extends View {
                 drawShadow(canvas, gameBoard.getCurShape());
             }
         }
-
     }
 
     private void drawShadow(Canvas canvas, TetrisShape shape) {
@@ -142,13 +140,20 @@ public class GameView extends View {
      */
     int sensibility = dip2px(20);
 
+//
+//    @Override
+//    public boolean dispatchTouchEvent(MotionEvent event) {
+//        return onTouchEvent(event);
+//    }
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 tempx = x = event.getX();
                 tempy = y = event.getY();
-                break;
+
+                return true;
             case MotionEvent.ACTION_MOVE: {
                 float upx = event.getX();
                 float upy = event.getY();
@@ -183,14 +188,13 @@ public class GameView extends View {
                         gameBoard.move(y > upy ? GameBoard.DIRECTION_DOWN : GameBoard.DIRECTION_FAST_DOWN);
                     }
                 } else {//单击
-                    if (senX < sensibility / 5 && senY < sensibility / 5) {
+                    if (Math.abs(tempx - upx) < sensibility / 2 && Math.abs(tempy - upy) < sensibility / 2) {
                         gameBoard.move(GameBoard.DIRECTION_ROTATE);
                     }
                 }
-
                 break;
         }
-        return true;
+        return false;
     }
 
 }
