@@ -171,7 +171,7 @@ public class SetActivity extends MineBaseActivity implements OnClickListener {
     }
 
     @Override
-    protected void initData() {
+    public void initViews() {
         editText = (EditText) findViewById(R.id.editText1);
         editText2 = (EditText) findViewById(R.id.editText2);
         editText3 = (EditText) findViewById(R.id.editText3);
@@ -288,7 +288,7 @@ public class SetActivity extends MineBaseActivity implements OnClickListener {
     }
 
     @Override
-    protected int setView() {
+    public int setLayoutID() {
         return R.layout.activity_set;
     }
 

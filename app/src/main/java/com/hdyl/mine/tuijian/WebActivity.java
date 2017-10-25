@@ -21,7 +21,7 @@ public class WebActivity extends MineBaseActivity implements OnClickListener {
 
 
     @Override
-    protected void initData() {
+    public void initViews() {
         TextView textView = (TextView) findViewById(R.id.textViewa);
         webView = (WebView) findViewById(R.id.progressBarWebView1);
         String string = getIntent().getStringExtra("url");
@@ -32,7 +32,7 @@ public class WebActivity extends MineBaseActivity implements OnClickListener {
     }
 
     @Override
-    protected int setView() {
+    public int setLayoutID() {
         return R.layout.activity_web;
     }
 

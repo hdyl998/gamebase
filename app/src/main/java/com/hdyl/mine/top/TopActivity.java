@@ -51,7 +51,7 @@ public class TopActivity extends MineBaseActivity implements OnClickListener {
 	}
 
 	@Override
-	protected void initData() {
+	public void initViews() {
 
 		TextView textView = (TextView) findViewById(R.id.textView1);
 		textView.setText(TopObject.getName(this) + " 的排行榜");
@@ -81,7 +81,7 @@ public class TopActivity extends MineBaseActivity implements OnClickListener {
 	}
 
 	@Override
-	protected int setView() {
+	public int setLayoutID() {
 		return R.layout.activyti_top;
 	}
 

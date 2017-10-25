@@ -30,7 +30,7 @@ public class AboutActivity extends MineBaseActivity {
     }
 
     @Override
-    protected void initData() {
+    public void initViews() {
         TextView textView = (TextView) findViewById(R.id.TextView01);
         String str = Tools.getVerName(this);
         textView.setText("V " + str);
@@ -39,7 +39,7 @@ public class AboutActivity extends MineBaseActivity {
     }
 
     @Override
-    protected int setView() {
+    public int setLayoutID() {
         return R.layout.activity_about;
     }
 

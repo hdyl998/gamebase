@@ -123,7 +123,7 @@ public class MainMineActivity extends MineBaseActivity implements OnClickListene
     };
 
     @Override
-    protected void initData() {
+    public void initViews() {
         context = this;
         view = findViewById(R.id.imageView1);
         view.setOnClickListener(this);
@@ -144,8 +144,8 @@ public class MainMineActivity extends MineBaseActivity implements OnClickListene
     }
 
     @Override
-    protected int setView() {
-        return R.layout.activity_main_mine;
+    public int setLayoutID() {
+          return R.layout.activity_main_mine;
     }
 
     @Override

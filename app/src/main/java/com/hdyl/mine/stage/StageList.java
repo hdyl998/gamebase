@@ -18,10 +18,11 @@ public class StageList {
 
     static {
         lists = new ArrayList<>();
-        for (int i = 100; i < 10000; i += 100) {
+        //100关
+        for (int i = 0; i < 100; i ++) {
             StageItem item = new StageItem();
-            item.setMineRate(0.25f);//设定成固定值
-            item.calcData(i);
+            item.setMineRate(0.15f);//设定成固定值
+            item.calcData((i+1)*100);
             lists.add(item);
         }
     }
@@ -37,6 +38,7 @@ public class StageList {
         public int mineNum;
         public float mineRate;
         public boolean isPass;
+        public String info;
 
         public void setMineNum(int mineNum) {
             this.mineNum = mineNum;
@@ -64,23 +66,33 @@ public class StageList {
 
 
         public void calcData(int total) {
-            List<Integer> lists = fenjie(total);
-            
+//            List<Integer> lists = fenjie(total);
+
+//            info=lists.toString();
+            int var= (int) Math.sqrt(total);
+            this.height= (int) (var*1.2);
+            this.width= (int) (var*0.8);
+            this.mineNum= (int) (this.width*this.height*this.mineRate);
         }
 
-        public List<Integer> fenjie(int n) {
-            List<Integer> lists = new ArrayList<>();
-            for (int i = 2; i <= n; i++) {
-                while (n != i) {
-                    if (n % i == 0) {
-                        n = n / i;
-                        lists.add(i);
-                    } else break;
-                }
-            }
-            lists.add(n);
-            Collections.sort(lists);
-            return lists;
+//        public List<Integer> fenjie(int n) {
+//            List<Integer> lists = new ArrayList<>();
+//            for (int i = 2; i <= n; i++) {
+//                while (n != i) {
+//                    if (n % i == 0) {
+//                        n = n / i;
+//                        lists.add(i);
+//                    } else break;
+//                }
+//            }
+//            lists.add(n);
+//            Collections.sort(lists);
+//            return lists;
+//        }
+
+        @Override
+        public String toString() {
+            return String.format("宽:%d 高:%d 密度:%.2f 总格数:%d 雷数:%d",width,height,mineRate,width*height,mineNum);
         }
     }
 }

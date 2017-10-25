@@ -26,6 +26,7 @@ import com.hdyl.llk.StartLlkActivity;
 import com.hdyl.m2048.Main2048Activity;
 import com.hdyl.mine.MainMineActivity;
 import com.hdyl.mine.R;
+import com.hdyl.mine.stage.MineStageActivity;
 import com.hdyl.pintu.MainPintuActivity;
 import com.hdyl.tetris.MainTetrisActivity;
 import com.hdyl.tetris2.MainTetris2Activity;
@@ -106,6 +107,9 @@ public class MainInActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (listDatas.get(position) == null) {
+
+
+                    startActivity(new Intent(mContext,MineStageActivity.class));
 //                    PopupMenu popupMenu = new PopupMenu(mContext, view);
 //                    Menu menu=popupMenu.getMenu();
 //                    menu.add(0, 1, Menu.NONE, "蓝牙发送").setIcon(android.R.drawable.ic_menu_send);

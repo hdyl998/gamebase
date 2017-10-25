@@ -18,36 +18,13 @@ public abstract class MineBaseActivity extends BaseActivity implements OnClickLi
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        // this.requestWindowFeature(Window.FEATURE_NO_TITLE);// 去掉标题栏
-        // this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-        // WindowManager.LayoutParams.FLAG_FULLSCREEN);// 去掉信息栏
         super.onCreate(savedInstanceState);
-//		this.requestWindowFeature(Window.FEATURE_NO_TITLE);// 去掉标题栏
-//		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);// 去掉信息栏
-        setContentView(setView());
         MobclickAgent.setScenarioType(mContext, EScenarioType.E_UM_NORMAL);
-        initData();
     }
 
-    protected abstract void initData();
-
-    protected int setView() {
-        return setLayoutID();
-    }
-
-    @Override
-    public void initViews() {
-
-    }
-
-
-    @Override
-    public int setLayoutID() {
-        return 0;
-    }
 
     protected String getPageName() {
-        return this.toString();
+        return this.getClass().getSimpleName();
     }
 
     @Override

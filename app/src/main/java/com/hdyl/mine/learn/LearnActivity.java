@@ -51,7 +51,7 @@ public class LearnActivity extends MineBaseActivity {
 	}
 
 	@Override
-	protected void initData() {
+	public void initViews() {
 		findViewById(R.id.textView1).setOnClickListener(this);
 		findViewById(R.id.textView2).setOnClickListener(this);
 		findViewById(R.id.textView3).setOnClickListener(this);
@@ -61,7 +61,7 @@ public class LearnActivity extends MineBaseActivity {
 	}
 
 	@Override
-	protected int setView() {
+	public int setLayoutID() {
 		return R.layout.activity_learn;
 	}
 

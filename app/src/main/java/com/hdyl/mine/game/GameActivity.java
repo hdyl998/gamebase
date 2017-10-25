@@ -361,7 +361,7 @@ public class GameActivity extends MineBaseActivity implements OnClickListener {
 
     @SuppressWarnings("deprecation")
     @Override
-    protected void initData() {
+    public void initViews() {
         scrollView1 = (ScrollView) findViewById(R.id.scrollView1);
         scrollView2 = (HorizontalScrollView) findViewById(R.id.scrollView2);
 
@@ -434,7 +434,7 @@ public class GameActivity extends MineBaseActivity implements OnClickListener {
     }
 
     @Override
-    protected int setView() {
+    public int setLayoutID() {
         return R.layout.activity_game;
     }
 

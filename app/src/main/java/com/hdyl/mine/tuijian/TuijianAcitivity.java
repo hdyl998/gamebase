@@ -35,7 +35,7 @@ public class TuijianAcitivity extends MineBaseActivity implements OnClickListene
 	}
 
 	@Override
-	protected void initData() {
+	public   void initViews() {
 		findViewById(R.id.back).setOnClickListener(this);
 
 		ListView listView = (ListView) findViewById(R.id.listview);
@@ -74,7 +74,7 @@ public class TuijianAcitivity extends MineBaseActivity implements OnClickListene
 	}
 
 	@Override
-	protected int setView() {
+	public int setLayoutID() {
 		return R.layout.activity_tuijian;
 	}
 
