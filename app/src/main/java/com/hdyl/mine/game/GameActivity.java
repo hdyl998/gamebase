@@ -18,7 +18,7 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.hdyl.mine.R;
-import com.hdyl.mine.base.BaseActivity;
+import com.hdyl.mine.base.MineBaseActivity;
 import com.hdyl.mine.base.LoadingDialog;
 import com.hdyl.mine.tools.MySharepreferences;
 import com.hdyl.mine.tools.Tools;
@@ -28,7 +28,7 @@ import com.hdyl.mine.top.TopObject;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class GameActivity extends BaseActivity implements OnClickListener {
+public class GameActivity extends MineBaseActivity implements OnClickListener {
 
     ImageView imageView2;
     GameView gameView;

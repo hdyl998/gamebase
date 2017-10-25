@@ -1,12 +1,10 @@
 package com.hdyl.mine.about;
 
-import android.app.ProgressDialog;
-import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
 
 import com.hdyl.mine.R;
-import com.hdyl.mine.base.BaseActivity;
+import com.hdyl.mine.base.MineBaseActivity;
 import com.hdyl.mine.tools.Tools;
 import com.hdyl.mine.tuijian.WebActivity;
 
@@ -15,7 +13,7 @@ import com.hdyl.mine.tuijian.WebActivity;
  *
  * @author liugd
  */
-public class AboutActivity extends BaseActivity {
+public class AboutActivity extends MineBaseActivity {
 
     @Override
     public void onClick(View arg0) {

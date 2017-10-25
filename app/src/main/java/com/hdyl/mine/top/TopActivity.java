@@ -12,7 +12,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.hdyl.mine.R;
-import com.hdyl.mine.base.BaseActivity;
+import com.hdyl.mine.base.MineBaseActivity;
 import com.hdyl.mine.tools.DatabaseHelper;
 import com.hdyl.mine.tools.MyPagerAdapter;
 
@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class TopActivity extends BaseActivity implements OnClickListener {
+public class TopActivity extends MineBaseActivity implements OnClickListener {
 
 	ViewPager viewPager;
 	PagerSlidingTabStrip pagerTabStrip;

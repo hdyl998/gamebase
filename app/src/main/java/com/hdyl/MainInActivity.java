@@ -2,12 +2,21 @@ package com.hdyl;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.PopupMenu;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import com.hdyl.baselib.base.BaseActivity;
 import com.hdyl.baselib.base.adapterbase.BaseViewHolder;
@@ -97,9 +106,39 @@ public class MainInActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (listDatas.get(position) == null) {
-                    Dialog dialog = new AlertDialog.Builder(mContext, R.style.dialog).setView(R.layout.layout_test).create();
-                    dialog.getWindow().setGravity(Gravity.RIGHT | Gravity.TOP);
-                    dialog.show();
+//                    PopupMenu popupMenu = new PopupMenu(mContext, view);
+//                    Menu menu=popupMenu.getMenu();
+//                    menu.add(0, 1, Menu.NONE, "蓝牙发送").setIcon(android.R.drawable.ic_menu_send);
+//
+//                    //添加子菜单
+//                    SubMenu subMenu = menu.addSubMenu(0,2,Menu.NONE, "重要程度>>").setIcon(android.R.drawable.ic_menu_share);
+//                    //添加子菜单项
+//                    subMenu.add(2, 201, 1, "☆☆☆☆☆");
+//                    subMenu.add(2, 202, 2, "☆☆☆");
+//                    subMenu.add(2, 203, 3, "☆");
+//                    popupMenu.show();
+//                    PopupWindow popupWindow = new PopupWindow(mContext);
+//                    View viewRoot = View.inflate(mContext, R.layout.layout_test, null);
+//                    popupWindow.setContentView(viewRoot);
+//                    popupWindow.setWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
+//                    popupWindow.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
+//                    popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//                    popupWindow.setFocusable(true);
+//                    popupWindow.setOutsideTouchable(false);
+//                    popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+//                    popupWindow.showAsDropDown(view);
+
+//                    TextView textView = (TextView) viewRoot.findViewById(R.id.gameView);
+
+
+//                    Dialog dialog = new AlertDialog.Builder(mContext).setView(R.layout.layout_test).create();
+//                    Dialog dialog = new Dialog(mContext);
+//                    dialog.setContentView(R.layout.layout_test);
+//                    dialog.getWindow().setGravity(Gravity.RIGHT | Gravity.TOP);
+////                    dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//                    dialog.show();
+//                    View view1 = (View) dialog.findViewById(R.id.ll_main).getParent();
+//                    view1.getLayoutParams().width = ViewGroup.LayoutParams.WRAP_CONTENT;
                 } else
                     startActivity(new Intent(mContext, listDatas.get(position).goClazz));
             }

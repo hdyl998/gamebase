@@ -8,10 +8,9 @@ import android.webkit.WebView;
 import android.widget.TextView;
 
 import com.hdyl.mine.R;
-import com.hdyl.mine.about.AboutActivity;
-import com.hdyl.mine.base.BaseActivity;
+import com.hdyl.mine.base.MineBaseActivity;
 
-public class WebActivity extends BaseActivity implements OnClickListener {
+public class WebActivity extends MineBaseActivity implements OnClickListener {
 
     WebView webView;
 

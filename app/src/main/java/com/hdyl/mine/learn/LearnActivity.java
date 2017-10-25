@@ -7,10 +7,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hdyl.mine.R;
-import com.hdyl.mine.base.BaseActivity;
+import com.hdyl.mine.base.MineBaseActivity;
 import com.hdyl.mine.tuijian.WebActivity;
 
-public class LearnActivity extends BaseActivity {
+public class LearnActivity extends MineBaseActivity {
 
 	@Override
 	public void onClick(View arg0) {

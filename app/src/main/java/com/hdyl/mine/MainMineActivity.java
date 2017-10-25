@@ -14,7 +14,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.hdyl.mine.about.AboutActivity;
-import com.hdyl.mine.base.BaseActivity;
+import com.hdyl.mine.base.MineBaseActivity;
 import com.hdyl.mine.base.ScoreUtils;
 import com.hdyl.mine.game.GameActivity;
 import com.hdyl.mine.learn.LearnActivity;
@@ -23,7 +23,7 @@ import com.hdyl.mine.top.TopActivity;
 import com.hdyl.mine.top.TopObject;
 import com.hdyl.mine.tuijian.TuijianAcitivity;
 
-public class MainMineActivity extends BaseActivity implements OnClickListener {
+public class MainMineActivity extends MineBaseActivity implements OnClickListener {
     View view;
     Context context;
 

@@ -1,7 +1,5 @@
 package com.hdyl.mine.base;
 
-import android.app.Activity;
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.BitmapFactory.Options;
@@ -10,37 +8,47 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View.OnClickListener;
 
+import com.hdyl.baselib.base.BaseActivity;
 import com.hdyl.mine.set.AppSet;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.analytics.MobclickAgent.EScenarioType;
 
-public abstract class BaseActivity extends Activity implements OnClickListener {
+public abstract class MineBaseActivity extends BaseActivity implements OnClickListener {
 
-    protected Context mContext;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         // this.requestWindowFeature(Window.FEATURE_NO_TITLE);// 去掉标题栏
         // this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
         // WindowManager.LayoutParams.FLAG_FULLSCREEN);// 去掉信息栏
         super.onCreate(savedInstanceState);
 //		this.requestWindowFeature(Window.FEATURE_NO_TITLE);// 去掉标题栏
 //		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);// 去掉信息栏
-        mContext = this;
         setContentView(setView());
-
-        // AnalyticsConfig.setChannel(Tools.getAppMetaData(this,
-        // "TD_CHANNEL_ID"));
-        // MobclickAgent.openActivityDurationTrack(false);
         MobclickAgent.setScenarioType(mContext, EScenarioType.E_UM_NORMAL);
         initData();
     }
 
     protected abstract void initData();
 
-    protected abstract int setView();
+    protected int setView() {
+        return setLayoutID();
+    }
 
-    protected abstract String getPageName();
+    @Override
+    public void initViews() {
+
+    }
+
+
+    @Override
+    public int setLayoutID() {
+        return 0;
+    }
+
+    protected String getPageName() {
+        return this.toString();
+    }
 
     @Override
     protected void onResume() {

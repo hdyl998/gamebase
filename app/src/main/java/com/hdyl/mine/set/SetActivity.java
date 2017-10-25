@@ -14,12 +14,12 @@ import android.widget.TextView;
 
 import com.hdyl.baselib.utils.convert.NumberUtil;
 import com.hdyl.mine.R;
-import com.hdyl.mine.base.BaseActivity;
+import com.hdyl.mine.base.MineBaseActivity;
 import com.hdyl.mine.tools.MySharepreferences;
 import com.hdyl.mine.tools.ShareCacheUtil;
 import com.hdyl.mine.tools.ToastUtils;
 
-public class SetActivity extends BaseActivity implements OnClickListener {
+public class SetActivity extends MineBaseActivity implements OnClickListener {
 
     TextView textViewVar;
 

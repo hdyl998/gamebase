@@ -9,12 +9,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.hdyl.mine.R;
-import com.hdyl.mine.base.BaseActivity;
+import com.hdyl.mine.base.MineBaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TuijianAcitivity extends BaseActivity implements OnClickListener {
+public class TuijianAcitivity extends MineBaseActivity implements OnClickListener {
 
 	List<AppItem> listMatchItems = new ArrayList<AppItem>();
 

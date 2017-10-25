@@ -10,8 +10,8 @@ import java.util.List;
  */
 
 public class BaseAnim {
-    public int during=500;
-    public int costTime=during;
+    public int during = 500;
+    public int costTime = during;
 
     public Cell cellArrs[][];
 
@@ -22,7 +22,7 @@ public class BaseAnim {
         this.during = during;
     }
 
-    public void init(){
+    public void init() {
         cellArrs = new Cell[GameBoard.yCount][GameBoard.xCount];
         for (int i = 0; i < GameBoard.yCount; i++) {
             for (int j = 0; j < GameBoard.xCount; j++) {
@@ -31,13 +31,12 @@ public class BaseAnim {
         }
     }
 
-    public BaseAnim(){
+    public BaseAnim() {
         init();
     }
 
 
-
-    protected void copy(Cell cellArrs[][]){
+    protected void copy(Cell cellArrs[][]) {
         for (int i = 0; i < GameBoard.yCount; i++) {
             for (int j = 0; j < GameBoard.xCount; j++) {
                 this.cellArrs[i][j].setValue(cellArrs[i][j]);
@@ -63,31 +62,28 @@ public class BaseAnim {
     }
 
 
-    public Cell[][]getCellArrs(){
+    public Cell[][] getCellArrs() {
         return cellArrs;
     }
 
-    public void clearAnim(){
-        costTime=during;
+    public void clearAnim() {
+        costTime = during;
     }
 
 
-
-    public boolean isEnd(){
-        if(costTime>=during){
+    public boolean isEnd() {
+        if (costTime >= during) {
             return true;
         }
         return false;
     }
 
 
-
-
-    public float getPercent(){
-        if(isEnd()){
+    public float getPercent() {
+        if (isEnd()) {
             return 1f;
         }
-        return 1f*costTime/during;
+        return 1f * costTime / during;
     }
 
 
@@ -96,8 +92,8 @@ public class BaseAnim {
         this.costTime += costTime;
     }
 
-    public boolean isAnim(){
-        if(isEnd()){
+    public boolean isAnim() {
+        if (isEnd()) {
             return false;
         }
         return true;
