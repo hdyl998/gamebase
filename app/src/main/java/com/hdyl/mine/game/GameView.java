@@ -772,7 +772,7 @@ public class GameView extends View {
                             public void onClick(View arg0) {
                                 switch (arg0.getId()) {
                                     case R.id.button1:
-                                        ScoreUtils.getToScore(gameActivity);
+                                        ScoreUtils.getToMarket(gameActivity);
                                         break;
                                     case R.id.button2:
                                         break;

@@ -66,12 +66,9 @@ public class StageList {
 
 
         public void calcData(int total) {
-//            List<Integer> lists = fenjie(total);
-
-//            info=lists.toString();
             int var= (int) Math.sqrt(total);
-            this.height= (int) (var*1.2);
-            this.width= (int) (var*0.8);
+            this.height= (int) (var*1.3);
+            this.width= (int) (var*0.7);
             this.mineNum= (int) (this.width*this.height*this.mineRate);
         }
 
@@ -92,7 +89,7 @@ public class StageList {
 
         @Override
         public String toString() {
-            return String.format("宽:%d 高:%d 密度:%.2f 总格数:%d 雷数:%d",width,height,mineRate,width*height,mineNum);
+            return String.format("%dx%d d:%.2f n:%d",width,height,mineRate,mineNum);
         }
     }
 }

@@ -9,7 +9,7 @@ import android.widget.Toast;
 public class ScoreUtils {
 
 
-	public static void getToScore(Context context){
+	public static void getToMarket(Context context){
 		try {
 			Uri uri = Uri.parse("market://details?id=" + context.getPackageName());
 			Intent intent2 = new Intent(Intent.ACTION_VIEW, uri);

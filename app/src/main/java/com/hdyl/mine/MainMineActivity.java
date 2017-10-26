@@ -103,7 +103,7 @@ public class MainMineActivity extends MineBaseActivity implements OnClickListene
 
                 break;
             case R.id.textViewScore:// 给我们评分
-                ScoreUtils.getToScore(this);
+                ScoreUtils.getToMarket(this);
                 break;
         }
 
