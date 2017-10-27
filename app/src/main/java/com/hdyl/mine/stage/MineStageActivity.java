@@ -144,7 +144,6 @@ public class MineStageActivity extends MineBaseActivity implements AdapterView.O
         if (this.requestCode == requestCode && resultCode == RESULT_OK) {
             StageList.getLists().get(curIndex).isPass = true;
             StageList.getLists().get(curIndex).solveDate= Tools.getDateString();
-            StageList.passIndex++;
             StageList.saveData();
             StageList.calcPassIndex();
             adapter.notifyDataSetChanged();
