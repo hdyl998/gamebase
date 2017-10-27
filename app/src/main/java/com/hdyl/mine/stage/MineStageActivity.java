@@ -1,5 +1,6 @@
 package com.hdyl.mine.stage;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
@@ -16,6 +17,7 @@ import com.hdyl.mine.R;
 import com.hdyl.mine.base.LoadingDialog;
 import com.hdyl.mine.base.MineBaseActivity;
 import com.hdyl.mine.game.GameActivity;
+import com.hdyl.mine.tools.Tools;
 
 /**
  * Date:2017/10/25 17:59
@@ -52,10 +54,10 @@ public class MineStageActivity extends MineBaseActivity implements AdapterView.O
                     holder.setBackgroundRes(R.id.ll_item_all, R.drawable.pass_bg);
                 } else {//lock
                     holder.setImageBitmap(R.id.iv_item_point, null);
-
                     holder.setBackgroundRes(R.id.ll_item_all, R.drawable.lock);
+
+
                 }
-//                holder.setText(R.id.tv_info, item.toString());
                 ImageView imageView = holder.getView(R.id.iv_item_num0);
                 ImageView imageView2 = holder.getView(R.id.iv_item_num1);
                 ImageView imageView3 = holder.getView(R.id.iv_item_num2);
@@ -64,6 +66,14 @@ public class MineStageActivity extends MineBaseActivity implements AdapterView.O
                 imageView.setImageResource(arrNum[posi / 100 % 10]);
                 imageView2.setImageResource(arrNum[posi / 10 % 10]);
                 imageView3.setImageResource(arrNum[posi % 10]);
+//
+//                if(StageList.getPassIndex() + 1 >= position) {
+//
+////                    holder.setVisibility(R.id.ll_number,View.VISIBLE);
+//                }
+//                else {
+////                    holder.setVisibility(R.id.ll_number,View.GONE);
+//                }
 
             }
         });
@@ -85,7 +95,7 @@ public class MineStageActivity extends MineBaseActivity implements AdapterView.O
 
     @Override
     public int[] setClickIDs() {
-        return new int[]{R.id.textViewBack};
+        return new int[]{R.id.textViewBack,R.id.btn_start};
     }
 
 
@@ -95,19 +105,34 @@ public class MineStageActivity extends MineBaseActivity implements AdapterView.O
             case R.id.textViewBack:
                 mContext.finish();
                 break;
+            case R.id.btn_start:
+                int index=StageList.getPassIndex()+1;
+                if(StageList.getLists().size()<=index){
+                    onItemClick(null,null,StageList.getLists().size()-1,0);
+                }
+                else {
+                    onItemClick(null, null, index, 0);
+                }
+                break;
         }
     }
 
     int curIndex = 0;
 
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        curIndex = position;
-        StageList.StageItem item = StageList.getLists().get(position);
-        if (StageList.getPassIndex() + 1 == position) {
-            GameActivity.launch(mContext, new MineItem(item), requestCode);
-        } else {
-            GameActivity.launch(mContext, new MineItem(item), 1);
+    public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+        if (StageList.getPassIndex() + 1 >= position) {
+            curIndex = position;
+            final StageList.StageItem item = StageList.getLists().get(position);
+            new AlertDialog.Builder(this).setTitle("关卡信息").setMessage(item.toString()).setPositiveButton("立即挑战", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    GameActivity.launch(mContext, new MineItem(item), requestCode);
+                }
+            }).setNegativeButton("取消",null).show();
+        } else{
+            new AlertDialog.Builder(this).setTitle("温馨提示").setMessage("当前关卡还未解锁!\n请依次解锁后挑战!").setNegativeButton("我知道了", null).show();
+//            GameActivity.launch(mContext, new MineItem(item), 1);
         }
     }
 
@@ -118,6 +143,8 @@ public class MineStageActivity extends MineBaseActivity implements AdapterView.O
         super.onActivityResult(requestCode, resultCode, data);
         if (this.requestCode == requestCode && resultCode == RESULT_OK) {
             StageList.getLists().get(curIndex).isPass = true;
+            StageList.getLists().get(curIndex).solveDate= Tools.getDateString();
+            StageList.passIndex++;
             StageList.saveData();
             StageList.calcPassIndex();
             adapter.notifyDataSetChanged();
@@ -125,8 +152,10 @@ public class MineStageActivity extends MineBaseActivity implements AdapterView.O
             if (curIndex == StageList.getLists().size() - 1) {
                 LoadingDialog dialog = new LoadingDialog(mContext, "恭喜您完成所有的关卡的试炼！你是扫雷天才！特封赐予你扫雷英雄称号！截屏留下此时的荣誉时刻吧！^_^!");
                 dialog.show();
-            } else {
-                new AlertDialog.Builder(this).setTitle("温馨提示").setMessage("您刚刚通过了%d关的关卡，还差%d关，即可通关！加油么么哒！^_^!").setNegativeButton("我知道了", null).show();
+            } else{
+                curIndex++;
+                String msg=String.format("您刚刚通过了%d关的关卡，还差%d关，即可通关！加油么么哒！^_^!",curIndex,StageList.getLists().size()-curIndex);
+                new AlertDialog.Builder(this).setTitle("温馨提示").setMessage(msg).setNegativeButton("我知道了", null).show();
             }
         }
     }
