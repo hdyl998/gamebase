@@ -60,7 +60,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:background="@drawable/bye_shape_corner_bg_fill_bg"
-            android:drawableTop="@drawable/ic_top"
+            android:drawableTop="@drawable/ic_top_mine"
             android:padding="5dp"
             android:text="排行榜"
             android:textColor="@color/white" />

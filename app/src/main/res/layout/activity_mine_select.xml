@@ -9,7 +9,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:text="当前进行到1/99" />
+        android:text="当前进行到1/99"
+        android:textColor="@color/text_white"
+        android:textSize="20sp" />
 
 
     <GridView
@@ -19,7 +21,7 @@
         android:layout_weight="1"
         android:clipToPadding="false"
         android:horizontalSpacing="5dp"
-        android:numColumns="1"
+        android:numColumns="4"
         android:padding="5dp"
         android:verticalSpacing="5dp" />
 

@@ -75,6 +75,7 @@ public class LoadingDialog extends Dialog implements OnClickListener {
 
 	@Override
 	public void onClick(View arg0) {
+		dismiss();
 		if (clickListener != null) {
 			clickListener.onClick(arg0);
 		}
@@ -86,6 +87,6 @@ public class LoadingDialog extends Dialog implements OnClickListener {
 		// case R.id.button3:
 		// break;
 		// }
-		dismiss();
+
 	}
 }

@@ -13,6 +13,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.hdyl.baselib.base.interfaceImpl.AnimationListenerImpl;
 import com.hdyl.mine.about.AboutActivity;
 import com.hdyl.mine.base.MineBaseActivity;
 import com.hdyl.mine.base.ScoreUtils;
@@ -37,18 +38,9 @@ public class MainMineActivity extends MineBaseActivity implements OnClickListene
             case R.id.imageView1:
                 Animation animation = AnimationUtils.loadAnimation(context, R.anim.big_fadein);
                 view.startAnimation(animation);
-                animation.setAnimationListener(new AnimationListener() {
-
+                animation.setAnimationListener(new AnimationListenerImpl() {
                     @Override
-                    public void onAnimationStart(Animation arg0) {
-                    }
-
-                    @Override
-                    public void onAnimationRepeat(Animation arg0) {
-                    }
-
-                    @Override
-                    public void onAnimationEnd(Animation arg0) {
+                    public void onAnimationEnd(Animation animation) {
                         Intent intent = new Intent(context, GameActivity.class);
                         startActivity(intent);
                     }

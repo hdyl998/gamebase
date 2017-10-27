@@ -1,6 +1,7 @@
 package com.hdyl.mine.game;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -17,6 +18,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
+import com.hdyl.mine.MineItem;
 import com.hdyl.mine.R;
 import com.hdyl.mine.base.MineBaseActivity;
 import com.hdyl.mine.base.LoadingDialog;
@@ -30,11 +32,18 @@ import java.util.TimerTask;
 
 public class GameActivity extends MineBaseActivity implements OnClickListener {
 
+
+    public static void launch(Activity context, MineItem item, int code) {
+        Intent intent = new Intent(context, GameActivity.class);
+        intent.putExtra("data", item);
+        context.startActivityForResult(intent, code);
+    }
+
     ImageView imageView2;
     GameView gameView;
     TextView textViewMine, textViewTime, textViewLevel, textViewFlag, textViewPercent, textViewBest;
     Timer timer;
-
+    MineItem mineItem;
     int time = 0;
     int AIleftTime = 0;// AI剩余的时间
     final int AI_COSTS_TIME = 200; // 20 X10 即20秒
@@ -235,7 +244,7 @@ public class GameActivity extends MineBaseActivity implements OnClickListener {
     }
 
     public void setLevelText(int level) {
-        String str[] = {"初级", "中级", "高级", "专家级", "自定义"};
+        String str[] = {"初级", "中级", "高级", "专家级", "自定义", "挑战"};
         String ssString = "难度 " + str[level] + "($% #1x#2)".replace("$", String.format("%.1f", gameView.getRate() * 100));
         ssString = ssString.replace("#1", gameView.WIDTH + "");
         ssString = ssString.replace("#2", gameView.HEIGHT + "");
@@ -270,7 +279,7 @@ public class GameActivity extends MineBaseActivity implements OnClickListener {
             return;
         }
 
-        if (gameView.gameState == GameView.STATE_IN_GAME) {
+        if (dialogExit != null && gameView.gameState == GameView.STATE_IN_GAME) {
 
             // lastPressedTime = System.currentTimeMillis();
             isPause = true;
@@ -331,7 +340,7 @@ public class GameActivity extends MineBaseActivity implements OnClickListener {
     @Override
     protected void onPause() {
         super.onPause();
-        if (isPause == false && gameView.gameState == GameView.STATE_IN_GAME) {
+        if (dialogExit != null && isPause == false && gameView.gameState == GameView.STATE_IN_GAME) {
             isPause = true;
             gameView.postDelayed(new Runnable() {
                 @Override
@@ -362,11 +371,13 @@ public class GameActivity extends MineBaseActivity implements OnClickListener {
     @SuppressWarnings("deprecation")
     @Override
     public void initViews() {
+
+        mineItem = (MineItem) mContext.getIntent().getSerializableExtra("data");
         scrollView1 = (ScrollView) findViewById(R.id.scrollView1);
         scrollView2 = (HorizontalScrollView) findViewById(R.id.scrollView2);
 
         gameView = (GameView) findViewById(R.id.gameView);
-
+        gameView.init(mineItem);
         imageView2 = (ImageView) findViewById(R.id.button1);
         imageView2.setOnClickListener(this);
 
@@ -398,18 +409,25 @@ public class GameActivity extends MineBaseActivity implements OnClickListener {
 
         relativeLayout = (RelativeLayout) findViewById(R.id.ll);
         initBtn();
-        dialogExit = new LoadingDialog(this, "暂停中...", "继续游戏", "存档退出", "退出", clickListener);
-        int type = MySharepreferences.getInt(this, "aa", "settype");
 
-        String string = MySharepreferences.getString(mContext, "aa", "storage" + type);
-        if (string != null) {
-            dialogSave = new LoadingDialog(this, "发现存档...是否继续?", "继续游戏", "新游戏", "退出", clickListener2);
-            try {
-                modeItem = JSON.parseObject(string, ModeItem.class);
-                dialogSave.show();
-            } catch (Exception e) {
-                modeItem = null;
+        if (mineItem == null) {
+            dialogExit = new LoadingDialog(this, "暂停中...", "继续游戏", "存档退出", "退出", clickListener);
+            int type = MySharepreferences.getInt(this, "aa", "settype");
+
+            String string = MySharepreferences.getString(mContext, "aa", "storage" + type);
+            if (string != null) {
+                dialogSave = new LoadingDialog(this, "发现存档...是否继续?", "继续游戏", "新游戏", "退出", clickListener2);
+                try {
+                    modeItem = JSON.parseObject(string, ModeItem.class);
+                    dialogSave.show();
+                } catch (Exception e) {
+                    modeItem = null;
+                }
             }
+        } else {
+            findViewById(R.id.textViewTopbang).setVisibility(View.GONE);
+            findViewById(R.id.textViewTool).setVisibility(View.GONE);
+            this.setResult(RESULT_OK);
         }
         soundPool = new SoundPool(20, AudioManager.STREAM_MUSIC, 100);
         musicID = soundPool.load(this, R.raw.effecttick, 1);// 参数详解(上下问对象,需要播放的音频的ID,

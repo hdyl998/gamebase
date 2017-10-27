@@ -57,7 +57,7 @@
         android:layout_marginLeft="5dp"
         android:layout_toRightOf="@+id/imageViewSet"
         android:background="@drawable/bye_shape_corner_bg_fill_bg"
-        android:drawableTop="@drawable/ic_top"
+        android:drawableTop="@drawable/ic_top_mine"
         android:padding="5dp"
         android:text="排行"
         android:textColor="@color/white" />

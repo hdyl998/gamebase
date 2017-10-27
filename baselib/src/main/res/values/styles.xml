@@ -125,5 +125,20 @@
         <attr name="appsTextSize" format="dimension" />
         <!-- 文本颜色（默认） -->
     </declare-styleable>
-
+    <!-- 对话框风格 -->
+    <style name="dialogThemeBase" parent="@android:style/Theme.Dialog">
+        <!-- 窗口边框 -->
+        <item name="android:windowFrame">@null</item>
+        <!-- 窗口是否浮动在Activity上 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 半透明 -->
+        <item name="android:windowIsTranslucent">false</item>
+        <!-- 没有标题栏 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 背景 -->
+        <item name="android:background">@null</item>
+        <!-- 背景模糊 -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
 </resources>

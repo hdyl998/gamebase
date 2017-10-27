@@ -1,6 +1,7 @@
 package com.hdyl.mine.game;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.Service;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -15,6 +16,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.hdyl.mine.MineItem;
 import com.hdyl.mine.R;
 import com.hdyl.mine.base.LoadingDialog;
 import com.hdyl.mine.base.ScoreUtils;
@@ -35,34 +37,28 @@ public class GameView extends View {
     public GameView(Context context, AttributeSet attrs) {
         super(context, attrs);
         gameActivity = (GameActivity) context;
-
-        init();
     }
 
     public GameView(Context context) {
         super(context);
         gameActivity = (GameActivity) context;
-        init();
+
     }
 
-    final static int ID_COVER = 10;
-    final static int ID_FLAG = 11;
-    final static int ID_ERROR_MINE = 12;
-    final static int ID_ERROR_BLACK = 13;
+    MineItem mineItem;
 
-    final static int ID2_COVER = 0;
-
-    private void init() {
-
+    public void init(MineItem item) {
+        this.mineItem = item;
+        if (item == null) {
+            helper = new DatabaseHelper(gameActivity);
+        }
         boolean isOnVer = MySharepreferences.getInt(gameActivity, "aa", "vibrator") == 0;// 0表示打开的
-
         if (isOnVer) {
             // 震动
             vibrator = (Vibrator) gameActivity.getSystemService(Service.VIBRATOR_SERVICE);
         }
-
-        helper = new DatabaseHelper(gameActivity);
         isFlag = MySharepreferences.getBoolean(gameActivity, "aa", "isFlag");
+
         int ids[] = null;
         if (AppSet.getInstence().theme == 0) {
             ids = new int[]{R.drawable.open, R.drawable._1, R.drawable._2, R.drawable._3, R.drawable._4, R.drawable._5, R.drawable._6, R.drawable._7, R.drawable._8, R.drawable.mine,// 9雷
@@ -99,7 +95,16 @@ public class GameView extends View {
         int var = Integer.parseInt(str);
         float times = (var - 5) * 0.2f + 1.5f;
         size = (int) (bitmaps[0].getWidth() * times);
+
     }
+
+    final static int ID_COVER = 10;
+    final static int ID_FLAG = 11;
+    final static int ID_ERROR_MINE = 12;
+    final static int ID_ERROR_BLACK = 13;
+
+    final static int ID2_COVER = 0;
+
 
     /**
      * 重新绘制BITMAP
@@ -140,6 +145,9 @@ public class GameView extends View {
      */
     public void loadConfig() {
         int type = MySharepreferences.getInt(gameActivity, "aa", "settype");
+        if (mineItem != null) {
+            type = 5;
+        }
         gameType = type;
         switch (type) {
             case 0:
@@ -164,6 +172,10 @@ public class GameView extends View {
                 num = arr[2];
                 this.setWidthHeight(width, height, num);
                 break;
+            case 5://
+                this.setWidthHeight(mineItem.width, mineItem.height, mineItem.mineNum);
+                break;
+
         }
         gameActivity.setLevelText(type);
     }
@@ -710,7 +722,7 @@ public class GameView extends View {
             gameState = STATE_WIN;
             gameActivity.cancelTimer(false);
             gameActivity.initGameStateUI();
-            if (gameType != 4) {
+            if (gameType < 4) {
                 String name = TopObject.getName(gameActivity);
                 boolean isPo = TopObject.saveTopScore(gameActivity, gameType, gameActivity.time);
                 gameActivity.setLevelText(gameType);
@@ -727,6 +739,9 @@ public class GameView extends View {
                         gameActivity.setLevelText(gameType);
                     }
                 showGameInfo(GameMsgInfo.WINDEFILE);
+                if (gameType == 5) {
+                    gameActivity.setResult(Activity.RESULT_OK);
+                }
             }
             gameActivity.setPercentText(100);
             return true;
