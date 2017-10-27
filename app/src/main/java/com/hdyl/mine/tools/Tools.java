@@ -80,6 +80,9 @@ public class Tools {
 	}
 
 	public static String getPostTime(String timeStr) {
+		if(timeStr==null){
+			return timeStr;
+		}
 		String time = null;
 		Date date = null;
 		try {

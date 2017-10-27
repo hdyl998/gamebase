@@ -37,6 +37,7 @@ public class StageList {
             //100关
             for (int i = 0; i < 100; i++) {
                 StageItem item = new StageItem();
+                item.stage=i+1;
                 item.setMineRate(GameDataCalcTool.getNumF(i, 0.1f, 0.3f, 0, 100));//设定成固定值
                 item.calcData((i + 1) * 100);
                 listTemp.add(item);
@@ -99,6 +100,7 @@ public class StageList {
         public int mineNum;
         public float mineRate;
         public boolean isPass;
+        public int stage;
         //        public String info;
         public int solveTime;//解决时间
         public String solveDate;
@@ -133,15 +135,16 @@ public class StageList {
             this.height = (int) (var * 1.3);
             this.width = (int) (var * 0.7);
             this.mineNum = (int) (this.width * this.height * this.mineRate);
+            this.mineRate=this.mineNum*1f/(this.width*this.height);
         }
 
         @Override
         public String toString() {
             String append = "";
             if (isPass) {
-                append = "\nPassed! " + Tools.getPostTime(solveDate);
+                append = "\nPassed! \n解决时间："+Tools.getPostTime(solveDate);
             }
-            return String.format("%dx%d d:%.2f n:%d", width, height, mineRate, mineNum) + append;
+            return String.format("关卡：%d\n宽：%d\n高：%d\n雷密度:%.2f%%\n雷数:%d", stage,width, height, mineRate*100, mineNum) + append;
         }
     }
 }

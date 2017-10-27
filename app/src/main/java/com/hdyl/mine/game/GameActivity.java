@@ -427,7 +427,7 @@ public class GameActivity extends MineBaseActivity implements OnClickListener {
         } else {
             findViewById(R.id.textViewTopbang).setVisibility(View.GONE);
             findViewById(R.id.textViewTool).setVisibility(View.GONE);
-            this.setResult(RESULT_OK);
+//            this.setResult(RESULT_OK);
         }
         soundPool = new SoundPool(20, AudioManager.STREAM_MUSIC, 100);
         musicID = soundPool.load(this, R.raw.effecttick, 1);// 参数详解(上下问对象,需要播放的音频的ID,
