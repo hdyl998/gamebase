@@ -21,9 +21,9 @@ public class AppSet {
     public int themeBg = 0;
 
 
-    int resid[] = {R.drawable.bg1, R.drawable.bg2, R.drawable.bg3, R.drawable.bg4, R.drawable.bg_1};
+    int resid[] = {R.drawable.bg1, R.drawable.bg2, R.drawable.bg3, R.drawable.bg4};
 
-    String sss[] = {"主题1", "主题2", "主题3", "主题4", "经典蓝色"};
+    String sss[] = {"主题1", "主题2", "主题3", "主题4", "主题5"};
 
     public int getBgId() {
 

@@ -95,7 +95,7 @@ public class MineStageActivity extends MineBaseActivity implements AdapterView.O
 
     @Override
     public int[] setClickIDs() {
-        return new int[]{R.id.textViewBack,R.id.btn_start};
+        return new int[]{R.id.textViewBack, R.id.btn_start};
     }
 
 
@@ -106,11 +106,10 @@ public class MineStageActivity extends MineBaseActivity implements AdapterView.O
                 mContext.finish();
                 break;
             case R.id.btn_start:
-                int index=StageList.getPassIndex()+1;
-                if(StageList.getLists().size()<=index){
-                    onItemClick(null,null,StageList.getLists().size()-1,0);
-                }
-                else {
+                int index = StageList.getPassIndex() + 1;
+                if (StageList.getLists().size() <= index) {
+                    onItemClick(null, null, StageList.getLists().size() - 1, 0);
+                } else {
                     onItemClick(null, null, index, 0);
                 }
                 break;
@@ -129,8 +128,8 @@ public class MineStageActivity extends MineBaseActivity implements AdapterView.O
                 public void onClick(DialogInterface dialog, int which) {
                     GameActivity.launch(mContext, new MineItem(item), requestCode);
                 }
-            }).setNegativeButton("取消",null).show();
-        } else{
+            }).setNegativeButton("取消", null).show();
+        } else {
             new AlertDialog.Builder(this).setTitle("温馨提示").setMessage("当前关卡还未解锁!\n请依次解锁后挑战!").setNegativeButton("我知道了", null).show();
 //            GameActivity.launch(mContext, new MineItem(item), 1);
         }
@@ -143,17 +142,18 @@ public class MineStageActivity extends MineBaseActivity implements AdapterView.O
         super.onActivityResult(requestCode, resultCode, data);
         if (this.requestCode == requestCode && resultCode == RESULT_OK) {
             StageList.getLists().get(curIndex).isPass = true;
-            StageList.getLists().get(curIndex).solveDate= Tools.getDateString();
-            StageList.saveData();
+            StageList.getLists().get(curIndex).solveDate = Tools.getDateString();
             StageList.calcPassIndex();
             adapter.notifyDataSetChanged();
+
+            StageList.saveData();
             updataProgress();
             if (curIndex == StageList.getLists().size() - 1) {
                 LoadingDialog dialog = new LoadingDialog(mContext, "恭喜您完成所有的关卡的试炼！你是扫雷天才！特封赐予你扫雷英雄称号！截屏留下此时的荣誉时刻吧！^_^!");
                 dialog.show();
-            } else{
+            } else if (curIndex % 5 == 0) {
                 curIndex++;
-                String msg=String.format("您刚刚通过了%d关的关卡，还差%d关，即可通关！加油么么哒！^_^!",curIndex,StageList.getLists().size()-curIndex);
+                String msg = String.format("您刚刚通过了%d关的关卡，还差%d关，即可通关！加油!", curIndex, StageList.getLists().size() - curIndex);
                 new AlertDialog.Builder(this).setTitle("温馨提示").setMessage(msg).setNegativeButton("我知道了", null).show();
             }
         }

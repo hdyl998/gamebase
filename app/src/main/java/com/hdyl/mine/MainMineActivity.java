@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
 import android.content.Intent;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -13,18 +14,30 @@ import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.hdyl.MainInActivity;
 import com.hdyl.baselib.base.interfaceImpl.AnimationListenerImpl;
+import com.hdyl.baselib.utils.log.LogUitls;
+import com.hdyl.llk.utils.SpDataCache;
 import com.hdyl.mine.about.AboutActivity;
+import com.hdyl.mine.base.LoadingDialog;
 import com.hdyl.mine.base.MineBaseActivity;
 import com.hdyl.mine.base.ScoreUtils;
 import com.hdyl.mine.game.GameActivity;
 import com.hdyl.mine.learn.LearnActivity;
 import com.hdyl.mine.set.SetActivity;
+import com.hdyl.mine.stage.MineStageActivity;
+import com.hdyl.mine.tools.PermissionUtils;
+import com.hdyl.mine.tools.Tools;
 import com.hdyl.mine.top.TopActivity;
 import com.hdyl.mine.top.TopObject;
 import com.hdyl.mine.tuijian.TuijianAcitivity;
 
-public class MainMineActivity extends MineBaseActivity implements OnClickListener {
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class MainMineActivity extends MineBaseActivity implements OnClickListener, ActivityCompat.OnRequestPermissionsResultCallback {
     View view;
     Context context;
 
@@ -97,6 +110,12 @@ public class MainMineActivity extends MineBaseActivity implements OnClickListene
             case R.id.textViewScore:// 给我们评分
                 ScoreUtils.getToMarket(this);
                 break;
+            case R.id.textViewFight:
+                startActivity(new Intent(mContext, MineStageActivity.class));
+                break;
+            case R.id.textViewHide:
+                startActivity(new Intent(mContext, MainInActivity.class));
+                break;
         }
 
     }
@@ -106,13 +125,7 @@ public class MainMineActivity extends MineBaseActivity implements OnClickListene
         textViewName.setText("你好！$!".replace("$", name));
     }
 
-    private OnDismissListener dismissListener = new OnDismissListener() {
-
-        @Override
-        public void onDismiss(DialogInterface arg0) {
-            setNameText();
-        }
-    };
+    View viewHide;
 
     @Override
     public void initViews() {
@@ -128,21 +141,64 @@ public class MainMineActivity extends MineBaseActivity implements OnClickListene
 
         findViewById(R.id.textViewTuijian).setOnClickListener(this);
         findViewById(R.id.textViewUpdate).setOnClickListener(this);
+
+        viewHide = findViewById(R.id.textViewHide);
+        viewHide.setOnClickListener(this);
+
+        findViewById(R.id.textViewFight).setOnClickListener(this);
         textViewName = (TextView) findViewById(R.id.textViewChangeName);
         textViewName.setOnClickListener(this);
         setNameText();
 
         findViewById(R.id.textView1).setOnClickListener(this);
+        PermissionUtils.requestPermission(this, PermissionUtils.CODE_WRITE_EXTERNAL_STORAGE, permissionGrant);
+
+        boolean isHide = checkTimeHide();
+
+        LogUitls.print(isHide);
+        viewHide.setVisibility(isHide ? View.GONE : View.VISIBLE);
+
+        SpDataCache cache = new SpDataCache();
+        if (isHide == false && null ==cache.get("hidefun")) {
+            cache.put("hidefun", "1");
+            LoadingDialog dialog = new LoadingDialog(mContext);
+            dialog.setTvText("隐藏关卡已开启，欢迎使用！点击右上角的“惊喜”进入！");
+            dialog.show();
+        }
     }
+
+
+    private String startTime = "2017-10-30 12:33:00";
+
+    private boolean checkTimeHide() {
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        try {
+            long time = format.parse(startTime).getTime();
+            long hour = (new Date().getTime() - time) / 1000 / 3600;
+            LogUitls.print(hour);
+            return hour < 24;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 
     @Override
     public int setLayoutID() {
-          return R.layout.activity_main_mine;
+        return R.layout.activity_main_mine;
     }
 
     @Override
     protected String getPageName() {
         return "首页";
     }
+
+    PermissionUtils.PermissionGrant permissionGrant = new PermissionUtils.PermissionGrant() {
+        @Override
+        public void onPermissionGranted(int requestCode) {
+
+        }
+    };
 
 }

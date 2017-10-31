@@ -1,6 +1,7 @@
 package com.hdyl.mine.stage;
 
 import com.alibaba.fastjson.JSON;
+import com.hdyl.llk.utils.SpDiskDoubleCache;
 import com.hdyl.mine.tools.Tools;
 
 import java.util.ArrayList;
@@ -37,7 +38,7 @@ public class StageList {
             //100关
             for (int i = 0; i < 100; i++) {
                 StageItem item = new StageItem();
-                item.stage=i+1;
+                item.stage = i + 1;
                 item.setMineRate(GameDataCalcTool.getNumF(i, 0.1f, 0.3f, 0, 100));//设定成固定值
                 item.calcData((i + 1) * 100);
                 listTemp.add(item);
@@ -62,7 +63,7 @@ public class StageList {
     }
 
 
-    final static String fileName = "mine1.txt";
+    final static String key = "mine1.txt";
 
     /***
      * 读档
@@ -71,7 +72,7 @@ public class StageList {
      */
     private static List<StageItem> readData() {
         List<StageItem> lists = null;
-        String string = com.hdyl.llk.utils.Tools.readFileByLines(fileName);
+        String string = new SpDiskDoubleCache().get(key);
         if (string != null) {
             try {
                 lists = JSON.parseArray(string, StageItem.class);
@@ -86,7 +87,7 @@ public class StageList {
      */
     public static void saveData() {
         String jsString = JSON.toJSONString(lists);
-        com.hdyl.llk.utils.Tools.writeFileByLines(fileName, jsString);
+        new SpDiskDoubleCache().put(key, jsString);
     }
 
 
@@ -135,16 +136,16 @@ public class StageList {
             this.height = (int) (var * 1.3);
             this.width = (int) (var * 0.7);
             this.mineNum = (int) (this.width * this.height * this.mineRate);
-            this.mineRate=this.mineNum*1f/(this.width*this.height);
+            this.mineRate = this.mineNum * 1f / (this.width * this.height);
         }
 
         @Override
         public String toString() {
             String append = "";
             if (isPass) {
-                append = "\nPassed! \n解决时间："+Tools.getPostTime(solveDate);
+                append = "\nPassed! \n解决时间：" + Tools.getPostTime(solveDate);
             }
-            return String.format("关卡：%d\n宽：%d\n高：%d\n雷密度:%.2f%%\n雷数:%d", stage,width, height, mineRate*100, mineNum) + append;
+            return String.format("关卡：%d\n宽：%d\n高：%d\n雷密度:%.2f%%\n雷数:%d", stage, width, height, mineRate * 100, mineNum) + append;
         }
     }
 }

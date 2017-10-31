@@ -796,7 +796,6 @@ public class GameView extends View {
                         });
                         dialog.setIconResID(ressss);
                         dialog.show();
-
                     }
                 });
                 dialog2.setIconResID(ressss);

@@ -448,7 +448,6 @@ public class GameActivity extends MineBaseActivity implements OnClickListener {
             imageView.setImageResource(R.drawable.test);
             new AlertDialog.Builder(this).setTitle("游戏使用图解").setView(imageView).setNegativeButton("我知道了", null).show();
         }
-
     }
 
     @Override

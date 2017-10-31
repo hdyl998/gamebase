@@ -1,9 +1,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:context=".MainMineActivity" >
+    tools:context=".MainMineActivity">
 
     <ImageView
         android:id="@+id/imageView1"
@@ -23,18 +24,6 @@
         android:text="点雷开始游戏"
         android:textColor="@color/green"
         android:textSize="18sp" />
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:padding="10dp"
-        android:text="@string/copy_right"
-        android:textColor="@color/gray"
-        android:textSize="12sp" />
 
     <TextView
         android:id="@+id/imageViewSet"
@@ -113,28 +102,70 @@
         android:text="关于"
         android:textColor="@color/white" />
 
+
     <TextView
-        android:id="@+id/textViewChangeName"
+        android:id="@+id/textViewHide"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/textViewUpdate"
         android:background="@drawable/bye_shape_corner_bg_fill_bg"
+        android:drawableTop="@drawable/ic_flag1"
+        android:padding="5dp"
+        android:text="惊喜"
+        android:textColor="@color/white" />
+
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
         android:padding="10dp"
-        android:text="你好！!"
-        android:textColor="@color/yellow"
-        android:textSize="18sp" />
+        android:text="@string/copy_right"
+        android:textColor="@color/gray"
+        android:textSize="12sp" />
+
+
+    <TextView
+        android:id="@+id/textViewFight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView1"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/bye_shape_corner_bg_fill_bg"
+        android:drawablePadding="5dp"
+        android:drawableRight="@drawable/hot"
+        android:padding="10dp"
+        android:text="挑战极限New"
+        android:textColor="@color/text_white"
+        android:textSize="30sp" />
 
     <TextView
         android:id="@+id/TextView01"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textViewChangeName"
+        android:layout_above="@+id/imageView1"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
         android:gravity="center"
         android:text="轻击我更换名字"
         android:textColor="@color/gray"
         android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/textViewChangeName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/TextView01"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/bye_shape_corner_bg_fill_bg"
+        android:padding="10dp"
+        android:text="你好！!"
+        android:textColor="@color/yellow"
+        android:textSize="18sp" />
 
 </RelativeLayout>

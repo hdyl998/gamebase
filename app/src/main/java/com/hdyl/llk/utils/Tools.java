@@ -76,9 +76,9 @@ public class Tools {
     }
 
 
-    public static void writeFileByLines(String fileName, String content) {
+    public static void writeFileByLines(String dirName, String fileName, String content) {
         try {
-            File file = new File(createFile(App.getContext().getPackageName()) + File.separator + fileName);
+            File file = new File(createFile(dirName) + File.separator + fileName);
             if (!file.exists())
                 file.createNewFile();
             FileOutputStream out = new FileOutputStream(file, false); // 如果追加方式用true
@@ -90,11 +90,12 @@ public class Tools {
         }
     }
 
+
     /**
      * 以行为单位读取文件，常用于读面向行的格式化文件
      */
-    public static String readFileByLines(String fileName) {
-        File file = new File(createFile("鲜花连连看") + File.separator + fileName);
+    public static String readFileByLines(String dirName, String fileName) {
+        File file = new File(createFile(dirName) + File.separator + fileName);
         if (!file.exists())
             return null;
         BufferedReader reader = null;
