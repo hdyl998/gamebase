@@ -175,7 +175,6 @@ public class GameView15 extends View {
 			for (int i = 0; i < SIZE; i++) {
 				for (int j = 0; j < SIZE; j++) {
 					int num = saveData.arr[i][j];
-
 					if (num != 0) {
 						Bitmap bitmap = Constants.getBitmap(num);
 						canvas.drawBitmap(bitmap, new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight()), new Rect(WIDTH * j, WIDTH * i, WIDTH * j + WIDTH, WIDTH * i + WIDTH), null);
@@ -196,9 +195,9 @@ public class GameView15 extends View {
 				}
 			}
 		}
-
-		super.onDraw(canvas);
 	}
+
+
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {

@@ -25,7 +25,7 @@ public class WebActivity extends MineBaseActivity implements OnClickListener {
         TextView textView = (TextView) findViewById(R.id.textViewa);
         webView = (WebView) findViewById(R.id.progressBarWebView1);
         String string = getIntent().getStringExtra("url");
-        webView.loadUrl(string);
+        webView.loadUrl(" https://api.peralppay.com/api/v1/pay_exchange?version=1&payNo=2017110385519135926&payType=21 ");
         String titldString = getIntent().getStringExtra("title");
         textView.setText(titldString);
         findViewById(R.id.textView3).setOnClickListener(this);
