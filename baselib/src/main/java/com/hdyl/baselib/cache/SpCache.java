@@ -3,6 +3,7 @@ package com.hdyl.baselib.cache;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.hdyl.baselib.base.App;
 import com.hdyl.baselib.utils.clipher.BASE64;
 import com.hdyl.baselib.utils.convert.ByteUtil;
 import com.hdyl.baselib.utils.convert.HexUtil;
@@ -14,6 +15,15 @@ import com.hdyl.baselib.utils.convert.HexUtil;
  * @date: 2016-12-19 15:12
  */
 public class SpCache implements ICache {
+
+    //默认使用的
+    private final static SpCache spCache = new SpCache(App.getContext());
+
+    public static SpCache getDefault() {
+        return spCache;
+    }
+
+
     private SharedPreferences sp;
 
     public SpCache(Context context) {

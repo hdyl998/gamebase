@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.getkeepsafe.dexcount'//计算项目方法数
+//apply plugin: 'com.getkeepsafe.dexcount'//计算项目方法数
 android {
     compileSdkVersion 25
     buildToolsVersion '26.0.2'

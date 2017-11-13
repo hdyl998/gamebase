@@ -3,9 +3,7 @@ package com.hdyl.tetris2;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 
-import com.hdyl.baselib.base.App;
-import com.hdyl.baselib.utils.MySharepreferences;
-import com.hdyl.baselib.utils.log.LogUitls;
+import com.hdyl.baselib.utils.SpUtils;
 import com.hdyl.tetris2.shape.Cell;
 import com.hdyl.tetris2.shape.GameShape;
 
@@ -42,11 +40,11 @@ public class GameBoard {
     }
 
     {
-        mHighScore= MySharepreferences.getInt(App.getContext(),"tetris2","highscore",0);
+        mHighScore= SpUtils.getInt("tetris2","highscore",0);
     }
 
     public void saveHighScore(){
-        MySharepreferences.putInt(App.getContext(),"tetris2","highscore",mHighScore);
+        SpUtils.putInt("tetris2","highscore",mHighScore);
     }
 
 //    public void setGameShapesOneSize(int oneSize) {
