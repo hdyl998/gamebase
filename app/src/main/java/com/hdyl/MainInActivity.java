@@ -1,32 +1,19 @@
 package com.hdyl;
 
-import android.app.Dialog;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.PopupMenu;
-import android.view.Gravity;
-import android.view.Menu;
-import android.view.SubMenu;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.PopupWindow;
-import android.widget.TextView;
 
 import com.hdyl.baselib.base.BaseActivity;
+import com.hdyl.baselib.base.FmtCtnActivity;
+import com.hdyl.baselib.base.PullListFragment;
 import com.hdyl.baselib.base.adapterbase.BaseViewHolder;
 import com.hdyl.baselib.base.adapterbase.SuperAdapter;
-import com.hdyl.llk.MainLlkActivity;
 import com.hdyl.llk.StartLlkActivity;
 import com.hdyl.m2048.Main2048Activity;
 import com.hdyl.mine.MainMineActivity;
 import com.hdyl.mine.R;
-import com.hdyl.mine.stage.MineStageActivity;
 import com.hdyl.pintu.MainPintuActivity;
 import com.hdyl.tetris.MainTetrisActivity;
 import com.hdyl.tetris2.MainTetris2Activity;
@@ -90,6 +77,7 @@ public class MainInActivity extends BaseActivity {
         listDatas.add(new DataItem().setAppName(getString(R.string.app_name_pintu)).setIconRes(R.drawable.icon_tetris).setRank(R.drawable.point3).setGoClazz(MainPintuActivity.class));
         listDatas.add(new DataItem().setAppName(getString(R.string.app_name_xxl)).setIconRes(R.drawable.fruit2).setRank(R.drawable.point3).setGoClazz(MainXxlActivity.class));
         listDatas.add(new DataItem().setAppName(getString(R.string.app_name_llk)).setIconRes(R.drawable.aa42).setRank(R.drawable.point3).setGoClazz(StartLlkActivity.class));
+        listDatas.add(null);
         listView.setAdapter(new SuperAdapter<DataItem>(mContext, listDatas, R.layout.item_app) {
             @Override
             protected void onBind(BaseViewHolder holder, DataItem item, int position) {
@@ -106,7 +94,7 @@ public class MainInActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (listDatas.get(position) == null) {
-                    startActivity(new Intent(mContext,MineStageActivity.class));
+                    FmtCtnActivity.launch(mContext, PullListFragment.class);
 //                    PopupMenu popupMenu = new PopupMenu(mContext, view);
 //                    Menu menu=popupMenu.getMenu();
 //                    menu.add(0, 1, Menu.NONE, "蓝牙发送").setIcon(android.R.drawable.ic_menu_send);

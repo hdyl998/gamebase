@@ -38,7 +38,7 @@ public class FmtCtnActivity extends BaseActivity {
     public final static String EXTRA_5 = "5";
     public final static String EXTRA_6 = "6";
 
-    public static void launch(Context context, Class<BaseFragment> clazz, Object... objs) {
+    public static void launch(Context context, Class<? extends BaseFragment> clazz, Object... objs) {
         Intent intent = new Intent(context, FmtCtnActivity.class);
         intent.putExtra(EXTRA_FRAGMENT_NAME, clazz);
         if (objs != null && objs.length != 0) {
