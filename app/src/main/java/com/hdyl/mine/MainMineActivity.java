@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
@@ -129,6 +130,21 @@ public class MainMineActivity extends MineBaseActivity implements OnClickListene
 
     @Override
     public void initViews() {
+
+        Uri uri = Uri.parse("qqshidao://app:match://654875/1");
+        LogUitls.print("test", uri.getScheme());
+
+        String allCmd = uri.getSchemeSpecificPart().substring(2);
+        LogUitls.print("test", allCmd);
+        int indexYinhao = allCmd.indexOf(":");
+        if (indexYinhao != -1) {
+            String type = allCmd.substring(0, indexYinhao);
+            String action = allCmd.substring(indexYinhao + 1);
+            LogUitls.print("test", type);
+            LogUitls.print("test", action);
+        }
+
+
         context = this;
         view = findViewById(R.id.imageView1);
         view.setOnClickListener(this);
@@ -159,7 +175,7 @@ public class MainMineActivity extends MineBaseActivity implements OnClickListene
         viewHide.setVisibility(isHide ? View.GONE : View.VISIBLE);
 
         SpDataCache cache = new SpDataCache();
-        if (isHide == false && null ==cache.get("hidefun")) {
+        if (isHide == false && null == cache.get("hidefun")) {
             cache.put("hidefun", "1");
             LoadingDialog dialog = new LoadingDialog(mContext);
             dialog.setTvText("隐藏关卡已开启，欢迎使用！点击右上角的“惊喜”进入！");
