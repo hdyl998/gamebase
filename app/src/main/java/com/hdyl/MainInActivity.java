@@ -94,7 +94,7 @@ public class MainInActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (listDatas.get(position) == null) {
-                    FmtCtnActivity.launch(mContext, PullListFragment.class);
+                    FmtCtnActivity.launch(mContext, TestFragment.class);
 //                    PopupMenu popupMenu = new PopupMenu(mContext, view);
 //                    Menu menu=popupMenu.getMenu();
 //                    menu.add(0, 1, Menu.NONE, "蓝牙发送").setIcon(android.R.drawable.ic_menu_send);

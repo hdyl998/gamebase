@@ -111,19 +111,19 @@ public class GameView extends View {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-//        int hsize = h / GameBoard.yCount;
-
-        size = 1f * w / GameBoard.xCount;
+        float hsize =1f* h / GameBoard.yCount;
+       float wsize = 1f * w / GameBoard.xCount;
+        size=Math.min(hsize,wsize);
         //新游戏
 //        gameBoard.newGame();
     }
 
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        int size = MeasureSpec.getSize(widthMeasureSpec);
-//        int size2= (int) (this.size*GameBoard.xCount);
-        setMeasuredDimension(size, size * 2);
-    }
+//    @Override
+//    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+//        int size = MeasureSpec.getSize(widthMeasureSpec);
+////        int size2= (int) (this.size*GameBoard.xCount);
+//        setMeasuredDimension(size, size * 2);
+//    }
 
     /**
      * 根据手机的分辨率从 dp 的单位 转成为 px(像素)

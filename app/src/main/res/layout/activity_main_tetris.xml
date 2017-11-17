@@ -16,101 +16,111 @@
         android:layout_height="?actionBarSize"
         android:title="俄罗斯方块" />
 
-
     <LinearLayout
-        android:padding="5dp"
-        android:layout_margin="5dp"
-        android:id="@+id/ll_menu"
-        android:layout_below="@+id/toolBar"
-        android:layout_width="100dp"
-        android:layout_height="match_parent"
-        android:layout_alignParentRight="true"
-        android:orientation="vertical">
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_above="@+id/ll_bottom_menu"
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="下一个" />
-
-        <com.hdyl.tetris.NextShapeView
-            android:id="@+id/nextShapeView"
-            android:layout_width="match_parent"
+        <com.hdyl.tetris.GameView
+            android:id="@+id/gameView"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@+id/ll_menu"
+            android:text="Hello World!"
+            android:layout_below="@+id/toolBar"
+            />
+        <LinearLayout
             android:padding="5dp"
-            android:layout_height="50dp" />
+            android:layout_margin="5dp"
+            android:id="@+id/ll_menu"
+            android:layout_below="@+id/toolBar"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <TextView
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="下一个" />
 
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="最高分" />
+            <com.hdyl.tetris.NextShapeView
+                android:id="@+id/nextShapeView"
+                android:layout_width="match_parent"
+                android:padding="5dp"
+                android:layout_height="50dp" />
 
-        <TextView
-            android:id="@+id/tv_score_high"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:maxLines="5"
-            android:textColor="@color/colorAccent"
-            android:text="8882\naf\nfffd\n52\n6\n5" />
+            <TextView
 
-        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="最高分" />
 
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            <TextView
+                android:id="@+id/tv_score_high"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="5"
+                android:textColor="@color/colorAccent"
+                android:text="8882\naf\nfffd\n52\n6\n5" />
 
-            android:text="得分" />
+            <TextView
 
-        <TextView
-            android:id="@+id/tv_score"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorAccent"
-            android:text="888" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
-        <TextView
+                android:text="得分" />
 
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="级别" />
+            <TextView
+                android:id="@+id/tv_score"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorAccent"
+                android:text="888" />
 
-        <TextView
-            android:id="@+id/tv_level"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorAccent"
-            android:text="1" />
-        <Button
-            android:text="New Game"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/buttonNewGame" />
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="级别" />
+
+            <TextView
+                android:id="@+id/tv_level"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorAccent"
+                android:text="1" />
+            <Button
+                android:text="New Game"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/buttonNewGame" />
 
 
-        <Button
-            android:text="Pause/Play"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/buttonPause" />
+            <Button
+                android:text="Pause/Play"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/buttonPause" />
 
-        <Button
-            android:text="Rotate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/buttonRotate" />
+            <Button
+                android:text="Rotate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/buttonRotate" />
+        </LinearLayout>
+
+
     </LinearLayout>
 
-    <com.hdyl.tetris.GameView
-        android:id="@+id/gameView"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_toLeftOf="@+id/ll_menu"
-        android:text="Hello World!"
-        android:layout_below="@+id/toolBar"
-        />
+
+
 
     <LinearLayout
-        android:layout_below="@+id/gameView"
-        android:id="@+id/linearLayout2"
+        android:id="@+id/ll_bottom_menu"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
