@@ -293,5 +293,4 @@ public class Main2048Activity extends AppCompatActivity implements View.OnClickL
         }
         return super.onKeyDown(keyCode, event);
     }
-
 }

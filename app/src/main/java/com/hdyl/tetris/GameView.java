@@ -10,6 +10,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.hdyl.baselib.utils.log.LogUitls;
 import com.hdyl.tetris.common.GameConfig;
 import com.hdyl.tetris.shape.TetrisShape;
 import com.hdyl.tetris2.GameColor;
@@ -46,18 +47,17 @@ public class GameView extends View {
     Bitmap bitmapBg = null;
 
     private void checkBg() {
-        if (bitmapBg == null) {
-            bitmapBg = Bitmap.createBitmap(getWidth(), getHeight(), Bitmap.Config.RGB_565);
-            Canvas canvasBitmap = new Canvas(bitmapBg);
-            Bitmap bitmap = GameColor.getBitmapBlack();
-            for (int i = 0; i < GameBoard.yCount; i++) {
-                for (int j = 0; j < GameBoard.xCount; j++) {
-                    rectF.left = j * size;
-                    rectF.right = rectF.left + size;
-                    rectF.top = i * size;
-                    rectF.bottom = rectF.top + size;
-                    canvasBitmap.drawBitmap(bitmap, null, rectF, null);
-                }
+        LogUitls.print("tag",size);
+        bitmapBg = Bitmap.createBitmap(getWidth(), getHeight(), Bitmap.Config.RGB_565);
+        Canvas canvasBitmap = new Canvas(bitmapBg);
+        Bitmap bitmap = GameColor.getBitmapBlack();
+        for (int i = 0; i < GameBoard.yCount; i++) {
+            for (int j = 0; j < GameBoard.xCount; j++) {
+                rectF.left = j * size;
+                rectF.right = rectF.left + size;
+                rectF.top = i * size;
+                rectF.bottom = rectF.top + size;
+                canvasBitmap.drawBitmap(bitmap, null, rectF, null);
             }
         }
     }
@@ -69,7 +69,7 @@ public class GameView extends View {
         if (getWidth() == 0) {
             return;
         }
-        checkBg();
+
         canvas.drawBitmap(bitmapBg, 0, 0, null);
 
         if (downAnim.isAnim()) {
@@ -114,6 +114,8 @@ public class GameView extends View {
         float hsize =1f* h / GameBoard.yCount;
        float wsize = 1f * w / GameBoard.xCount;
         size=Math.min(hsize,wsize);
+        checkBg();
+        sensibility=w/13;//灵敏度
         //新游戏
 //        gameBoard.newGame();
     }
@@ -138,7 +140,7 @@ public class GameView extends View {
     /***
      * 灵敏度
      */
-    int sensibility = dip2px(20);
+    int sensibility;
 
 //
 //    @Override

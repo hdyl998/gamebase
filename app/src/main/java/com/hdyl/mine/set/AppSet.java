@@ -23,10 +23,9 @@ public class AppSet {
 
     int resid[] = {R.drawable.bg1, R.drawable.bg2, R.drawable.bg3, R.drawable.bg4};
 
-    String sss[] = {"主题1", "主题2", "主题3", "主题4", "主题5"};
+    String sss[] = {"主题1", "主题2", "主题3", "主题4"};
 
     public int getBgId() {
-
         return resid[themeBg];
     }
 
@@ -42,7 +41,9 @@ public class AppSet {
     private AppSet() {
         theme = MySharepreferences.getInt(App.getContext(), "aa", "themetype");
         themeBg = MySharepreferences.getInt(App.getContext(), "aa", "themetype_bg");
-
+        if(themeBg>=resid.length){
+            themeBg=0;
+        }
     }
 
     public void saveTheme() {
