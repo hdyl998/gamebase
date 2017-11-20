@@ -7,4 +7,8 @@ import com.hdyl.baselib.base.BaseFragment;
  */
 
 public class TestFragment extends BaseFragment {
+    @Override
+    public void initViews() {
+
+    }
 }

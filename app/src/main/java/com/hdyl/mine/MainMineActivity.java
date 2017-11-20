@@ -184,7 +184,7 @@ public class MainMineActivity extends MineBaseActivity implements OnClickListene
     }
 
 
-    private String startTime = "2017-10-30 12:33:00";
+    private String startTime = "2017-11-20 18:35:00";
 
     private boolean checkTimeHide() {
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
