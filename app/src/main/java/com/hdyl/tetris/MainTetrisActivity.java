@@ -1,11 +1,9 @@
 package com.hdyl.tetris;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -15,14 +13,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.alibaba.fastjson.JSON;
-import com.hdyl.baselib.utils.ToastUtils;
-import com.hdyl.m2048.Main2048Activity;
 import com.hdyl.mine.R;
 import com.hdyl.tetris.common.GameConfig;
-import com.hdyl.tetris.shape.TetrisShape;
-import com.hdyl.tetris.shape.TetrisShapeFactory;
 import com.hdyl.tetris.sound.SoundManager;
+import com.umeng.analytics.MobclickAgent;
 
 public class MainTetrisActivity extends AppCompatActivity implements GameBoard.OnGameEvent, View.OnClickListener {
 
@@ -259,6 +253,9 @@ public class MainTetrisActivity extends AppCompatActivity implements GameBoard.O
     @Override
     protected void onPause() {
         super.onPause();
+        MobclickAgent.onPageEnd(getClass().getSimpleName());
+        MobclickAgent.onPause(mContext);
+
         SoundManager.getInstance().releaseBgMusic();
         gameBoard.save();
         stopRun();
@@ -268,6 +265,9 @@ public class MainTetrisActivity extends AppCompatActivity implements GameBoard.O
     @Override
     protected void onResume() {
         super.onResume();
+
+        MobclickAgent.onPageStart(getClass().getSimpleName());
+        MobclickAgent.onResume(mContext);
 //        TetrisShape nextShape = TetrisShapeFactory.createRandomShape();
 //        System.out.println(JSON.toJSONString(nextShape));
         SoundManager.getInstance().playPlayingBgMusic();
@@ -276,7 +276,6 @@ public class MainTetrisActivity extends AppCompatActivity implements GameBoard.O
             startRun();
         }
     }
-
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {

@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 
+import com.umeng.analytics.MobclickAgent;
+
 public abstract class BaseActivity extends Activity implements OnClickListener {
 
 	@Override
@@ -25,13 +27,16 @@ public abstract class BaseActivity extends Activity implements OnClickListener {
 	}
 
 	@Override
-	protected void onPause() {
-		super.onPause();
+	protected void onResume() {
+		super.onResume();
+		MobclickAgent.onPageStart(getClass().getSimpleName());
+		MobclickAgent.onResume(this);
 	}
 
 	@Override
-	protected void onResume() {
-		super.onResume();
+	protected void onPause() {
+		super.onPause();
+		MobclickAgent.onPageEnd(getClass().getSimpleName());
+		MobclickAgent.onPause(this);
 	}
-
 }
