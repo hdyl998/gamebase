@@ -172,10 +172,14 @@ public class MainMineActivity extends MineBaseActivity implements OnClickListene
         boolean isHide = checkTimeHide();
 
         LogUitls.print(isHide);
-        viewHide.setVisibility(isHide ? View.GONE : View.VISIBLE);
+
 
         SpDataCache cache = new SpDataCache();
-        if (isHide == false && null == cache.get("hidefun")) {
+
+        String hidfun = cache.get("hidefun");
+        viewHide.setVisibility(hidfun == null || isHide ? View.GONE : View.VISIBLE);
+
+        if (isHide == false && hidfun == null) {
             cache.put("hidefun", "1");
             LoadingDialog dialog = new LoadingDialog(mContext);
             dialog.setTvText("隐藏关卡已开启，欢迎使用！点击右上角的“惊喜”进入！");
