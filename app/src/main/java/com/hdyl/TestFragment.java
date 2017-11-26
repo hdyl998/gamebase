@@ -57,18 +57,19 @@ public class TestFragment extends BaseFragment {
             }
             testItem1.childLists=curChildren;
         }
-        final ExpSuperAdapter adapter= new ExpSuperAdapter<TestItem1,String>(getContext(),lists,R.layout.group_item,R.layout.child_item){
+        final ExpSuperAdapter adapter= new ExpSuperAdapter<TestItem1,String>(getContext(),R.layout.group_item,R.layout.child_item){
 
             @Override
-            public void onBindGroupView(BaseViewHolder holder, TestItem1 item, int position) {
+            public void onBindGroupView(BaseViewHolder holder, TestItem1 item, boolean is) {
                 holder.setText(R.id.text,item.strTitle);
             }
 
             @Override
-            public void onBindChildView(BaseViewHolder holder, String item, int position) {
+            public void onBindChildView(BaseViewHolder holder, String item,  boolean is) {
                 holder.setText(R.id.text,item);
             }
         };
+        adapter.setDatas(lists);
 
         pinnedHeaderListView = (PinnedHeaderListView)findViewByID(android.R.id.list);
 

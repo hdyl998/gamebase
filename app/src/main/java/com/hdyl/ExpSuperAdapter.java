@@ -8,6 +8,7 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
 
 import com.hdyl.baselib.base.adapterbase.BaseViewHolder;
+import com.hdyl.baselib.utils.log.LogUitls;
 
 import java.util.List;
 
@@ -27,23 +28,28 @@ public abstract class ExpSuperAdapter<T extends ExpSuperAdapter.ExpandableItem<V
      * @param headerViewContainer
      */
     public void initExpSuperAdapter(PinnedHeaderListView listView,ViewGroup headerViewContainer){
-        View headerView= createFloatHeadView(headerViewContainer);
-        headerViewContainer.addView(headerView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         pinnedHeaderListView=listView;
         pinnedHeaderListView.setPinnedHeaderListener(this);
-        pinnedHeaderListView.setPinnedHeader(headerView);
         pinnedHeaderListView.setGroupIndicator(null);
+        View headerView= createFloatHeadView(headerViewContainer);
+        headerViewContainer.addView(headerView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         headerView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                long expandableListPosition = pinnedHeaderListView.getExpandableListPosition(pinnedHeaderListView.getFirstVisiblePosition());
-                int groupPos = ExpandableListView.getPackedPositionGroup(expandableListPosition);
+                int groupPos=position2GroupPos(pinnedHeaderListView.getFirstVisiblePosition());
                 pinnedHeaderListView.collapseGroup(groupPos);
                 pinnedHeaderListView.setSelectedGroup(groupPos);
             }
         });
+        pinnedHeaderListView.setPinnedHeader(headerView);
     }
 
+
+    public int position2GroupPos(int position){
+        long expandableListPosition = pinnedHeaderListView.getExpandableListPosition(position);
+        int groupPos = ExpandableListView.getPackedPositionGroup(expandableListPosition);
+        return groupPos;
+    }
 
     /***
      * 创建一个浮动头部
@@ -53,7 +59,7 @@ public abstract class ExpSuperAdapter<T extends ExpSuperAdapter.ExpandableItem<V
     private View createFloatHeadView(ViewGroup viewGroup){
         T item= getGroup(0);
         final BaseViewHolder viewHolder = onCreate(null,viewGroup,groupLayoutResId);
-        onBindGroupView(viewHolder, item, 0);
+        onBindGroupView(viewHolder, item,pinnedHeaderListView.isGroupExpanded(0));
         firstViewHolder=viewHolder;
         return viewHolder.getItemView();
     }
@@ -86,9 +92,9 @@ public abstract class ExpSuperAdapter<T extends ExpSuperAdapter.ExpandableItem<V
         return mList;
     }
 
-    public abstract void onBindGroupView(BaseViewHolder holder, T item, int position);
+    public abstract void onBindGroupView(BaseViewHolder holder, T item,boolean isExpanded);
 
-    public abstract void onBindChildView(BaseViewHolder holder, V item, int position);
+    public abstract void onBindChildView(BaseViewHolder holder, V item,boolean isLastChild);
 
 
     @Override
@@ -136,7 +142,7 @@ public abstract class ExpSuperAdapter<T extends ExpSuperAdapter.ExpandableItem<V
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
         T item= getGroup(groupPosition);
         final BaseViewHolder viewHolder = onCreate(convertView,parent,groupLayoutResId);
-        onBindGroupView(viewHolder, item, groupPosition);
+        onBindGroupView(viewHolder, item,isExpanded);
         //        TestFragment.GroupViewHolder holder = null;
 //
 //        if (convertView == null) {
@@ -157,7 +163,7 @@ public abstract class ExpSuperAdapter<T extends ExpSuperAdapter.ExpandableItem<V
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         V item= getChild(groupPosition,childPosition);
         final BaseViewHolder viewHolder = onCreate(convertView,parent,childLayoutResId);
-        onBindChildView(viewHolder, item, childPosition);
+        onBindChildView(viewHolder, item, isLastChild);
 
         //        TestFragment.childViewHolder holder = null;
 //
@@ -183,10 +189,9 @@ public abstract class ExpSuperAdapter<T extends ExpSuperAdapter.ExpandableItem<V
     @Override
     public void onVisible(PinnedHeaderListView listView, View headerView, int position) {
        if(firstViewHolder!=null) {
-           long expandableListPosition = listView.getExpandableListPosition(position);
-           int groupPos = ExpandableListView.getPackedPositionGroup(expandableListPosition);
+           int groupPos=position2GroupPos(position);
            T text = getGroup(groupPos);
-           onBindGroupView(firstViewHolder, text, groupPos);
+           onBindGroupView(firstViewHolder, text, listView.isGroupExpanded(groupPos));
        }
     }
 
