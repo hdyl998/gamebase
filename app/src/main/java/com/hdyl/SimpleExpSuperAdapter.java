@@ -15,19 +15,14 @@ import java.util.List;
  * Created by Administrator on 2017/11/26.
  */
 
-public abstract class SimpleExpSuperAdapter<T> extends ExpSuperAdapter<ExpSuperAdapter.ExpandableItem<T>,T>{
+public abstract class SimpleExpSuperAdapter<T> extends ExpSuperAdapter<ExpandableItem<T>,T>{
 
 
-    public SimpleExpSuperAdapter(Context mContext, List<ExpSuperAdapter.ExpandableItem<T>> listGroups, int groupLayoutResId, int childLayoutResId) {
+    public SimpleExpSuperAdapter(Context mContext, List<ExpandableItem<T>> listGroups, int groupLayoutResId, int childLayoutResId) {
         super(mContext, listGroups, groupLayoutResId, childLayoutResId);
     }
 
     public SimpleExpSuperAdapter(Context mContext, int groupLayoutResId, int childLayoutResId) {
         super(mContext, groupLayoutResId, childLayoutResId);
-    }
-
-    @Override
-    public void setDatas(List<ExpandableItem<T>> items) {
-        super.setDatas(items);
     }
 }

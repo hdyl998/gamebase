@@ -45,9 +45,9 @@ public class TestFragment extends BaseFragment {
     @Override
     public void initViews() {
 
-        List<ExpSuperAdapter.ExpandableItem<String>>lists=new ArrayList<>();
+        List<ExpandableItem>lists=new ArrayList<>();
         for (int i =0; i < 50; ++i) {
-            ExpSuperAdapter.ExpandableItem testItem1=new ExpSuperAdapter.ExpandableItem();
+            ExpandableItem testItem1=new ExpandableItem();
             String groupName = "mList : " + i;
             testItem1.strTitle=groupName;
             lists.add(testItem1);
@@ -57,11 +57,11 @@ public class TestFragment extends BaseFragment {
             }
             testItem1.childLists=curChildren;
         }
-        final SimpleExpSuperAdapter adapter= new SimpleExpSuperAdapter<String>(getContext(),lists,R.layout.group_item,R.layout.child_item){
+        final SimpleExpSuperAdapter adapter= new SimpleExpSuperAdapter<String>(getContext(),R.layout.group_item,R.layout.child_item){
 
 
             @Override
-            public void onBindGroupView(BaseViewHolder holder, ExpandableItem<String> item, boolean isExpanded) {
+            public void onBindGroupView(BaseViewHolder holder, ExpandableItem item, boolean isExpanded) {
                 holder.setText(R.id.text,item.strTitle);
             }
 
@@ -70,7 +70,7 @@ public class TestFragment extends BaseFragment {
                 holder.setText(R.id.text,item);
             }
         };
-
+        adapter.setDatas(lists);
         pinnedHeaderListView = (PinnedHeaderListView)findViewByID(android.R.id.list);
 
         pinnedHeaderListView.setAdapter(adapter);

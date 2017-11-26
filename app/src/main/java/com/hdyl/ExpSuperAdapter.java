@@ -16,7 +16,7 @@ import java.util.List;
  * Created by Administrator on 2017/11/26.
  */
 
-public abstract class ExpSuperAdapter<T extends ExpSuperAdapter.ExpandableItem<V>,V> extends BaseExpandableListAdapter implements PinnedHeaderListView.PinnedHeaderListener{
+public abstract class ExpSuperAdapter<T extends ExpandableItem<V>,V> extends BaseExpandableListAdapter implements PinnedHeaderListView.PinnedHeaderListener{
 
     BaseViewHolder firstViewHolder;
     PinnedHeaderListView pinnedHeaderListView;
@@ -36,7 +36,7 @@ public abstract class ExpSuperAdapter<T extends ExpSuperAdapter.ExpandableItem<V
         headerView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int groupPos=position2GroupPos(pinnedHeaderListView.getFirstVisiblePosition());
+                int groupPos=position2GroupPos(pinnedHeaderListView,pinnedHeaderListView.getFirstVisiblePosition());
                 pinnedHeaderListView.collapseGroup(groupPos);
                 pinnedHeaderListView.setSelectedGroup(groupPos);
             }
@@ -45,8 +45,8 @@ public abstract class ExpSuperAdapter<T extends ExpSuperAdapter.ExpandableItem<V
     }
 
 
-    public int position2GroupPos(int position){
-        long expandableListPosition = pinnedHeaderListView.getExpandableListPosition(position);
+    public int position2GroupPos(ExpandableListView listView,int position){
+        long expandableListPosition = listView.getExpandableListPosition(position);
         int groupPos = ExpandableListView.getPackedPositionGroup(expandableListPosition);
         return groupPos;
     }
@@ -189,32 +189,10 @@ public abstract class ExpSuperAdapter<T extends ExpSuperAdapter.ExpandableItem<V
     @Override
     public void onVisible(PinnedHeaderListView listView, View headerView, int position) {
        if(firstViewHolder!=null) {
-           int groupPos=position2GroupPos(position);
+           int groupPos=position2GroupPos(listView,position);
            T text = getGroup(groupPos);
            onBindGroupView(firstViewHolder, text, listView.isGroupExpanded(groupPos));
        }
-    }
-
-    public static class ExpandableItem<ChildItem>{
-        public String strTitle;
-        public List<ChildItem>childLists;
-
-
-        public void setStrTitle(String strTitle) {
-            this.strTitle = strTitle;
-        }
-
-        public String getStrTitle() {
-            return strTitle;
-        }
-
-        public void setChildLists(List<ChildItem> childLists) {
-            this.childLists = childLists;
-        }
-
-        public List<ChildItem> getChildLists() {
-            return childLists;
-        }
     }
 
 }
