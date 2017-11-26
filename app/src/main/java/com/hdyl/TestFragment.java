@@ -37,17 +37,17 @@ public class TestFragment extends BaseFragment {
 
 
 
-    public static class TestItem1 extends ExpSuperAdapter.ExpandableItem<String>{
-    }
+//    public static class TestItem1 extends ExpSuperAdapter.ExpandableItem<String>{
+//    }
 
 
     //    EditText editText;
     @Override
     public void initViews() {
 
-        List<TestItem1>lists=new ArrayList<>();
+        List<ExpSuperAdapter.ExpandableItem<String>>lists=new ArrayList<>();
         for (int i =0; i < 50; ++i) {
-            TestItem1 testItem1=new TestItem1();
+            ExpSuperAdapter.ExpandableItem testItem1=new ExpSuperAdapter.ExpandableItem();
             String groupName = "mList : " + i;
             testItem1.strTitle=groupName;
             lists.add(testItem1);
@@ -57,10 +57,10 @@ public class TestFragment extends BaseFragment {
             }
             testItem1.childLists=curChildren;
         }
-        final ExpSuperAdapter adapter= new ExpSuperAdapter<TestItem1,String>(getContext(),R.layout.group_item,R.layout.child_item){
+        final SimpleExpSuperAdapter adapter= new SimpleExpSuperAdapter<String>(getContext(),lists,R.layout.group_item,R.layout.child_item){
 
             @Override
-            public void onBindGroupView(BaseViewHolder holder, TestItem1 item, boolean is) {
+            public void onBindGroupView(BaseViewHolder holder, ExpSuperAdapter.ExpandableItem item, boolean is) {
                 holder.setText(R.id.text,item.strTitle);
             }
 
@@ -69,7 +69,6 @@ public class TestFragment extends BaseFragment {
                 holder.setText(R.id.text,item);
             }
         };
-        adapter.setDatas(lists);
 
         pinnedHeaderListView = (PinnedHeaderListView)findViewByID(android.R.id.list);
 
