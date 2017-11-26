@@ -25,4 +25,9 @@ public abstract class SimpleExpSuperAdapter<T> extends ExpSuperAdapter<ExpSuperA
     public SimpleExpSuperAdapter(Context mContext, int groupLayoutResId, int childLayoutResId) {
         super(mContext, groupLayoutResId, childLayoutResId);
     }
+
+    @Override
+    public void setDatas(List<ExpandableItem<T>> items) {
+        super.setDatas(items);
+    }
 }

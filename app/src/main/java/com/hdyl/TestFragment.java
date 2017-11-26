@@ -59,8 +59,9 @@ public class TestFragment extends BaseFragment {
         }
         final SimpleExpSuperAdapter adapter= new SimpleExpSuperAdapter<String>(getContext(),lists,R.layout.group_item,R.layout.child_item){
 
+
             @Override
-            public void onBindGroupView(BaseViewHolder holder, ExpSuperAdapter.ExpandableItem item, boolean is) {
+            public void onBindGroupView(BaseViewHolder holder, ExpandableItem<String> item, boolean isExpanded) {
                 holder.setText(R.id.text,item.strTitle);
             }
 
