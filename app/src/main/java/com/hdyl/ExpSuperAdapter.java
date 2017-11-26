@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
+import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 
 import com.hdyl.baselib.base.adapterbase.BaseViewHolder;
 import com.hdyl.baselib.utils.log.LogUitls;
@@ -25,14 +27,18 @@ public abstract class ExpSuperAdapter<T extends ExpandableItem<V>,V> extends Bas
     /***
      * 初始化适配器
      * @param listView
-     * @param headerViewContainer
      */
-    public void initExpSuperAdapter(PinnedHeaderListView listView,ViewGroup headerViewContainer){
+    public void initExpSuperAdapter(PinnedHeaderListView listView){
         pinnedHeaderListView=listView;
         pinnedHeaderListView.setPinnedHeaderListener(this);
         pinnedHeaderListView.setGroupIndicator(null);
-        View headerView= createFloatHeadView(headerViewContainer);
-        headerViewContainer.addView(headerView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        ViewGroup viewGroup= (ViewGroup) listView.getParent();
+        if(viewGroup==null||!((viewGroup instanceof FrameLayout)||(viewGroup instanceof RelativeLayout))){
+            throw new RuntimeException(viewGroup+"错误用法，PinnedHeaderListView 需要有一个FrameLayout或者RelativeLayout的容器包裹");
+        }
+
+        View headerView= createFloatHeadView(viewGroup);
+        viewGroup.addView(headerView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         headerView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

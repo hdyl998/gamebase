@@ -90,8 +90,8 @@ public class TestFragment extends BaseFragment {
         });
 
 
-        ViewGroup headerViewContainer = (ViewGroup)findViewByID(R.id.header_view_container);
-        adapter.initExpSuperAdapter(pinnedHeaderListView,headerViewContainer);
+//        ViewGroup headerViewContainer = (ViewGroup)findViewByID(R.id.header_view_container);
+        adapter.initExpSuperAdapter(pinnedHeaderListView);
 
         for (int i = 0; i < 50; ++i) {
             pinnedHeaderListView.expandGroup(i);
