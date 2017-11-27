@@ -20,6 +20,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.hdyl.baselib.base.BaseActivity;
+import com.hdyl.baselib.base.FmtCtnActivity;
 import com.hdyl.baselib.base.adapterbase.BaseViewHolder;
 import com.hdyl.baselib.base.adapterbase.SuperAdapter;
 import com.hdyl.llk.MainLlkActivity;
@@ -108,8 +109,7 @@ public class MainInActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (listDatas.get(position) == null) {
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("qqsd://coupon://1"));
-                    startActivity(intent);
+                    FmtCtnActivity.launch(mContext,TestFragment.class);
 //                    startActivity(new Intent(mContext, MineStageActivity.class));
 //                    PopupMenu popupMenu = new PopupMenu(mContext, view);
 //                    Menu menu=popupMenu.getMenu();

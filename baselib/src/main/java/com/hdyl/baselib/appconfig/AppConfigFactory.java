@@ -11,7 +11,7 @@ public class AppConfigFactory {
     public static BaseAppConfig getConfig() {
         if (instance == null) {
             synchronized (AppConfigFactory.class) {
-                instance = new OnlineAppConfig();
+                instance = new TestAppConfig();
             }
         }
         return instance;
