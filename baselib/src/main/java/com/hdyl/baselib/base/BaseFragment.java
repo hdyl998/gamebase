@@ -65,6 +65,17 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
         return (T) rootView.findViewById(id);
     }
 
+    /***
+     * findview方法
+     *
+     * @param id
+     * @param <T>
+     * @return
+     */
+    public final <T extends View> T $(@IdRes int id) {
+        return (T) rootView.findViewById(id);
+    }
+
     @Override
     public void onClick(View v) {
 

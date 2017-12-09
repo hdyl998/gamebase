@@ -1,28 +1,9 @@
 package com.hdyl;
 
-import android.content.Intent;
-import android.net.Uri;
-import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AbsListView;
-import android.widget.BaseExpandableListAdapter;
-import android.widget.EditText;
-import android.widget.ExpandableListAdapter;
-import android.widget.ExpandableListView;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.hdyl.baselib.base.BaseFragment;
-import com.hdyl.baselib.base.adapterbase.BaseViewHolder;
 import com.hdyl.mine.R;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Administrator on 2017/11/15.
@@ -31,71 +12,38 @@ import java.util.Map;
 public class TestFragment extends BaseFragment {
 
 
-
-
-    private PinnedHeaderListView pinnedHeaderListView;
-
-
-
 //    public static class TestItem1 extends ExpSuperAdapter.ExpandableItem<String>{
 //    }
 
 
+    MyImageView imageView;
+
     //    EditText editText;
     @Override
     public void initViews() {
+        imageView = $(R.id.imageView);
 
-        List<ExpandableItem>lists=new ArrayList<>();
-        for (int i =0; i < 50; ++i) {
-            ExpandableItem testItem1=new ExpandableItem();
-            String groupName = "mList : " + i;
-            testItem1.strTitle=groupName;
-            lists.add(testItem1);
-            List<String> curChildren = new ArrayList<String>();
-            for (int j = 0; j < 5; ++j) {
-                curChildren.add("child : " + j);
-            }
-            testItem1.childLists=curChildren;
-        }
-        final SimpleExpSuperAdapter adapter= new SimpleExpSuperAdapter<String>(getContext(),R.layout.group_item,R.layout.child_item){
-
-
+        new Thread(new Runnable() {
             @Override
-            public void onBindGroupView(BaseViewHolder holder, ExpandableItem item, boolean isExpanded) {
-                holder.setText(R.id.text,item.strTitle);
-            }
-
-            @Override
-            public void onBindChildView(BaseViewHolder holder, String item,  boolean is) {
-                holder.setText(R.id.text,item);
-            }
-        };
-        adapter.setDatas(lists);
-        pinnedHeaderListView = (PinnedHeaderListView)findViewByID(android.R.id.list);
-
-        pinnedHeaderListView.setAdapter(adapter);
-
-        pinnedHeaderListView.setOnGroupClickListener(new PinnedHeaderListView.OnGroupClickListener() {
-
-            @Override
-            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
-                if (parent.isGroupExpanded(groupPosition)) {
-                    parent.collapseGroup(groupPosition);
-                } else {
-                    parent.expandGroup(groupPosition);
+            public void run() {
+                for (int i = 0; i < 100; i++) {
+                    final int cont = i;
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    imageView.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            imageView.setRate(cont * 0.01f);
+                        }
+                    });
                 }
 
-                return true;
             }
-        });
+        }).start();
 
-
-//        ViewGroup headerViewContainer = (ViewGroup)findViewByID(R.id.header_view_container);
-        adapter.initExpSuperAdapter(pinnedHeaderListView);
-
-        for (int i = 0; i < 50; ++i) {
-            pinnedHeaderListView.expandGroup(i);
-        }
     }
 
     @Override
