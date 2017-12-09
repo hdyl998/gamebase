@@ -5,8 +5,8 @@ android {
     buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "com.lgd.mine"
-        versionCode 280
-        versionName "2.8.0"
+        versionCode 281
+        versionName "2.8.1"
         minSdkVersion 14
         targetSdkVersion 25
     }
