@@ -1,5 +1,4 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
@@ -8,8 +7,14 @@
 
     <com.hdyl.MyImageView
         android:id="@+id/imageView"
-        android:src="@drawable/ic_back"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_back" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="@dimen/n360"
+        android:layout_height="@dimen/n360"
+        android:background="@drawable/black_knight" />
 
 </LinearLayout>

@@ -1,14 +1,13 @@
 package com.hdyl;
 
 import android.content.Context;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
-import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.hdyl.baselib.base.BaseFragment;
-import com.hdyl.baselib.utils.ToastUtils;
-import com.hdyl.baselib.utils.Tools;
 import com.hdyl.mine.R;
-import com.hdyl.pintu.ToolDialog;
+import com.hdyl.mine.tools.ToastUtils;
 
 /**
  * Created by Administrator on 2017/11/15.
@@ -33,10 +32,12 @@ public class TestFragment extends BaseFragment {
         }
         return 2;
     }
-    public static int px2dip(Context context, float pxValue){
+
+    public static int px2dip(Context context, float pxValue) {
         final float scale = context.getResources().getDisplayMetrics().density;
-        return (int)(pxValue / scale + 0.5f);
+        return (int) (pxValue / scale + 0.5f);
     }
+
     //    EditText editText;
     @Override
     public void initViews() {
@@ -48,13 +49,11 @@ public class TestFragment extends BaseFragment {
 //        }
 
 
-        int x= getResources().getDisplayMetrics().widthPixels;
-        int y= getResources().getDisplayMetrics().heightPixels;
-        ToastUtils.makeTextAndShow("宽X高"+x+" x "+y+" dp "+px2dip(getContext(),x));
+        new AlertDialog.Builder(getContext()).setMessage(JSON.toJSONString(getResources().getDisplayMetrics()))
+                .create().show();
 
-
-
-
+        float dp=getResources().getDisplayMetrics().widthPixels/getResources().getDisplayMetrics().density*1f;
+        ToastUtils.makeTextAndShow(getContext(),dp+"");
 
 //        imageView = $(R.id.imageView);
 //

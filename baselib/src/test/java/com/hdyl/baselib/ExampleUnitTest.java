@@ -12,6 +12,8 @@ import static org.junit.Assert.*;
 public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() throws Exception {
-        assertEquals(4, 2 + 2);
+       for(int i=0;i<1000;i++){
+           System.out.println(String.format(" <dimen name=\"n%d\">%.2fpx</dimen>",i,i*4.4444444f));
+       }
     }
 }
