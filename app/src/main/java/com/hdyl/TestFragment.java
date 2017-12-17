@@ -1,9 +1,14 @@
 package com.hdyl;
 
+import android.content.Context;
 import android.view.View;
+import android.widget.Toast;
 
 import com.hdyl.baselib.base.BaseFragment;
+import com.hdyl.baselib.utils.ToastUtils;
+import com.hdyl.baselib.utils.Tools;
 import com.hdyl.mine.R;
+import com.hdyl.pintu.ToolDialog;
 
 /**
  * Created by Administrator on 2017/11/15.
@@ -18,31 +23,61 @@ public class TestFragment extends BaseFragment {
 
     MyImageView imageView;
 
+
+    public int getPlayWay(int index) {
+        if (index <= 2) {//0,1,2
+            return 0;
+        }
+        if (index <= 5) {//3,4,5
+            return 1;
+        }
+        return 2;
+    }
+    public static int px2dip(Context context, float pxValue){
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int)(pxValue / scale + 0.5f);
+    }
     //    EditText editText;
     @Override
     public void initViews() {
-        imageView = $(R.id.imageView);
+//        int indexs[]={1,2,3,5,6};
+//
+//        for(int index:indexs){
+//            int playid1=getPlayWay(index);
+//
+//        }
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                for (int i = 0; i < 100; i++) {
-                    final int cont = i;
-                    try {
-                        Thread.sleep(100);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    imageView.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            imageView.setRate(cont * 0.01f);
-                        }
-                    });
-                }
 
-            }
-        }).start();
+        int x= getResources().getDisplayMetrics().widthPixels;
+        int y= getResources().getDisplayMetrics().heightPixels;
+        ToastUtils.makeTextAndShow("宽X高"+x+" x "+y+" dp "+px2dip(getContext(),x));
+
+
+
+
+
+//        imageView = $(R.id.imageView);
+//
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                for (int i = 0; i < 100; i++) {
+//                    final int cont = i;
+//                    try {
+//                        Thread.sleep(100);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                    imageView.post(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            imageView.setRate(cont * 0.01f);
+//                        }
+//                    });
+//                }
+//
+//            }
+//        }).start();
 
     }
 
