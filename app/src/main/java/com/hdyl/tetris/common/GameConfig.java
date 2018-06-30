@@ -20,8 +20,17 @@ public class GameConfig {
     public boolean isAnimDown = true;
     public boolean isAnimXiaohang = true;
 
+    public boolean isMoreShapes = false;//是否有更多方块
+
     public boolean isShadow = true;
 
+    public boolean isMoreShapes() {
+        return isMoreShapes;
+    }
+
+    public void setMoreShapes(boolean moreShapes) {
+        isMoreShapes = moreShapes;
+    }
 
     public boolean isShadow() {
         return isShadow;

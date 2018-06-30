@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +16,8 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.hdyl.baselib.utils.bufferknife.MyBindView;
+import com.hdyl.baselib.utils.bufferknife.MyBufferKnifeUtils;
 import com.hdyl.mine.R;
 import com.hdyl.pintu.common.BaseActivity;
 import com.hdyl.pintu.common.Constants;
@@ -149,15 +152,54 @@ public class MainPintuActivity extends BaseActivity {
         }
     }
 
+    Handler handler = new Handler();
+
+    int curTime = 0;
+
+    Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            curTime++;
+            tvTime.setText(curTime + "");
+            handler.postDelayed(runnable, 1000);
+        }
+    };
+
+
+    public void startTime() {
+        stopTime();
+        curTime = 0;
+        tvTime.setText(curTime + "");
+        handler.postDelayed(runnable, 1000);
+    }
+
+    public void setTvTimeText(String text){
+        tvTime.setText(text);
+    }
+
+    public void stopTime() {
+        handler.removeCallbacks(runnable);
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        stopTime();
+    }
+
     public void setText(String id) {
         textViewScore.setText(id);
     }
 
     public void setMode(boolean isRandom) {
         DatabaseHelper databaseHelper = new DatabaseHelper(this);
-        int highsocre = databaseHelper.selectHighScore(!isRandom);
+        int highsocre = databaseHelper.selectStepHighScore(!isRandom);
 
-        textViewBestTextView.setText("最佳 : " + highsocre);
+        textViewBestTextView.setText("步数最佳:" + highsocre);
+
+        tvTimeBest.setText("时间最佳:" + databaseHelper.selectTimeHighScore(!isRandom));
+
         if (isRandom == false) {
             tvCurrentTextView.setText("随机");
             Drawable rightDrawable = getResources().getDrawable(R.drawable.ic_random);
@@ -249,9 +291,20 @@ public class MainPintuActivity extends BaseActivity {
 
     TextView textViewBestTextView;
 
+
+    @MyBindView(R.id.tvTime)
+    TextView tvTime;
+
+    @MyBindView(R.id.tvTimeBest)
+    TextView tvTimeBest;
+
     @Override
     protected void initData() {
         setContentView(R.layout.activity_main_pintu);
+
+        MyBufferKnifeUtils.inject(this);
+
+
         gameView15 = (GameView15) findViewById(R.id.gameView1);
         int ids[] = {R.id.iv_menu, R.id.iv_toos, R.id.iv_top, R.id.ll_main,
 

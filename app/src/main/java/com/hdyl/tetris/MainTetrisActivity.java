@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.hdyl.mine.R;
 import com.hdyl.tetris.common.GameConfig;
+import com.hdyl.tetris.shape.TetrisShapeFactory;
 import com.hdyl.tetris.sound.SoundManager;
 import com.umeng.analytics.MobclickAgent;
 
@@ -56,19 +57,24 @@ public class MainTetrisActivity extends AppCompatActivity implements GameBoard.O
 
                         break;
                     case R.id.action_other:
-                        new AlertDialog.Builder(mContext).setTitle(item.getTitle()).setMultiChoiceItems(new String[]{"方块投影"},
-                                new boolean[]{GameConfig.getInstance().isShadow()},
+                        new AlertDialog.Builder(mContext).setTitle(item.getTitle()).setMultiChoiceItems(new String[]{"方块投影", "更多形状"},
+                                new boolean[]{GameConfig.getInstance().isShadow(), GameConfig.getInstance().isMoreShapes()},
                                 new DialogInterface.OnMultiChoiceClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which, boolean isChecked) {
-                                        if (which == 0) {
-                                            GameConfig.getInstance().setShadow(isChecked);
+                                        switch (which) {
+                                            case 0:
+                                                GameConfig.getInstance().setShadow(isChecked);
+                                                break;
+                                            case 1:
+                                                GameConfig.getInstance().setMoreShapes(isChecked);
+                                                TetrisShapeFactory.initShapes(isChecked);
+                                                break;
                                         }
                                         GameConfig.getInstance().save();
                                     }
                                 }
                         ).setPositiveButton("确定", null).show();
-
                         break;
                     case R.id.action_anim:
                         new AlertDialog.Builder(mContext).setTitle(item.getTitle()).setMultiChoiceItems(new String[]{"下落动画", "消行动画"},

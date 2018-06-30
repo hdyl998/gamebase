@@ -13,7 +13,7 @@ import java.util.List;
  */
 
 public class BaseAnim {
-    public int during = 500;
+    public int during = 120;
     public int costTime = during;
 
     public int cellArrs[][];

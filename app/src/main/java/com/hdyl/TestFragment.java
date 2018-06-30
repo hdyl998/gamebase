@@ -49,11 +49,11 @@ public class TestFragment extends BaseFragment {
 //        }
 
 
-        new AlertDialog.Builder(getContext()).setMessage(JSON.toJSONString(getResources().getDisplayMetrics()))
-                .create().show();
-
-        float dp=getResources().getDisplayMetrics().widthPixels/getResources().getDisplayMetrics().density*1f;
-        ToastUtils.makeTextAndShow(getContext(),dp+"");
+//        new AlertDialog.Builder(getContext()).setMessage(JSON.toJSONString(getResources().getDisplayMetrics()))
+//                .create().show();
+//
+//        float dp=getResources().getDisplayMetrics().widthPixels/getResources().getDisplayMetrics().density*1f;
+//        ToastUtils.makeTextAndShow(getContext(),dp+"");
 
 //        imageView = $(R.id.imageView);
 //

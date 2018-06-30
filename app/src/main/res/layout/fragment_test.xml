@@ -5,16 +5,9 @@
     android:orientation="vertical">
 
 
-    <com.hdyl.MyImageView
-        android:id="@+id/imageView"
+    <ProgressBar
+        style="@style/Widget.AppCompat.ProgressBar"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_back" />
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="@dimen/n360"
-        android:layout_height="@dimen/n360"
-        android:background="@drawable/black_knight" />
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
