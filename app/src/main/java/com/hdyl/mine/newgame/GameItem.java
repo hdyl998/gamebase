@@ -5,6 +5,6 @@ package com.hdyl.mine.newgame;
  */
 
 public class GameItem {
+  
 
-    
 }
