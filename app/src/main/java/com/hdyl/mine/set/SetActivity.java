@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.hdyl.baselib.utils.convert.NumberUtil;
 import com.hdyl.mine.R;
 import com.hdyl.mine.base.MineBaseActivity;
+import com.hdyl.mine.game.MineUtils;
 import com.hdyl.mine.tools.MySharepreferences;
 import com.hdyl.mine.tools.ShareCacheUtil;
 import com.hdyl.mine.tools.ToastUtils;
@@ -125,7 +126,7 @@ public class SetActivity extends MineBaseActivity implements OnClickListener {
                 int height = NumberUtil.convertToInt(editText2.getText().toString().trim(), 0);
                 int num = NumberUtil.convertToInt(editText3.getText().toString().trim(), 0);
 
-                int arr[] = changeNumState(width, height, num);
+                int arr[] = MineUtils.checkCorrectUserDefineMineNum(width, height, num);
                 width = arr[0];
                 height = arr[1];
                 num = arr[2];
@@ -142,33 +143,6 @@ public class SetActivity extends MineBaseActivity implements OnClickListener {
 
     }
 
-    public final static int[] changeNumState(int width, int height, int num) {
-        if (width < 5) {
-            width = 5;
-        }
-        if (width > 200) {
-            width = 200;
-        }
-        if (height < 5) {
-            height = 5;
-        }
-        if (height > 200) {
-            height = 200;
-        }
-
-        if (num < width * height * 0.02) {
-            num = (int) (width * height * 0.02);
-            if (num < 3) {
-                num = 3;
-            }
-        } else if (num > width * height * 0.5) {
-            num = (int) (width * height * 0.5);
-        }
-        if (width * height - 9 <= num) {
-            num = width * height - 9;
-        }
-        return new int[]{width, height, num};
-    }
 
     @Override
     public void initViews() {

@@ -166,7 +166,7 @@ public class GameView extends View {
                 int width = MySharepreferences.getInt(gameActivity, "aa", "width");
                 int height = MySharepreferences.getInt(gameActivity, "aa", "height");
                 int num = MySharepreferences.getInt(gameActivity, "aa", "num");
-                int arr[] = SetActivity.changeNumState(width, height, num);
+                int arr[] = MineUtils.checkCorrectUserDefineMineNum(width, height, num);
                 width = arr[0];
                 height = arr[1];
                 num = arr[2];
@@ -216,8 +216,8 @@ public class GameView extends View {
         // 初始化
         int count = 0;
 
-        int r1 = random1.nextInt(WIDTH);
-        int c1 = random2.nextInt(HEIGHT);
+        int r1;
+        int c1;
         while (count < mineNum) {
             r1 = random1.nextInt(WIDTH);
             c1 = random2.nextInt(HEIGHT);
@@ -314,7 +314,6 @@ public class GameView extends View {
     Rect rrRect = new Rect();
     int row, col;
 
-    @SuppressLint("NewApi")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 

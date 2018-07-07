@@ -29,8 +29,8 @@ import java.util.Map;
  */
 
 public class GameBoard {
-    public final static int xCount = 10;
-    public final static int yCount = 20;
+    public final static int xCount = 8;
+    public final static int yCount = 15;
 
 
     LineDispearAnim lineDispearAnim = new LineDispearAnim();
