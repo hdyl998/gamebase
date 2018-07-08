@@ -42,7 +42,6 @@ public class GameView extends View {
     public GameView(Context context) {
         super(context);
         gameActivity = (GameActivity) context;
-
     }
 
     MineItem mineItem;
@@ -269,39 +268,12 @@ public class GameView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         Bitmap bitmap = null;
-        // // 主题1要先绘制全图背景
-        // if (AppSet.getInstence().theme == 1) {
-        // for (int i = 0; i < WIDTH; i++) {
-        // for (int j = 0; j < HEIGHT; j++) {
-        // if (arrCover[i][j] == 1)// // 0 COVER 1 OPEN 2 COVER
-        // // WITH_FLAG
-        // {
-        // if (arr[i][j] != 0) {
-        // rrRect.set(i * size, j * size, i * size + size, j * size + size);//
-        // 消除警告
-        // bitmap = bitmaps[0];
-        // canvas.drawBitmap(bitmap, null, rrRect, null);
-        // }
-        // } else if (arrCover[i][j] == 2) {
-        // bitmap = bitmaps[ID_COVER];
-        // rrRect.set(i * size, j * size, i * size + size, j * size + size);//
-        // 消除警告
-        // canvas.drawBitmap(bitmap, null, rrRect, null);
-        // }
-        // }
-        // }
-        // }
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {
                 if (arrCover[i][j] == 0) {
                     bitmap = bitmaps[ID_COVER];
                 } else if (arrCover[i][j] == 2) {
                     bitmap = bitmaps[ID_FLAG];
-                    // if (gameState == STATE_LOSE) {
-                    // if (arr[i][j] != 9) {
-                    // bitmap = bitmaps[ID_ERROR_BLACK];
-                    // }
-                    // }
                 } else {
                     bitmap = bitmaps[arr[i][j]];
                 }
