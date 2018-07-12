@@ -48,8 +48,8 @@ public abstract class MineBaseActivity extends BaseActivity implements OnClickLi
 
     public Drawable getBgDrawable() {
         Options opo = new Options();
-        opo.outHeight = ScreenSize.getScreenHeight();
-        opo.outWidth = ScreenSize.getScreenWidth();
+        opo.outHeight = ScreenSizeUtils.getScreenHeight();
+        opo.outWidth = ScreenSizeUtils.getScreenWidth();
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), AppSet.getInstence().getBgId(), opo);
         return new BitmapDrawable(bitmap);
     }

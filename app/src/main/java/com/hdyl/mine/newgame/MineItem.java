@@ -11,7 +11,7 @@ import com.hdyl.mine.newgame.ui.IMineUIProvider;
  */
 
 public class MineItem {
-    public int var;//
+    public int value;//
     public int flag;//标记
 
 
@@ -57,7 +57,7 @@ public class MineItem {
     public Bitmap getDrawingBitmap(IMineUIProvider uiProvider) {
         switch (flag) {
             case VAR_OPEN:
-                return uiProvider.getBitmapByNumber(var);
+                return uiProvider.getBitmapByNumber(value);
             case VAR_COVER:
                 return uiProvider.getBitmapCover();
             case VAR_FLAG:

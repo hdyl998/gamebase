@@ -7,7 +7,7 @@ import android.view.WindowManager;
 
 import com.hdyl.baselib.base.App;
 
-public class ScreenSize {
+public class ScreenSizeUtils {
 
     public final static int SCREEN_WIDTH;
     public final static int SCREEN_HEIGHT;
