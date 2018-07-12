@@ -1,5 +1,10 @@
 package com.hdyl.mine.newgame;
 
+import android.graphics.Bitmap;
+
+import com.hdyl.mine.game.MineSetting;
+import com.hdyl.mine.newgame.ui.IMineUIProvider;
+
 /**
  * //$ git config --global http.sslverify "false"
  * Created by Administrator on 2018/6/30.
@@ -14,12 +19,7 @@ public class MineItem {
     public final static int VAR_COVER = 1;
     public final static int VAR_FLAG = 1 << 1 | VAR_COVER;//标记也算一种cover
 
-    //
-//    public final static int VAR_MASK = VAR_COVER;
-//
-//    //0~12
-//
-//
+
     public boolean isOpen() {
         return isFlagValue(VAR_OPEN);
     }
@@ -49,6 +49,23 @@ public class MineItem {
     public boolean isFlag() {
         return isFlagValue(VAR_FLAG);
     }
+
+    /***
+     * 获取绘制的图片
+     * @return
+     */
+    public Bitmap getDrawingBitmap(IMineUIProvider uiProvider) {
+        switch (flag) {
+            case VAR_OPEN:
+                return uiProvider.getBitmapByNumber(var);
+            case VAR_COVER:
+                return uiProvider.getBitmapCover();
+            case VAR_FLAG:
+                return uiProvider.getBitmapFlag();
+        }
+        return null;
+    }
+
 
 //    public int getValue(){
 //        return var-

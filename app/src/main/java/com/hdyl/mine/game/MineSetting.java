@@ -1,6 +1,8 @@
 package com.hdyl.mine.game;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.hdyl.mine.newgame.level.MineLevelManager;
+import com.hdyl.mine.newgame.ui.IMineUIProvider;
 import com.hdyl.mine.newgame.ui.MineUiProviderManager;
 
 /**
@@ -22,6 +24,16 @@ public class MineSetting {
     private int levelType = MineLevelManager.MINE_LEVEL_EASY;//简单模式
 
 
+    private IMineUIProvider uiProvider;
+
+    @JSONField(serialize = false)
+    public IMineUIProvider getUiProvider() {
+        if (uiProvider == null) {
+            uiProvider = MineUiProviderManager.createFromConfig(UIType);
+        }
+        return uiProvider;
+    }
+
     public boolean isVibrator() {
         return isVibrator;
     }
@@ -38,12 +50,17 @@ public class MineSetting {
         return levelType;
     }
 
+
     public void setVibrator(boolean vibrator) {
         isVibrator = vibrator;
     }
 
     public void setUIType(int UIType) {
-        this.UIType = UIType;
+        if (this.UIType != UIType) {
+            this.UIType = UIType;
+            uiProvider = null;
+        }
+
     }
 
     public void setLevelType(int levelType) {
