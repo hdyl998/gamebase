@@ -47,7 +47,7 @@ public class GameView extends View {
     Bitmap bitmapBg = null;
 
     private void checkBg() {
-        LogUitls.print("tag",size);
+        LogUitls.print("tag", size);
         bitmapBg = Bitmap.createBitmap(getWidth(), getHeight(), Bitmap.Config.RGB_565);
         Canvas canvasBitmap = new Canvas(bitmapBg);
         Bitmap bitmap = GameColor.getBitmapBlack();
@@ -111,11 +111,11 @@ public class GameView extends View {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        float hsize =1f* h / GameBoard.yCount;
-       float wsize = 1f * w / GameBoard.xCount;
-        size=Math.min(hsize,wsize);
+        float hsize = 1f * h / GameBoard.yCount;
+        float wsize = 1f * w / GameBoard.xCount;
+        size = Math.min(hsize, wsize);
         checkBg();
-        sensibility=w/13;//灵敏度
+        sensibility = w / 13;//灵敏度
         //新游戏
 //        gameBoard.newGame();
     }

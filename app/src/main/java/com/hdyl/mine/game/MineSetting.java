@@ -1,6 +1,7 @@
 package com.hdyl.mine.game;
 
 import com.alibaba.fastjson.annotation.JSONField;
+import com.hdyl.mine.newgame.level.MineLevel;
 import com.hdyl.mine.newgame.level.MineLevelManager;
 import com.hdyl.mine.newgame.ui.IMineUIProvider;
 import com.hdyl.mine.newgame.ui.MineUiProviderManager;
@@ -25,6 +26,17 @@ public class MineSetting {
 
 
     private IMineUIProvider uiProvider;
+
+    private MineLevel mineLevel;
+
+
+    @JSONField(serialize = false)
+    public MineLevel getMineLevel() {
+        if (mineLevel == null) {
+            mineLevel = MineLevelManager.createFromConfig(levelType);
+        }
+        return mineLevel;
+    }
 
     @JSONField(serialize = false)
     public IMineUIProvider getUiProvider() {

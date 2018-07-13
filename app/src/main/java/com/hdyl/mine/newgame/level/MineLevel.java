@@ -14,14 +14,13 @@ public class MineLevel {
 
 
     public MineLevel() {
-
     }
 
     public MineLevel(int width, int height, int mineNum) {
-        initLevelInfo(width,height,mineNum);
+        initLevelInfo(width, height, mineNum);
     }
 
-    protected void  initLevelInfo(int width, int height, int mineNum){
+    protected void initLevelInfo(int width, int height, int mineNum) {
         this.width = width;
         this.height = height;
         this.mineNum = mineNum;
@@ -41,6 +40,9 @@ public class MineLevel {
         return mineRate;
     }
 
+    public int getMineNum() {
+        return mineNum;
+    }
 
     public MineLevel setNote(String note) {
         this.note = note;

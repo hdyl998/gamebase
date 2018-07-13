@@ -131,7 +131,7 @@ public class MineStageActivity extends MineBaseActivity implements AdapterView.O
             }).setNegativeButton("取消", null).show();
         } else {
             new AlertDialog.Builder(this).setTitle("温馨提示").setMessage("当前关卡还未解锁!\n请依次解锁后挑战!").setNegativeButton("我知道了", null).show();
-//            GameActivity.launch(mContext, new MineItem(item), 1);
+//            GameActivity.launch(mContext, new Cell(item), 1);
         }
     }
 

@@ -684,7 +684,6 @@ public class GameView extends View {
             }
 
         if (count == mineNum) {
-
             for (int i = 0; i < WIDTH; i++)
                 for (int j = 0; j < HEIGHT; j++) {
                     if (arrCover[i][j] == 0)// 剩下没标记的全部做标记
