@@ -2,7 +2,7 @@
 //
 //import android.graphics.Canvas;
 //
-//import com.hdyl.tetris.Cell;
+//import com.hdyl.tetris.MineCell;
 //import com.hdyl.tetris.shape.TetrisShape;
 //
 ///**
@@ -16,7 +16,7 @@
 //    int xOffset;
 //    int yOffset;
 //
-//    public void addAnim(Cell cells[][], TetrisShape shape, int distence, int xOffset, int yOffset) {
+//    public void addAnim(MineCell cells[][], TetrisShape shape, int distence, int xOffset, int yOffset) {
 //        setDuring(200);
 //        this.shape = shape;
 //        this.distence = distence;

@@ -7,14 +7,13 @@ import com.hdyl.mine.newgame.ui.IMineUIProvider;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
-import java.lang.ref.PhantomReference;
 
 /**
  * //$ git config --global http.sslverify "false"
  * Created by Administrator on 2018/6/30.
  */
 
-public class Cell {
+public class MineCell {
     public int value;//
     public int flag;//标记
 
@@ -37,6 +36,7 @@ public class Cell {
         return value;
     }
 
+
     public boolean isMine() {
         return value == VALUE_MINE;
     }
@@ -45,10 +45,10 @@ public class Cell {
         return value == VALUE_NONE;
     }
 
-
-    public final static int FLAG_OPEN = 0;
-    public final static int FLAG_COVER = 1;
-    public final static int FLAG_FLAG = 1 << 1 | FLAG_COVER;//标记也算一种cover
+    // 0 COVER 1 OPEN 2 COVER WITH_FLAG
+    public final static int FLAG_COVER = 0;
+    public final static int FLAG_OPEN = 1;
+    public final static int FLAG_FLAG = 2;//标记也算一种cover
 
 
     public final static int VALUE_NONE = -1;
@@ -66,6 +66,9 @@ public class Cell {
         return isFlagValue(FLAG_OPEN);
     }
 
+    public boolean isValue(int value) {
+        return value == this.value;
+    }
 
     /***
      * 切换标记和cover
@@ -80,12 +83,17 @@ public class Cell {
         }
     }
 
+
+    /***
+     * 没点开的
+     * @return
+     */
     public boolean isCover() {
         return isFlagValue(FLAG_COVER);
     }
 
-    private boolean isFlagValue(int var) {
-        return (flag & var) == var;
+    public boolean isFlagValue(int var) {
+        return flag == var;
     }
 
     public boolean isFlag() {
@@ -109,7 +117,20 @@ public class Cell {
     }
 
 
-//    public int getValue(){
+    public boolean isNum() {
+        return value > 0 && value < 9;
+    }
+
+    public void setFlag(int flag) {
+        this.flag = flag;
+    }
+
+    public boolean isValueZero() {
+        return this.value == MineCell.VALUE_EMPTY;
+    }
+
+
+    //    public int getValue(){
 //        return var-
 //    }
 

@@ -75,7 +75,7 @@ public class Cell implements Cloneable {
 
     @Override
     public String toString() {
-        return "Cell{" +
+        return "MineCell{" +
                 "value=" + value +
                 ", color=" + color +
                 ", x=" + x +
