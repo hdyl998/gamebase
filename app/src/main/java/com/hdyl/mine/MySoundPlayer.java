@@ -59,15 +59,15 @@ public class MySoundPlayer implements SoundPool.OnLoadCompleteListener {
         Integer key = hashMap.get(soundKey);
         if (key != null) {
 
-            AudioManager mgr = (AudioManager) mContext.getSystemService(Context.AUDIO_SERVICE);
-            float streamVolumeCurrent = mgr.getStreamVolume(AudioManager.STREAM_MUSIC);
-            float streamVolumeMax = mgr.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+//            AudioManager mgr = (AudioManager) mContext.getSystemService(Context.AUDIO_SERVICE);
+//            float streamVolumeCurrent = mgr.getStreamVolume(AudioManager.STREAM_MUSIC);
+//            float streamVolumeMax = mgr.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
             /**
              * 播放的音量
              */
-            float volume = streamVolumeCurrent / streamVolumeMax;
+//            float volume = streamVolumeCurrent / streamVolumeMax;
             // 参数：1、Map中取值 2、左声道 3、右声道 4、优先级:默认为1 5、重播次数 6、播放速度
-            soundPool.play(key, volume, volume, 1, 0, 1.0f);
+            soundPool.play(key, 1, 1, 1, 0, 1.0f);
         }
     }
 
