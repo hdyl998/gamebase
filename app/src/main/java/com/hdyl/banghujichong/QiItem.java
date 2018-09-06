@@ -18,6 +18,12 @@ public class QiItem {
     public int itemType;
     public int userType = USER_TYPE_ONE;
 
+    public boolean isShow;
+
+
+    public boolean isShow() {
+        return isShow;
+    }
 
     /***
      *棒虎鸡虫吞食逻辑

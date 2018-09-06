@@ -7,4 +7,25 @@ package com.hdyl.banghujichong;
 
 public class BhjcLogic {
 
+    int WIDTH;
+    int HEIGHT;
+
+    public BhjcLogic() {
+        this(4, 6);
+    }
+
+
+    public BhjcLogic(int width, int height) {
+        WIDTH = width;
+        HEIGHT = height;
+        createQiItems();
+    }
+
+    public QiItem[][] qiItems;
+
+
+    private void createQiItems() {
+        qiItems = new QiItem[HEIGHT][WIDTH];
+    }
+
 }
