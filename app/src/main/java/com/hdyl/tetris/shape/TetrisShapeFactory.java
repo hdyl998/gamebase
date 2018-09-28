@@ -30,9 +30,6 @@ public class TetrisShapeFactory {
                     SuperSShape.class,
                     SuperTShape.class,
                     SuperZShape.class,
-                    Super2PointShape.class,
-                    Super3PointShape.class,
-                    SuperAoShape.class
             };
         } else {
             listClazz = new Class[]{

@@ -1,28 +1,50 @@
 package com.hdyl.banghujichong;
 
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.RectF;
+
+import com.hdyl.baselib.utils.Tools;
+import com.hdyl.baselib.utils.log.LogUitls;
+
+import java.util.Random;
+
 /**
  * <p>Created by liugd on 2018/4/4.<p>
  * <p>佛祖保佑，永无BUG<p>
  */
 
 public class QiItem {
-    public final static int ITEM_TYPE_BANG = 0;//
-    public final static int ITEM_TYPE_HU = 1;//
-    public final static int ITEM_TYPE_JI = 2;//
-    public final static int ITEM_TYPE_CHONG = 3;//
+    public final static int ITEM_TYPE_BANG = 0;//棒
+    public final static int ITEM_TYPE_HU = 1;//虎
+    public final static int ITEM_TYPE_JI = 2;//鸡
+    public final static int ITEM_TYPE_CHONG = 3;//虫
 
-    public final static int USER_TYPE_ONE = 0;//
-    public final static int USER_TYPE_TWO = 1;//
+    public final static int USER_TYPE_ONE = 0;//用户1
+    public final static int USER_TYPE_TWO = 1;//用户2
 
+
+    public int getUserColor() {
+        return userColors[userType];
+    }
 
     public int itemType;
     public int userType = USER_TYPE_ONE;
 
+    /***
+     * 是否显示
+     */
     public boolean isShow;
 
 
     public boolean isShow() {
         return isShow;
+    }
+
+
+    public void toggleShow() {
+        isShow = !isShow;
     }
 
     /***
@@ -51,6 +73,8 @@ public class QiItem {
     public QiItem(int itemType, int userType) {
         this.itemType = itemType;
         this.userType = userType;
+
+        isShow = true;
     }
 
 
@@ -58,6 +82,10 @@ public class QiItem {
 
     public String getName() {
         return arrays[itemType];
+    }
+
+    public boolean isUserTypeOne() {
+        return userType == USER_TYPE_ONE;
     }
 
 
@@ -69,4 +97,22 @@ public class QiItem {
         stringBuilder.append(userType);
         return stringBuilder.substring(0);
     }
+
+    private final static int userColors[] = {0xffDD4A4A, 0xff7777aa};
+
+    public void draw(Canvas canvas, RectF rect, Paint paint) {
+        if (isShow()) {
+            paint.setColor(getUserColor());
+            paint.setStyle(Paint.Style.STROKE);
+            canvas.drawRect(rect, paint);
+            paint.setStyle(Paint.Style.FILL);
+            canvas.drawText(getName(), rect.centerX(), rect.centerY() + Tools.getFontHeight(paint) / 2, paint);
+        } else {
+            paint.setColor(Color.WHITE);
+            canvas.drawRect(rect, paint);
+        }
+
+    }
+
+
 }

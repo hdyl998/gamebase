@@ -134,6 +134,10 @@
         <activity
             android:name="com.hdyl.llk.LevelActivity"
             android:screenOrientation="portrait"></activity>
+        <activity
+            android:name="com.hdyl.banghujichong.BhjcActivity"
+            android:screenOrientation="portrait"></activity>
+
 
         <meta-data
             android:name="UMENG_APPKEY"
