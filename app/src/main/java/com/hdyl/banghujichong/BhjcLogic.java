@@ -113,6 +113,7 @@ public class BhjcLogic {
             list.add(new QiItem(QiItem.ITEM_TYPE_HU, QiItem.USER_TYPE_ONE));
             list.add(new QiItem(QiItem.ITEM_TYPE_JI, QiItem.USER_TYPE_ONE));
             list.add(new QiItem(QiItem.ITEM_TYPE_CHONG, QiItem.USER_TYPE_ONE));
+
             list.add(new QiItem(QiItem.ITEM_TYPE_BANG, QiItem.USER_TYPE_TWO));
             list.add(new QiItem(QiItem.ITEM_TYPE_HU, QiItem.USER_TYPE_TWO));
             list.add(new QiItem(QiItem.ITEM_TYPE_JI, QiItem.USER_TYPE_TWO));
@@ -136,16 +137,16 @@ public class BhjcLogic {
     }
 
 
-    public void drawBoard(Canvas canvas, float size, Paint paint, int divider) {
+    public void drawBoard(Canvas canvas, float size, Paint paint, int divider, int xOffset, int yOffset) {
         RectF rect = new RectF();
         QiItem[][] qiItems = this.getQiItems();
         for (int i = 0; i < getHEIGHT(); i++) {
             for (int j = 0; j < getWIDTH(); j++) {
                 QiItem cell = qiItems[i][j];
                 if (cell != null) {
-                    rect.left = j * size + divider;
+                    rect.left = j * size + divider + xOffset;
                     rect.right = rect.left + size - divider;
-                    rect.top = i * size + divider;
+                    rect.top = i * size + divider + yOffset;
                     rect.bottom = rect.top + size - divider;
                     cell.draw(canvas, rect, paint);
                 }

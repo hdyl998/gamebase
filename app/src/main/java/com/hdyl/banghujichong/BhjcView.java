@@ -11,12 +11,18 @@ import android.view.View;
 import com.hdyl.baselib.utils.Tools;
 
 /**
+ * 棒虎鸡虫view
  * <p>Created by liugd on 2018/4/4.<p>
  * <p>佛祖保佑，永无BUG<p>
  */
 
 public class BhjcView extends View {
 
+    int size;
+    int xOffset;
+    int yOffset;
+    int lineWidth = Tools.getDimen750Px(10);
+    int divider;
 
     public BhjcView(Context context) {
         super(context);
@@ -43,10 +49,15 @@ public class BhjcView extends View {
 
     Paint mPaint;
 
+
+    public BhjcLogic getBhjcLogic() {
+        return bhjcLogic;
+    }
+
     void initViews() {
         bhjcLogic.setOnGameEvent((BhjcLogic.IOnGameEvent) getContext());
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mPaint.setStrokeWidth(Tools.getDimen750Px(5));
+        mPaint.setStrokeWidth(lineWidth);
         mPaint.setTextAlign(Paint.Align.CENTER);
     }
 
@@ -56,12 +67,9 @@ public class BhjcView extends View {
         if (getWidth() == 0) {
             return;
         }
-        bhjcLogic.drawBoard(canvas, size, mPaint, size / 8);
-
-
+        bhjcLogic.drawBoard(canvas, size, mPaint, divider, xOffset, yOffset);
     }
 
-    int size;
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
@@ -70,7 +78,9 @@ public class BhjcView extends View {
         int wid = w / bhjcLogic.getWIDTH();
         int hei = h / bhjcLogic.getHEIGHT();
         size = Math.min(wid, hei);
+        divider = size / 8;
+        xOffset = (w - (size * bhjcLogic.getWIDTH())) / 2 - lineWidth / 2;//线条是从中心线画的所以需要减掉一半
+        yOffset = (h - (size * bhjcLogic.getHEIGHT())) / 2 - lineWidth / 2;
         mPaint.setTextSize(size / 3);
-
     }
 }
