@@ -102,10 +102,10 @@ public class QiItem {
 
     public void draw(Canvas canvas, RectF rect, Paint paint) {
         if (isShow()) {
-            paint.setColor(getUserColor());
-            paint.setStyle(Paint.Style.STROKE);
-            canvas.drawRoundRect(rect, 10, 10, paint);
             paint.setStyle(Paint.Style.FILL);
+            paint.setColor(getUserColor());
+            canvas.drawRoundRect(rect, 10, 10, paint);
+            paint.setColor(Color.WHITE);
             canvas.drawText(getName(), rect.centerX(), rect.centerY() + Tools.getFontHeight(paint) / 2, paint);
         } else {
             paint.setColor(Color.WHITE);

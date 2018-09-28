@@ -144,9 +144,9 @@ public class BhjcLogic {
             for (int j = 0; j < getWIDTH(); j++) {
                 QiItem cell = qiItems[i][j];
                 if (cell != null) {
-                    rect.left = j * size + divider + xOffset;
+                    rect.left = j * size + divider/2 + xOffset;
                     rect.right = rect.left + size - divider;
-                    rect.top = i * size + divider + yOffset;
+                    rect.top = i * size + divider/2 + yOffset;
                     rect.bottom = rect.top + size - divider;
                     cell.draw(canvas, rect, paint);
                 }

@@ -24,7 +24,7 @@ public class BhjcActivity extends AppCompatActivity implements BhjcLogic.IOnGame
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolBar);
-        toolbar.setTitle(R.string.app_name_tetris);
+        toolbar.setTitle(R.string.app_name_banghujichong);
         setSupportActionBar(toolbar);
 
         gameView = (BhjcView) findViewById(R.id.gameView);

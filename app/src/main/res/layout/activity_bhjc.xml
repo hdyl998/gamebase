@@ -7,8 +7,7 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolBar"
         android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
-        android:title="@string/app_name_banghujichong" />
+        android:layout_height="?actionBarSize" />
 
     <LinearLayout
         android:id="@+id/ll_bottom"
@@ -33,7 +32,7 @@
         android:layout_height="match_parent"
         android:layout_above="@id/ll_bottom"
         android:layout_below="@+id/toolBar"
-        android:layout_margin="10dp" />
+        android:layout_margin="2dp" />
 
 
 </RelativeLayout>
