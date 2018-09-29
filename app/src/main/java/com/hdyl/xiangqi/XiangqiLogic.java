@@ -36,6 +36,11 @@ public class XiangqiLogic {
 
 
     public void newGame() {
+        for (int i = 0; i < yCount; i++) {
+            for (int j = 0; j < xCount; j++) {
+                chessItems[i][j] = null;
+            }
+        }
         //黑方
         setChessItem(0, 0, new ChessItem(ChessType.JU, ChessItem.PLAYER_TYPE_BLACK));
         setChessItem(0, 8, new ChessItem(ChessType.JU, ChessItem.PLAYER_TYPE_BLACK));
@@ -77,6 +82,7 @@ public class XiangqiLogic {
         setChessItem(6, 8, new ChessItem(ChessType.BING, ChessItem.PLAYER_TYPE_RED));
 
 
+        xiangqiGameEvent.invalidate();
     }
 
     public void setChessItem(int y, int x, ChessItem item) {
@@ -125,18 +131,26 @@ public class XiangqiLogic {
      * @return
      */
     public boolean goNextPositon(ChessItem item, int x, int y) {
-        setChessItem(item.tempY, item.tempX, null);
-        setChessItem(y, x, item);
-        return true;
+        LogUitls.print("from " + item.tempX + "," + item.tempY + " to " + x + "," + y);
+        if (item.isGoPositon(chessItems, x, y)) {
+            setChessItem(item.tempY, item.tempX, null);
+            setChessItem(y, x, item);
+            return true;
+        }
+        return false;
     }
 
 
     //一定要选中
     public void clickPosition(int x, int y) {
+        //当前点击的item
         ChessItem chessItem = getChessItem(x, y);
-        if (chessItem == null) {
-            //走棋
-            if (focusChessItem != null) {
+        //相同就没必要了
+        if (chessItem == focusChessItem) {
+            return;
+        }
+        if (focusChessItem != null) {
+            if (chessItem == null || chessItem.isPlayerDifferent(focusChessItem)) {
                 boolean isSuccess = goNextPositon(focusChessItem, x, y);
                 if (isSuccess) {
                     focusChessItem.setFocus(false);
@@ -145,18 +159,12 @@ public class XiangqiLogic {
                 }
             }
             return;
+        } else {
+            chessItem.toggleFocus();
+            focusChessItem = chessItem;
+            focusChessItem.tempX = x;
+            focusChessItem.tempY = y;
+            xiangqiGameEvent.invalidate();
         }
-        //相同就没必要了
-        if (chessItem == focusChessItem) {
-            return;
-        }
-        if (focusChessItem != null) {
-            focusChessItem.setFocus(false);
-        }
-        chessItem.toggleFocus();
-        focusChessItem = chessItem;
-        focusChessItem.tempX = x;
-        focusChessItem.tempY = y;
-        xiangqiGameEvent.invalidate();
     }
 }

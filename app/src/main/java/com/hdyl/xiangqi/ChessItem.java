@@ -4,6 +4,9 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 
+import com.hdyl.baselib.utils.log.LogUitls;
+import com.hdyl.xiangqi.goway.GoWayManager;
+
 /**
  * <p>Created by Administrator on 2018/9/28.<p>
  * <p>佛祖保佑，永无BUG<p>
@@ -38,7 +41,18 @@ public class ChessItem {
 
 
     public ChessItem() {
+    }
 
+    public boolean isPlayerDifferent(ChessItem chessItem) {
+        return chessItem.playerType != playerType;
+    }
+
+    /***
+     * 是否向上进攻
+     * @return
+     */
+    public boolean isAttackTowardUp() {
+        return XiangqiConsts.isRedBottom && playerType == PLAYER_TYPE_RED || !XiangqiConsts.isRedBottom && playerType == PLAYER_TYPE_BLACK;
     }
 
 
@@ -74,6 +88,17 @@ public class ChessItem {
         return XiangqiResourcesManager.getInstance().getBitmapInChess(playerType * 7 + chessType);
     }
 
+
+    /***
+     * 是否可以去到指定位置
+     * @param chessItems
+     * @param toX
+     * @param toY
+     * @return
+     */
+    public boolean isGoPositon(ChessItem[][] chessItems, int toX, int toY) {
+        return GoWayManager.getInstance().getGoWay(chessType).canGo(chessItems, tempX, tempY, toX, toY);
+    }
 
     public void draw(Canvas canvas, RectF rect) {
         canvas.drawBitmap(getDrawBitmap(), null, rect, null);
