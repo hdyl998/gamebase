@@ -1,5 +1,9 @@
 package com.hdyl.xiangqi;
 
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+
 /**
  * <p>Created by Administrator on 2018/9/28.<p>
  * <p>佛祖保佑，永无BUG<p>
@@ -14,6 +18,24 @@ public class ChessItem {
 
 
     public int chessType = ChessType.JU;
+
+    public int tempX, tempY;
+
+    public boolean isFocus = false;
+
+    public boolean isFocus() {
+        return isFocus;
+    }
+
+
+    public void setFocus(boolean focus) {
+        isFocus = focus;
+    }
+
+    public void toggleFocus() {
+        isFocus = !isFocus;
+    }
+
 
     public ChessItem() {
 
@@ -45,5 +67,18 @@ public class ChessItem {
 
     public void setPlayerType(int playerType) {
         this.playerType = playerType;
+    }
+
+
+    public Bitmap getDrawBitmap() {
+        return XiangqiResourcesManager.getInstance().getBitmapInChess(playerType * 7 + chessType);
+    }
+
+
+    public void draw(Canvas canvas, RectF rect) {
+        canvas.drawBitmap(getDrawBitmap(), null, rect, null);
+        if (isFocus) {
+            canvas.drawBitmap(XiangqiResourcesManager.getInstance().getBitmapFocus(), null, rect, null);
+        }
     }
 }

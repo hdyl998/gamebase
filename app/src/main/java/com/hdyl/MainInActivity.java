@@ -1,38 +1,23 @@
 package com.hdyl;
 
-import android.app.Dialog;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.PopupMenu;
-import android.view.Gravity;
-import android.view.Menu;
-import android.view.SubMenu;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.PopupWindow;
-import android.widget.TextView;
 
 import com.hdyl.banghujichong.BhjcActivity;
 import com.hdyl.baselib.base.BaseActivity;
 import com.hdyl.baselib.base.FmtCtnActivity;
 import com.hdyl.baselib.base.adapterbase.BaseViewHolder;
 import com.hdyl.baselib.base.adapterbase.SuperAdapter;
-import com.hdyl.llk.MainLlkActivity;
 import com.hdyl.llk.StartLlkActivity;
 import com.hdyl.m2048.Main2048Activity;
 import com.hdyl.mine.MainMineActivity;
 import com.hdyl.mine.R;
-import com.hdyl.mine.stage.MineStageActivity;
 import com.hdyl.pintu.MainPintuActivity;
 import com.hdyl.tetris.MainTetrisActivity;
 import com.hdyl.tetris2.MainTetris2Activity;
+import com.hdyl.xiangqi.XiangqiActivity;
 import com.hdyl.xiaoxiaole.MainXxlActivity;
 
 import java.util.ArrayList;
@@ -94,6 +79,8 @@ public class MainInActivity extends BaseActivity {
         listDatas.add(new DataItem().setAppName(getString(R.string.app_name_xxl)).setIconRes(R.drawable.fruit2).setRank(R.drawable.point3).setGoClazz(MainXxlActivity.class));
         listDatas.add(new DataItem().setAppName(getString(R.string.app_name_llk)).setIconRes(R.drawable.aa42).setRank(R.drawable.point3).setGoClazz(StartLlkActivity.class));
         listDatas.add(new DataItem().setAppName(getString(R.string.app_name_banghujichong)).setIconRes(R.drawable.aa2).setGoClazz(BhjcActivity.class));
+
+        listDatas.add(new DataItem().setAppName(getString(R.string.app_name_xiangqi)).setIconRes(R.drawable.aa3).setGoClazz(XiangqiActivity.class));
         listView.setAdapter(new SuperAdapter<DataItem>(mContext, listDatas, R.layout.item_app) {
             @Override
             protected void onBind(BaseViewHolder holder, DataItem item, int position) {

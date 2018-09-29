@@ -6,13 +6,13 @@ package com.hdyl.xiangqi;
  */
 
 public interface ChessType {
-    int JU = 1;
-    int MA = 2;
-    int XIANG = 3;
-    int SHI = 4;
+    int JU = 0;
+    int MA = 1;
+    int XIANG = 2;
+    int SHI = 3;
+    int JIANG = 4;
     int PAO = 5;
     int BING = 6;
-    int JIANG = 7;
 
 //    public final static String names[]={""};
 }

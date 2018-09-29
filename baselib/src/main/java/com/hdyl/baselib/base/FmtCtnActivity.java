@@ -44,6 +44,9 @@ public class FmtCtnActivity extends BaseActivity {
         if (objs != null && objs.length != 0) {
             int count = 1;
             for (Object o : objs) {
+                if (o == null) {
+                    continue;
+                }
                 if (o instanceof Serializable) {
                     intent.putExtra(count + "", (Serializable) o);
                     count++;
