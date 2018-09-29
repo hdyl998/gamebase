@@ -10,13 +10,19 @@ import com.hdyl.xiangqi.ChessItem;
 public class JiangGoWay implements IGoWay {
     @Override
     public boolean canGo(ChessItem[][] chessItems, int fromX, int fromY, int toX, int toY) {
-        ChessItem curItem = chessItems[toY][toX];
-        //向上进攻
-        if (curItem.isAttackTowardUp()) {
+        if (toX >= 3 && toX <= 5 && Math.abs(toX - fromX) + Math.abs(toY - fromY) == 1) {
+            ChessItem curItem = chessItems[fromY][fromX];
+            //向上进攻
+            if (curItem.isAttackTowardUp()) {
+                if (toY >= 7) {
+                    return true;
+                }
 
-
-        } else {  //向下进攻
-
+            } else {  //向下进攻
+                if (toY <= 2) {
+                    return true;
+                }
+            }
         }
         return false;
     }
