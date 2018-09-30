@@ -107,8 +107,9 @@ public class QiItem {
             canvas.drawRoundRect(rect, 10, 10, paint);
             paint.setColor(Color.WHITE);
             canvas.drawText(getName(), rect.centerX(), rect.centerY() + Tools.getFontHeight(paint) / 2, paint);
-        } else {
-            paint.setColor(Color.WHITE);
+        } else {//看不见
+            paint.setStyle(Paint.Style.FILL);
+            paint.setColor(Color.GRAY);
             canvas.drawRoundRect(rect, 10, 10, paint);
         }
 
