@@ -24,8 +24,8 @@ public class MineGameBoard {
     private int mineNum = mineLevel.getMineNum();
 
 
-    Stack<Point> pointsReady2Checked = new Stack<Point>();// 待检查
-    Stack<Point> pointsChecked = new Stack<Point>();// 已查
+    Stack<Point> pointsReady2Checked = new Stack<>();// 待检查
+    Stack<Point> pointsChecked = new Stack<>();// 已查
 
     MineCell cellArrs[][];
     int gameState = STATE_NO_START;
