@@ -59,6 +59,8 @@ public class XiangqiView extends View {
 
     Rect rect = new Rect();
 
+    int qiSpace;//棋子的空隔
+
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -71,7 +73,7 @@ public class XiangqiView extends View {
         rect.bottom = rect.top + size * xiangqiLogic.getyCount();
         rect.right = rect.left + size * xiangqiLogic.getxCount();
         canvas.drawBitmap(XiangqiResourcesManager.getInstance().getBitmapBg(), null, rect, null);
-        xiangqiLogic.drawBoard(canvas, size, xOffset, yOffset);
+        xiangqiLogic.drawBoard(canvas, size, xOffset, yOffset,qiSpace);
     }
 
     @Override
@@ -81,6 +83,7 @@ public class XiangqiView extends View {
         int wid = w / xiangqiLogic.getxCount();
         int hei = h / xiangqiLogic.getyCount();
         size = Math.min(wid, hei);
+        qiSpace = size / 6;
         xOffset = (w - (size * xiangqiLogic.getxCount())) / 2;//线条是从中心线画的所以需要减掉一半
         yOffset = (h - (size * xiangqiLogic.getyCount())) / 2;
         xiangqiLogic.newGame();

@@ -2,6 +2,7 @@ package com.hdyl.xiangqi;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.RectF;
 
 import com.hdyl.baselib.utils.log.LogUitls;
@@ -100,6 +101,11 @@ public class ChessItem {
         return GoWayManager.getInstance().getGoWay(chessType).canGo(chessItems, tempX, tempY, toX, toY);
     }
 
+    /***
+     * 绘制
+     * @param canvas
+     * @param rect
+     */
     public void draw(Canvas canvas, RectF rect) {
         canvas.drawBitmap(getDrawBitmap(), null, rect, null);
         if (isFocus) {

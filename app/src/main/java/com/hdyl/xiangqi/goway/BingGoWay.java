@@ -12,27 +12,29 @@ public class BingGoWay implements IGoWay {
     public boolean canGo(ChessItem[][] chessItems, int fromX, int fromY, int toX, int toY) {
 
         //只走一步
-        if (fromX == toX && Math.abs(toY - fromY) == 1 || fromY == toY && Math.abs(toX - fromX) == 1) {
+        if (Math.abs(toX - fromX) + Math.abs(toY - fromY) == 1) {
             ChessItem curItem = chessItems[fromY][fromX];
             //向上进攻,不能过河
             if (curItem.isAttackTowardUp()) {
                 //不能倒退
-                if (toY < fromY) {
+                if (toY > fromY) {
                     return false;
                 }
                 //没过河之前横着走
                 if (toY > 4 && fromY == toY) {
                     return false;
                 }
+                return true;
             } else {//向下进攻
                 //不能倒退
-                if (toY > fromY) {
+                if (toY < fromY) {
                     return false;
                 }
                 //没过河之前横着走
                 if (toY < 5 && fromY == toY) {
                     return false;
                 }
+                return true;
             }
         }
         return false;

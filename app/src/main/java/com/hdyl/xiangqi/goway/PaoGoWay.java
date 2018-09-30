@@ -13,7 +13,6 @@ import com.hdyl.xiangqi.ChessType;
 public class PaoGoWay implements IGoWay {
     @Override
     public boolean canGo(ChessItem[][] chessItems, int fromX, int fromY, int toX, int toY) {
-
         ChessItem aimItem = chessItems[toY][toX];
         if (aimItem == null) {//平移,同车一样
             return GoWayManager.getInstance().getGoWay(ChessType.JU).canGo(chessItems, fromX, fromY, toX, toY);
@@ -24,8 +23,6 @@ public class PaoGoWay implements IGoWay {
             if (fromX == toX) {
                 int minY = Math.min(toY, fromY);
                 int maxY = Math.max(toY, fromY);
-
-                LogUitls.print("minY" + minY + " maxY" + maxY);
                 int count = 0;
                 for (int j = minY + 1; j < maxY; j++) {
                     if (chessItems[j][toX] != null) {
@@ -35,13 +32,11 @@ public class PaoGoWay implements IGoWay {
                         }
                     }
                 }
-                return true;
+                return count == 1;
             }
             if (fromY == toY) {
                 int min = Math.min(fromX, toX);
                 int max = Math.max(fromX, toX);
-
-                LogUitls.print("minx" + min + " maxx" + max);
                 int count = 0;
                 for (int j = min + 1; j < max; j++) {
                     if (chessItems[toY][j] != null) {
@@ -51,7 +46,7 @@ public class PaoGoWay implements IGoWay {
                         }
                     }
                 }
-                return true;
+                return count == 1;
             }
         }
         return false;

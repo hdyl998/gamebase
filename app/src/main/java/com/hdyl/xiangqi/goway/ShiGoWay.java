@@ -17,7 +17,6 @@ public class ShiGoWay implements IGoWay {
                 if (toY >= 7) {
                     return true;
                 }
-
             } else {  //向下进攻
                 if (toY <= 2) {
                     return true;

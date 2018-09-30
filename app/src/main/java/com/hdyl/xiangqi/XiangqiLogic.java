@@ -1,12 +1,8 @@
 package com.hdyl.xiangqi;
 
 import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.graphics.RectF;
 
-import com.alibaba.fastjson.JSON;
-import com.hdyl.banghujichong.BhjcLogic;
-import com.hdyl.banghujichong.QiItem;
 import com.hdyl.baselib.utils.log.LogUitls;
 
 /**
@@ -80,8 +76,7 @@ public class XiangqiLogic {
         setChessItem(6, 4, new ChessItem(ChessType.BING, ChessItem.PLAYER_TYPE_RED));
         setChessItem(6, 6, new ChessItem(ChessType.BING, ChessItem.PLAYER_TYPE_RED));
         setChessItem(6, 8, new ChessItem(ChessType.BING, ChessItem.PLAYER_TYPE_RED));
-
-
+        resetReference();
         xiangqiGameEvent.invalidate();
     }
 
@@ -107,24 +102,23 @@ public class XiangqiLogic {
     }
 
 
-    public void drawBoard(Canvas canvas, int size, int xOffset, int yOffset) {
+    public void drawBoard(Canvas canvas, int size, int xOffset, int yOffset, int qiSpace) {
         RectF rect = new RectF();
         ChessItem[][] qiItems = this.getChessItems();
         for (int i = 0; i < getyCount(); i++) {
             for (int j = 0; j < getxCount(); j++) {
                 ChessItem cell = qiItems[i][j];
                 if (cell != null) {
-                    rect.left = j * size + xOffset;
-                    rect.right = rect.left + size;
-                    rect.top = i * size + yOffset;
-                    rect.bottom = rect.top + size;
+                    rect.left = j * size + xOffset + qiSpace/2;
+                    rect.right = rect.left + size - qiSpace;
+                    rect.top = i * size + yOffset + qiSpace/2;
+                    rect.bottom = rect.top + size - qiSpace;
                     cell.draw(canvas, rect);
                 }
             }
         }
     }
 
-    ChessItem focusChessItem;
 
     /***
      * 把item放到x,y上,原来的位置
@@ -140,31 +134,45 @@ public class XiangqiLogic {
         return false;
     }
 
+    private int lastFocusX;
+    private int lastFocusY;
+    private ChessItem curFocusItem;
+
+    /**
+     * 重置引用
+     */
+    private void resetReference() {
+        lastFocusX = -1;
+        lastFocusY = -1;
+        curFocusItem = null;
+    }
+
 
     //一定要选中
     public void clickPosition(int x, int y) {
         //当前点击的item
         ChessItem chessItem = getChessItem(x, y);
-        //相同就没必要了
-        if (chessItem == focusChessItem) {
+        //相同就不改变原状态
+        if (chessItem == curFocusItem) {
             return;
         }
-        if (focusChessItem != null) {
-            if (chessItem == null || chessItem.isPlayerDifferent(focusChessItem)) {
-                boolean isSuccess = goNextPositon(focusChessItem, x, y);
-                if (isSuccess) {
-                    focusChessItem.setFocus(false);
-                    focusChessItem = null;
-                    xiangqiGameEvent.invalidate();
-                }
+        if (curFocusItem != null) {
+            //行进,或者去吃子
+            if (chessItem == null || chessItem.isPlayerDifferent(curFocusItem)) {
+                boolean isSuccess = goNextPositon(curFocusItem, x, y);
+                LogUitls.print("isSuccess" + isSuccess + x + " " + y);
+                curFocusItem.setFocus(false);
+                curFocusItem = null;
+                xiangqiGameEvent.invalidate();
+                return;
+            } else {//又点了自已方的棋
+                curFocusItem.setFocus(false);
             }
-            return;
-        } else {
-            chessItem.toggleFocus();
-            focusChessItem = chessItem;
-            focusChessItem.tempX = x;
-            focusChessItem.tempY = y;
-            xiangqiGameEvent.invalidate();
         }
+        curFocusItem = chessItem;
+        curFocusItem.tempX = x;
+        curFocusItem.tempY = y;
+        curFocusItem.setFocus(true);
+        xiangqiGameEvent.invalidate();
     }
 }
