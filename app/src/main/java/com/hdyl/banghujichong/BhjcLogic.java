@@ -15,18 +15,18 @@ import java.util.Random;
 
 public class BhjcLogic {
 
-    int WIDTH;
-    int HEIGHT;
+    int xCount;
+    int yCount;
     public QiItem[][] qiItems;
     int gameState;
 
 
-    public int getWIDTH() {
-        return WIDTH;
+    public int getxCount() {
+        return xCount;
     }
 
-    public int getHEIGHT() {
-        return HEIGHT;
+    public int getyCount() {
+        return yCount;
     }
 
     public final static int GAME_STATE_GAMEOVER = 2;
@@ -58,8 +58,8 @@ public class BhjcLogic {
 
 
     public BhjcLogic(int width, int height) {
-        WIDTH = width;
-        HEIGHT = height;
+        xCount = width;
+        yCount = height;
     }
 
 
@@ -75,13 +75,13 @@ public class BhjcLogic {
      */
     public void shuffle() {
         Random random = new Random();
-        for (int i = 0; i < HEIGHT; i++) {
-            for (int j = 0; j < WIDTH; j++) {
-                int tempi = random.nextInt(HEIGHT);
-                int tempj = random.nextInt(WIDTH);
+        for (int i = 0; i < yCount; i++) {
+            for (int j = 0; j < xCount; j++) {
+                int tempi = random.nextInt(yCount);
+                int tempj = random.nextInt(xCount);
 
-                int tempi2 = random.nextInt(HEIGHT);
-                int tempj2 = random.nextInt(WIDTH);
+                int tempi2 = random.nextInt(yCount);
+                int tempj2 = random.nextInt(xCount);
 
                 swap(tempi, tempj, tempi2, tempj2);
             }
@@ -99,11 +99,11 @@ public class BhjcLogic {
 
 
     private void createQiItems() {
-        int total = WIDTH * HEIGHT;
+        int total = xCount * yCount;
         if (total < 8) {
-            throw new RuntimeException("WIDTH*HEIGHT<8");
+            throw new RuntimeException("xCount*yCount<8");
         }
-        qiItems = new QiItem[HEIGHT][WIDTH];
+        qiItems = new QiItem[yCount][xCount];
 
         int len = total / 8;
         List<QiItem> list = new ArrayList<>(len * 8);
@@ -121,8 +121,8 @@ public class BhjcLogic {
         }
         int count = 0;
         tag:
-        for (int i = 0; i < HEIGHT; i++) {
-            for (int j = 0; j < WIDTH; j++) {
+        for (int i = 0; i < yCount; i++) {
+            for (int j = 0; j < xCount; j++) {
                 qiItems[i][j] = list.get(count);
                 count++;
                 if (count >= list.size()) {
@@ -140,8 +140,8 @@ public class BhjcLogic {
     public void drawBoard(Canvas canvas, float size, Paint paint, int divider, int xOffset, int yOffset) {
         RectF rect = new RectF();
         QiItem[][] qiItems = this.getQiItems();
-        for (int i = 0; i < getHEIGHT(); i++) {
-            for (int j = 0; j < getWIDTH(); j++) {
+        for (int i = 0; i < getyCount(); i++) {
+            for (int j = 0; j < getxCount(); j++) {
                 QiItem cell = qiItems[i][j];
                 if (cell != null) {
                     rect.left = j * size + divider/2 + xOffset;

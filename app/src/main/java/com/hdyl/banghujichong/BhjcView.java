@@ -13,7 +13,6 @@ import android.view.View;
 import com.hdyl.baselib.base.App;
 import com.hdyl.baselib.utils.Tools;
 import com.hdyl.m2048.Cell;
-import com.hdyl.m2048.GameLogic;
 
 /**
  * 棒虎鸡虫view
@@ -99,8 +98,8 @@ public class BhjcView extends View {
             Cell cell = new Cell(0);
 
             mPaint.setColor(cell.getColor());
-            for (int i = 0; i < bhjcLogic.getHEIGHT(); i++) {
-                for (int j = 0; j < bhjcLogic.getWIDTH(); j++) {
+            for (int i = 0; i < bhjcLogic.getyCount(); i++) {
+                for (int j = 0; j < bhjcLogic.getxCount(); j++) {
                     r2.left = xOffset + j * size + halfDivider; // 左边
                     r2.top = yOffset + i * size + halfDivider; // 上边
                     r2.right = xOffset + j * size + size - halfDivider; // 右边
@@ -115,12 +114,12 @@ public class BhjcView extends View {
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
         bhjcLogic.newGame();
-        int wid = w / bhjcLogic.getWIDTH();
-        int hei = h / bhjcLogic.getHEIGHT();
+        int wid = w / bhjcLogic.getxCount();
+        int hei = h / bhjcLogic.getyCount();
         size = Math.min(wid, hei);
         divider = size / 8;
-        xOffset = (w - (size * bhjcLogic.getWIDTH())) / 2 - lineWidth / 2;//线条是从中心线画的所以需要减掉一半
-        yOffset = (h - (size * bhjcLogic.getHEIGHT())) / 2 - lineWidth / 2;
+        xOffset = (w - (size * bhjcLogic.getxCount())) / 2 - lineWidth / 2;//线条是从中心线画的所以需要减掉一半
+        yOffset = (h - (size * bhjcLogic.getyCount())) / 2 - lineWidth / 2;
         mPaint.setTextSize(size / 3);
         createBg();
     }
