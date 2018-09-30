@@ -1,8 +1,13 @@
 package com.hdyl.banghujichong;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.RectF;
+
+import com.hdyl.baselib.utils.log.LogUitls;
+import com.hdyl.xiangqi.ChessItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +25,23 @@ public class BhjcLogic {
     public QiItem[][] qiItems;
     int gameState;
 
+    public boolean isOnePlayTurn = true;
+
+
+    Point pointLast;//上一个
+    Point pointCur;//当前个
+
+    /***
+     * 交换轮次
+     * @return
+     */
+    public boolean togglePlayTurn() {
+        return isOnePlayTurn = !isOnePlayTurn;
+    }
+
+    public boolean isOnePlayTurn() {
+        return isOnePlayTurn;
+    }
 
     public int getxCount() {
         return xCount;
@@ -67,6 +89,7 @@ public class BhjcLogic {
         createQiItems();
         shuffle();
         setGameState(GAME_STATE_PLAYING);
+        resetReference();
         onGameEvent.invalidate();
     }
 
@@ -144,13 +167,32 @@ public class BhjcLogic {
             for (int j = 0; j < getxCount(); j++) {
                 QiItem cell = qiItems[i][j];
                 if (cell != null) {
-                    rect.left = j * size + divider/2 + xOffset;
+                    rect.left = j * size + divider / 2 + xOffset;
                     rect.right = rect.left + size - divider;
-                    rect.top = i * size + divider/2 + yOffset;
+                    rect.top = i * size + divider / 2 + yOffset;
                     rect.bottom = rect.top + size - divider;
                     cell.draw(canvas, rect, paint);
                 }
             }
+        }
+
+        if (pointLast != null) {
+            paint.setColor(Color.YELLOW);
+            paint.setStyle(Paint.Style.STROKE);
+            rect.left = pointLast.x * size + divider / 2 + xOffset;
+            rect.right = rect.left + size - divider;
+            rect.top = pointLast.y * size + divider / 2 + yOffset;
+            rect.bottom = rect.top + size - divider;
+            canvas.drawRoundRect(rect, 10, 10, paint);
+        }
+        if (pointCur != null) {
+            paint.setColor(Color.YELLOW);
+            paint.setStyle(Paint.Style.STROKE);
+            rect.left = pointCur.x * size + divider / 2 + xOffset;
+            rect.right = rect.left + size - divider;
+            rect.top = pointCur.y * size + divider / 2 + yOffset;
+            rect.bottom = rect.top + size - divider;
+            canvas.drawRoundRect(rect, 10, 10, paint);
         }
     }
 
@@ -160,6 +202,63 @@ public class BhjcLogic {
 
     public void setOnGameEvent(IOnGameEvent onGameEvent) {
         this.onGameEvent = onGameEvent;
+    }
+
+    QiItem curFocusItem;
+    int curFocusX;
+    int curFocusY;
+
+    /**
+     * 重置引用
+     */
+    private void resetReference() {
+        curFocusItem = null;
+    }
+
+    public QiItem getQiItem(int x, int y) {
+        return getQiItems()[y][x];
+    }
+
+    public void clickPosition(int x, int y) {
+        //当前点击的item
+        QiItem chessItem = getQiItem(x, y);
+        //相同就不改变原状态
+        if (chessItem == curFocusItem) {
+            return;
+        }
+        if (curFocusItem != null) {
+            //行进,或者去吃子
+            if (chessItem == null || curFocusItem.eat(chessItem)) {
+                boolean isSuccess = goNextPositon(curFocusItem, x, y);
+                LogUitls.print("isSuccess" + isSuccess + x + " " + y);
+                curFocusItem.setFocus(false);
+                curFocusItem = null;
+                onGameEvent.invalidate();
+                return;
+            } else {//又点了自已方的棋
+                curFocusItem.setFocus(false);
+            }
+        }
+        curFocusItem = chessItem;
+        curFocusX = x;
+        curFocusY = y;
+        curFocusItem.setFocus(true);
+        onGameEvent.invalidate();
+    }
+
+    public void setChessItem(int y, int x, QiItem item) {
+        qiItems[y][x] = item;
+    }
+
+    private boolean goNextPositon(QiItem item, int toX, int toY) {
+        LogUitls.print("from " + curFocusX + "," + curFocusY + " to " + toX + "," + toY);
+        boolean isOneStep = Math.abs(toX - curFocusX) + Math.abs(toY - curFocusY) == 1;
+        if (isOneStep) {//每次一步
+            setChessItem(curFocusY, curFocusX, null);
+            setChessItem(toY, toX, item);
+            return true;
+        }
+        return false;
     }
 
     public interface IOnGameEvent {

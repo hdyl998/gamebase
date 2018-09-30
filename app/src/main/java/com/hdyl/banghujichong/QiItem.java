@@ -73,8 +73,6 @@ public class QiItem {
     public QiItem(int itemType, int userType) {
         this.itemType = itemType;
         this.userType = userType;
-
-        isShow = true;
     }
 
 
@@ -112,8 +110,20 @@ public class QiItem {
             paint.setColor(Color.GRAY);
             canvas.drawRoundRect(rect, 10, 10, paint);
         }
+    }
 
+    public boolean isFocus = false;
+
+    public boolean isFocus() {
+        return isFocus;
     }
 
 
+    public void setFocus(boolean focus) {
+        this.isFocus = focus;
+    }
+
+    public boolean isPlayerDifferent(QiItem curFocusItem) {
+        return this.userType != curFocusItem.userType;
+    }
 }

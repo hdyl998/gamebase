@@ -8,10 +8,12 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
 
 import com.hdyl.baselib.base.App;
 import com.hdyl.baselib.utils.Tools;
+import com.hdyl.baselib.utils.log.LogUitls;
 import com.hdyl.m2048.Cell;
 
 /**
@@ -122,5 +124,19 @@ public class BhjcView extends View {
         yOffset = (h - (size * bhjcLogic.getyCount())) / 2 - lineWidth / 2;
         mPaint.setTextSize(size / 3);
         createBg();
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if (event.getAction() != MotionEvent.ACTION_UP) {
+            return true;
+        }
+        int x = (int) ((event.getX() - xOffset) / size);
+        int y = (int) ((event.getY() - yOffset) / size);
+        if (x >= 0 && x < bhjcLogic.getxCount() && y >= 0 && y < bhjcLogic.getyCount()) {
+            LogUitls.print("x=" + x + " y=" + y);
+            bhjcLogic.clickPosition(x, y);
+        }
+        return true;
     }
 }
