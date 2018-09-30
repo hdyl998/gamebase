@@ -204,24 +204,36 @@ public class BhjcLogic {
         this.onGameEvent = onGameEvent;
     }
 
-    QiItem curFocusItem;
-    int curFocusX;
-    int curFocusY;
 
     /**
      * 重置引用
      */
     private void resetReference() {
-        curFocusItem = null;
+        pointLast = new Point(-1, -1);
+        pointCur = new Point(-1, -1);
     }
 
     public QiItem getQiItem(int x, int y) {
         return getQiItems()[y][x];
     }
 
+    public QiItem getLastFocusItem(Point point) {
+        if (point == null) {
+            return null;
+        }
+        return getQiItem(point.y, point.x);
+    }
+
+
     public void clickPosition(int x, int y) {
         //当前点击的item
         QiItem chessItem = getQiItem(x, y);
+        if (!chessItem.isShow()) {
+            chessItem.toggleShow();
+            onGameEvent.invalidate();
+            return;
+        }
+        QiItem curFocusItem = getLastFocusItem(pointCur);
         //相同就不改变原状态
         if (chessItem == curFocusItem) {
             return;
@@ -239,7 +251,6 @@ public class BhjcLogic {
                 curFocusItem.setFocus(false);
             }
         }
-        curFocusItem = chessItem;
         curFocusX = x;
         curFocusY = y;
         curFocusItem.setFocus(true);
