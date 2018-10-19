@@ -60,6 +60,6 @@ public class XiangqiActivity extends AppCompatActivity implements IXiangqiGameEv
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        XiangqiResourcesManager.onDestory();
+        XiangqiResourcesProvider.onDestory();
     }
 }

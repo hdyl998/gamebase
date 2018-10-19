@@ -12,13 +12,13 @@ import com.hdyl.mine.R;
  * <p>佛祖保佑，永无BUG<p>
  */
 
-public class XiangqiResourcesManager {
+public class XiangqiResourcesProvider {
 
-    private static XiangqiResourcesManager manager;
+    private static XiangqiResourcesProvider manager;
 
-    public static XiangqiResourcesManager getInstance() {
+    public static XiangqiResourcesProvider getInstance() {
         if (manager == null) {
-            manager = new XiangqiResourcesManager();
+            manager = new XiangqiResourcesProvider();
         }
         return manager;
     }
@@ -43,7 +43,7 @@ public class XiangqiResourcesManager {
         return bitmapFocus;
     }
 
-    private XiangqiResourcesManager() {
+    private XiangqiResourcesProvider() {
         init(App.getContext());
     }
 

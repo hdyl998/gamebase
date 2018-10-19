@@ -2,10 +2,8 @@ package com.hdyl.xiangqi;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.graphics.RectF;
 
-import com.hdyl.baselib.utils.log.LogUitls;
 import com.hdyl.xiangqi.goway.GoWayManager;
 
 /**
@@ -86,7 +84,7 @@ public class ChessItem {
 
 
     public Bitmap getDrawBitmap() {
-        return XiangqiResourcesManager.getInstance().getBitmapInChess(playerType * 7 + chessType);
+        return XiangqiResourcesProvider.getInstance().getBitmapInChess(playerType * 7 + chessType);
     }
 
 
@@ -109,7 +107,7 @@ public class ChessItem {
     public void draw(Canvas canvas, RectF rect) {
         canvas.drawBitmap(getDrawBitmap(), null, rect, null);
         if (isFocus) {
-            canvas.drawBitmap(XiangqiResourcesManager.getInstance().getBitmapFocus(), null, rect, null);
+            canvas.drawBitmap(XiangqiResourcesProvider.getInstance().getBitmapFocus(), null, rect, null);
         }
     }
 }

@@ -2,8 +2,6 @@ package com.hdyl.xiangqi;
 
 import android.annotation.TargetApi;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.support.annotation.Nullable;
@@ -12,7 +10,6 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.hdyl.baselib.utils.log.LogUitls;
-import com.hdyl.mine.R;
 
 /**
  * <p>Created by Administrator on 2018/9/28.<p>
@@ -72,7 +69,7 @@ public class XiangqiView extends View {
         rect.left = xOffset;
         rect.bottom = rect.top + size * xiangqiLogic.getyCount();
         rect.right = rect.left + size * xiangqiLogic.getxCount();
-        canvas.drawBitmap(XiangqiResourcesManager.getInstance().getBitmapBg(), null, rect, null);
+        canvas.drawBitmap(XiangqiResourcesProvider.getInstance().getBitmapBg(), null, rect, null);
         xiangqiLogic.drawBoard(canvas, size, xOffset, yOffset,qiSpace);
     }
 
