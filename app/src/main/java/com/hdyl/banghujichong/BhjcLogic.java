@@ -257,6 +257,9 @@ public class BhjcLogic {
         onGameEvent.invalidate();
     }
 
+    int curFocusX;
+    int curFocusY;
+
     public void setChessItem(int y, int x, QiItem item) {
         qiItems[y][x] = item;
     }

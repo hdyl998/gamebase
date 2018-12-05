@@ -113,7 +113,12 @@ public class QiItem {
     }
 
 
+
     public boolean isPlayerDifferent(QiItem curFocusItem) {
         return this.userType != curFocusItem.userType;
+    }
+
+    public void setFocus(boolean focus) {
+//        this.focus = focus;
     }
 }

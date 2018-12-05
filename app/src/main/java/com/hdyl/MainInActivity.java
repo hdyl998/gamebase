@@ -81,6 +81,7 @@ public class MainInActivity extends BaseActivity {
         listDatas.add(new DataItem().setAppName(getString(R.string.app_name_banghujichong)).setIconRes(R.drawable.aa2).setGoClazz(BhjcActivity.class));
 
         listDatas.add(new DataItem().setAppName(getString(R.string.app_name_xiangqi)).setIconRes(R.drawable.aa3).setGoClazz(XiangqiActivity.class));
+        listDatas.add(null);
         listView.setAdapter(new SuperAdapter<DataItem>(mContext, listDatas, R.layout.item_app) {
             @Override
             protected void onBind(BaseViewHolder holder, DataItem item, int position) {
@@ -97,41 +98,7 @@ public class MainInActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (listDatas.get(position) == null) {
-                    FmtCtnActivity.launch(mContext,TestFragment.class);
-//                    startActivity(new Intent(mContext, MineStageActivity.class));
-//                    PopupMenu popupMenu = new PopupMenu(mContext, view);
-//                    Menu menu=popupMenu.getMenu();
-//                    menu.add(0, 1, Menu.NONE, "蓝牙发送").setIcon(android.R.drawable.ic_menu_send);
-//
-//                    //添加子菜单
-//                    SubMenu subMenu = menu.addSubMenu(0,2,Menu.NONE, "重要程度>>").setIcon(android.R.drawable.ic_menu_share);
-//                    //添加子菜单项
-//                    subMenu.add(2, 201, 1, "☆☆☆☆☆");
-//                    subMenu.add(2, 202, 2, "☆☆☆");
-//                    subMenu.add(2, 203, 3, "☆");
-//                    popupMenu.show();
-//                    PopupWindow popupWindow = new PopupWindow(mContext);
-//                    View viewRoot = View.inflate(mContext, R.layout.layout_test, null);
-//                    popupWindow.setContentView(viewRoot);
-//                    popupWindow.setWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
-//                    popupWindow.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
-//                    popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-//                    popupWindow.setFocusable(true);
-//                    popupWindow.setOutsideTouchable(false);
-//                    popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
-//                    popupWindow.showAsDropDown(view);
-
-//                    TextView textView = (TextView) viewRoot.findViewById(R.id.gameView);
-
-
-//                    Dialog dialog = new AlertDialog.Builder(mContext).setView(R.layout.layout_test).create();
-//                    Dialog dialog = new Dialog(mContext);
-//                    dialog.setContentView(R.layout.layout_test);
-//                    dialog.getWindow().setGravity(Gravity.RIGHT | Gravity.TOP);
-////                    dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-//                    dialog.show();
-//                    View view1 = (View) dialog.findViewById(R.id.ll_main).getParent();
-//                    view1.getLayoutParams().width = ViewGroup.LayoutParams.WRAP_CONTENT;
+                    FmtCtnActivity.launch(mContext, TestFragment.class);
                 } else
                     startActivity(new Intent(mContext, listDatas.get(position).goClazz));
             }
