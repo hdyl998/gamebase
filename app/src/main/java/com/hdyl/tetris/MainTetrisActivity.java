@@ -216,7 +216,7 @@ public class MainTetrisActivity extends AppCompatActivity implements GameBoard.O
 
     @Override
     public void onNewGame() {
-        handler.removeCallbacks(runnable);
+        handler.removeCallbacksAndMessages(null);
         startRun();
     }
 
@@ -247,13 +247,12 @@ public class MainTetrisActivity extends AppCompatActivity implements GameBoard.O
     final static int TIME_DELAY = 1000;
 
     private void startRun() {
-        handler.removeCallbacks(runnable);
+        handler.removeCallbacksAndMessages(null);
         handler.postDelayed(runnable, TIME_DELAY);
     }
 
     private void stopRun() {
-        handler.removeCallbacks(null);
-        handler.removeCallbacks(runnable);
+        handler.removeCallbacksAndMessages(null);
     }
 
     @Override

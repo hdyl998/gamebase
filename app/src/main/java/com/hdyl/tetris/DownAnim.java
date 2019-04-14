@@ -16,13 +16,12 @@ public class DownAnim extends BaseAnim {
     int yOffset;
 
     public void addAnim(Cell cells[][], TetrisShape shape, int distence, int xOffset, int yOffset) {
-        setDuring(200);
         this.shape = shape;
         this.distence = distence;
         this.xOffset = xOffset;
         this.yOffset = yOffset;
-        this.costTime = 0;
         copy(cells);
+        resetEndTime();
     }
 
     public int getXOffset() {
@@ -39,6 +38,11 @@ public class DownAnim extends BaseAnim {
 
     public TetrisShape getShape() {
         return shape;
+    }
+
+    @Override
+    public int getDuring() {
+        return 100;
     }
 
     @Override

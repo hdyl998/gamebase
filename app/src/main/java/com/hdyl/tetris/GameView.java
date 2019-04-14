@@ -74,21 +74,20 @@ public class GameView extends View {
 
         if (downAnim.isAnim()) {
             downAnim.draw(canvas, size);
-            downAnim.ticker(30);
             //画阴影
             if (downAnim.isDitenece1()) {
                 drawShadow(canvas, downAnim.getShape());
             }
-            invalidate();
+            postInvalidate();
         } else if (lineDispearAnim.isAnim()) {
             lineDispearAnim.draw(canvas, size);
-            lineDispearAnim.ticker(30);
-            invalidate();
+//            lineDispearAnim.ticker(30);
+            postInvalidate();
         } else {
             gameBoard.drawBoard(canvas, size);
             gameBoard.drawCurTetris(canvas, size);
             if (gameBoard.isGamePause()) {
-                paint.setAlpha(256);
+                paint.setAlpha(0xff);
                 paint.setTextSize(dip2px(40));
                 paint.setColor(Color.WHITE);
                 paint.setTextAlign(Paint.Align.CENTER);

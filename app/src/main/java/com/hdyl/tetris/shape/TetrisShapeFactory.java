@@ -9,7 +9,7 @@ import java.util.Random;
  */
 
 public class TetrisShapeFactory {
-    public static Class<TetrisShape>[] listClazz;
+    public static Class<? extends TetrisShape>[] listClazz;
 
     static {
         initShapes(GameConfig.getInstance().isMoreShapes());
