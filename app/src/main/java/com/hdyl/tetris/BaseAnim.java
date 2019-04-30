@@ -3,24 +3,42 @@ package com.hdyl.tetris;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 
+import com.hdyl.baselib.utils.log.LogUitls;
+
 import java.util.List;
 
 /**
  * Created by Administrator on 2017/9/9.
  */
 
-public class BaseAnim {
-    public int during = 500;
-    public int costTime = during;
+public abstract class BaseAnim {
+    public int during;
+    private long endTime;
 
     public Cell cellArrs[][];
 
-    List<Integer> animLines;
 
 
-    public void setDuring(int during) {
-        this.during = during;
+
+
+    public abstract int getDuring();
+
+//    public void setDuring(int during) {
+//        this.during = during;
+//        endTime=System.currentTimeMillis()+during;
+//    }
+
+//    public int getDuring() {
+//        return during;
+//    }
+
+    public void resetEndTime() {
+        this.endTime = during+System.currentTimeMillis();
     }
+
+    private static final String TAG = "BaseAnim";
+
+
 
     public void init() {
         cellArrs = new Cell[GameBoard.yCount][GameBoard.xCount];
@@ -29,6 +47,7 @@ public class BaseAnim {
                 cellArrs[i][j] = new Cell();
             }
         }
+        during=getDuring();
     }
 
     public BaseAnim() {
@@ -67,12 +86,12 @@ public class BaseAnim {
     }
 
     public void clearAnim() {
-        costTime = during;
+        endTime = 0;
     }
 
 
     public boolean isEnd() {
-        if (costTime >= during) {
+        if (endTime < System.currentTimeMillis()) {
             return true;
         }
         return false;
@@ -83,14 +102,14 @@ public class BaseAnim {
         if (isEnd()) {
             return 1f;
         }
-        return 1f * costTime / during;
+        return 1-1f * (endTime-System.currentTimeMillis()) / during;
     }
 
 
-    //加时间
-    public void ticker(int costTime) {
-        this.costTime += costTime;
-    }
+//    //加时间
+//    public void ticker(int costTime) {
+////        this.endTime += endTime;
+//    }
 
     public boolean isAnim() {
         if (isEnd()) {

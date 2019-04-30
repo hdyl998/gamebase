@@ -1,13 +1,5 @@
 package com.hdyl.pintu;
 
-import java.util.Random;
-
-import com.hdyl.baselib.utils.log.LogUitls;
-import com.hdyl.mine.R;
-import com.hdyl.pintu.common.Constants;
-import com.hdyl.pintu.save.SaveData;
-
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -25,9 +17,16 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.hdyl.mine.R;
+import com.hdyl.pintu.common.Constants;
+import com.hdyl.pintu.save.SaveData;
+
+import java.util.Random;
+
 public class GameView15 extends View {
 
-    public final static int SIZE = 4;
+    public static int SIZE = 4;
+
 
     MainPintuActivity mainActivity;
 
@@ -98,10 +97,13 @@ public class GameView15 extends View {
         saveData.isClass = classCal;
         saveData.isWin = false;
         saveData.countStep = 0;
-        int count = 16;
+        saveData.times = 0;
+        mainActivity.stopTime();
+        mainActivity.setTvTimeText("" + saveData.times);
+        int count = SIZE * SIZE;
         for (int i = 0; i < saveData.arr.length; i++)
             for (int j = 0; j < saveData.arr[0].length; j++) {
-                saveData.arr[i][j] = (count--) % 16;
+                saveData.arr[i][j] = (count--) % (SIZE * SIZE);
             }
         if (classCal == false) {
             randomData();
@@ -121,7 +123,7 @@ public class GameView15 extends View {
         for (int i = 0; i < saveData.arr.length; i++)
             for (int j = 0; j < saveData.arr[0].length; j++) {
                 count++;
-                if (saveData.arr[i][j] != count % 16) {
+                if (saveData.arr[i][j] != count % (SIZE * SIZE)) {
                     return false;
                 }
             }
@@ -184,9 +186,9 @@ public class GameView15 extends View {
                             int xTemp = 0;
                             int yTemp = 0;
                             if (yValue == 0) {//x上的移动
-                                xTemp = (int) (xValue * (anim.getPercent()-1) * WIDTH);
+                                xTemp = (int) (xValue * (anim.getPercent() - 1) * WIDTH);
                             } else if (xValue == 0) {//y上的移动
-                                yTemp = (int) (yValue * (anim.getPercent()-1) * WIDTH);
+                                yTemp = (int) (yValue * (anim.getPercent() - 1) * WIDTH);
                             }
                             int temp = xTemp;
                             xTemp = yTemp;
@@ -208,7 +210,7 @@ public class GameView15 extends View {
                         }
                     }
                 }
-                anim.ticker(60);
+                anim.ticker(40);
                 invalidate();
             } else {
                 for (int i = 0; i < SIZE; i++) {
@@ -276,6 +278,9 @@ public class GameView15 extends View {
      */
     private void change(int r, int c, int r2, int c2) {
         saveData.countStep++;
+        if (saveData.countStep == 1) {
+            mainActivity.startTime();
+        }
         mainActivity.setText(saveData.countStep + "");
         int temp = saveData.arr[r][c];
         saveData.arr[r][c] = saveData.arr[r2][c2];
@@ -283,6 +288,8 @@ public class GameView15 extends View {
         if (isWin()) {
             Toast.makeText(getContext(), "胜利!!步数为：" + saveData.countStep, 1).show();
             mainActivity.setText("Win!" + saveData.countStep);
+            saveData.times = mainActivity.curTime;
+            mainActivity.stopTime();
             if (alertDialog == null) {
                 alertDialog = buildAlertDialog_input();
             }
@@ -346,7 +353,8 @@ public class GameView15 extends View {
         DatabaseHelper databaseHelper = new DatabaseHelper(mainActivity);
         UserInfo userInfo = new UserInfo();
         userInfo.isClasscal = saveData.isClass;
-        userInfo.timeSecond = saveData.countStep;
+        userInfo.steps = saveData.countStep;
+        userInfo.times = saveData.times;
         userInfo.username = saveData.stringName;
         databaseHelper.insert(userInfo);
 

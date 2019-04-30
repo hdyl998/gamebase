@@ -29,8 +29,8 @@ import java.util.Map;
  */
 
 public class GameBoard {
-    public final static int xCount = 10;
-    public final static int yCount = 20;
+    public final static int xCount = 8;
+    public final static int yCount = 15;
 
 
     LineDispearAnim lineDispearAnim = new LineDispearAnim();
@@ -184,8 +184,8 @@ public class GameBoard {
     private void fastDown() {
         SoundManager.getInstance().playSound(SoundManager.SOUND_FASTDOWN);
         //把当前的方块添加到面板上
-        int distence = getDistenceToBottom(curShape);
         if (GameConfig.getInstance().isAnimDown()) {
+            int distence = getDistenceToBottom(curShape);
             downAnim.addAnim(cellArrs, curShape, distence, gameData.xOffset, gameData.yOffset);
         }
         addTetrisShape();
@@ -356,7 +356,7 @@ public class GameBoard {
                 addScore = 1500;
                 break;
         }
-        if (GameConfig.getInstance().isAnimXiaohang()) {
+        if (GameConfig.getInstance().isAnimXiaohang()&&list.size()>0) {
             lineDispearAnim.addAnim(cellArrs, list);
         }
         if (list.size() > 0) {

@@ -47,7 +47,7 @@ public class GameView extends View {
     Bitmap bitmapBg = null;
 
     private void checkBg() {
-        LogUitls.print("tag",size);
+        LogUitls.print("tag", size);
         bitmapBg = Bitmap.createBitmap(getWidth(), getHeight(), Bitmap.Config.RGB_565);
         Canvas canvasBitmap = new Canvas(bitmapBg);
         Bitmap bitmap = GameColor.getBitmapBlack();
@@ -74,21 +74,20 @@ public class GameView extends View {
 
         if (downAnim.isAnim()) {
             downAnim.draw(canvas, size);
-            downAnim.ticker(30);
             //画阴影
             if (downAnim.isDitenece1()) {
                 drawShadow(canvas, downAnim.getShape());
             }
-            invalidate();
+            postInvalidate();
         } else if (lineDispearAnim.isAnim()) {
             lineDispearAnim.draw(canvas, size);
-            lineDispearAnim.ticker(30);
-            invalidate();
+//            lineDispearAnim.ticker(30);
+            postInvalidate();
         } else {
             gameBoard.drawBoard(canvas, size);
             gameBoard.drawCurTetris(canvas, size);
             if (gameBoard.isGamePause()) {
-                paint.setAlpha(256);
+                paint.setAlpha(0xff);
                 paint.setTextSize(dip2px(40));
                 paint.setColor(Color.WHITE);
                 paint.setTextAlign(Paint.Align.CENTER);
@@ -111,11 +110,11 @@ public class GameView extends View {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        float hsize =1f* h / GameBoard.yCount;
-       float wsize = 1f * w / GameBoard.xCount;
-        size=Math.min(hsize,wsize);
+        float hsize = 1f * h / GameBoard.yCount;
+        float wsize = 1f * w / GameBoard.xCount;
+        size = Math.min(hsize, wsize);
         checkBg();
-        sensibility=w/13;//灵敏度
+        sensibility = w / 13;//灵敏度
         //新游戏
 //        gameBoard.newGame();
     }

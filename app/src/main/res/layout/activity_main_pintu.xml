@@ -1,5 +1,4 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ll_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -21,39 +20,59 @@
             android:scaleType="fitXY"
             android:src="@drawable/app2" />
 
-        <TextView
-            android:id="@+id/tv_current_mode"
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+
+            <TextView
+                android:id="@+id/textViewCurrentScore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="@color/orange"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textViewHighScore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="最家步数：XXX"
+                android:textColor="@color/red" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="18dp"
-            android:drawableTop="@drawable/ic_jd"
-            android:gravity="center"
-            android:text="经典"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@color/red"
-            android:textSize="18sp" />
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="5dp">
 
-        <TextView
-            android:id="@+id/textViewHighScore"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/imageView1"
-            android:layout_centerHorizontal="true"
-            android:text="BEST:24"
-            android:textColor="@color/red" />
 
-        <TextView
-            android:id="@+id/textViewCurrentScore"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:text="0"
-            android:textColor="@color/orange"
-            android:textSize="40sp"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/tvTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="@color/orange"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvTimeBest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="最家步数：XXX"
+                android:textColor="@color/red" />
+        </LinearLayout>
     </RelativeLayout>
 
     <RelativeLayout
@@ -84,20 +103,20 @@
             android:textColor="@color/red" />
     </RelativeLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/llbottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:padding="10dp">
+        android:orientation="horizontal"
+        android:padding="5dp">
 
         <TextView
             android:id="@+id/iv_toos"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="8dp"
+            android:layout_weight="1"
             android:drawableTop="@drawable/ic_meun_1"
             android:gravity="center"
             android:text="锦囊"
@@ -105,9 +124,9 @@
 
         <TextView
             android:id="@+id/iv_menu"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="4dp"
+            android:layout_weight="1"
             android:drawableTop="@drawable/ic_menu"
             android:gravity="center"
             android:text="宝箱"
@@ -115,14 +134,25 @@
 
         <TextView
             android:id="@+id/iv_top"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_weight="1"
             android:drawableTop="@drawable/ic_top_2"
             android:gravity="center"
             android:text="排行榜"
             android:textColor="@color/red" />
-    </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/tv_current_mode"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/ic_jd"
+            android:gravity="center"
+            android:text="经典"
+            android:textColor="@color/red" />
+    </LinearLayout>
 
     <include
         android:id="@+id/ll_menu"

@@ -42,7 +42,6 @@ public class GameView extends View {
     public GameView(Context context) {
         super(context);
         gameActivity = (GameActivity) context;
-
     }
 
     MineItem mineItem;
@@ -166,7 +165,7 @@ public class GameView extends View {
                 int width = MySharepreferences.getInt(gameActivity, "aa", "width");
                 int height = MySharepreferences.getInt(gameActivity, "aa", "height");
                 int num = MySharepreferences.getInt(gameActivity, "aa", "num");
-                int arr[] = SetActivity.changeNumState(width, height, num);
+                int arr[] = MineUtils.checkCorrectUserDefineMineNum(width, height, num);
                 width = arr[0];
                 height = arr[1];
                 num = arr[2];
@@ -216,8 +215,8 @@ public class GameView extends View {
         // 初始化
         int count = 0;
 
-        int r1 = random1.nextInt(WIDTH);
-        int c1 = random2.nextInt(HEIGHT);
+        int r1;
+        int c1;
         while (count < mineNum) {
             r1 = random1.nextInt(WIDTH);
             c1 = random2.nextInt(HEIGHT);
@@ -269,39 +268,12 @@ public class GameView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         Bitmap bitmap = null;
-        // // 主题1要先绘制全图背景
-        // if (AppSet.getInstence().theme == 1) {
-        // for (int i = 0; i < WIDTH; i++) {
-        // for (int j = 0; j < HEIGHT; j++) {
-        // if (arrCover[i][j] == 1)// // 0 COVER 1 OPEN 2 COVER
-        // // WITH_FLAG
-        // {
-        // if (arr[i][j] != 0) {
-        // rrRect.set(i * size, j * size, i * size + size, j * size + size);//
-        // 消除警告
-        // bitmap = bitmaps[0];
-        // canvas.drawBitmap(bitmap, null, rrRect, null);
-        // }
-        // } else if (arrCover[i][j] == 2) {
-        // bitmap = bitmaps[ID_COVER];
-        // rrRect.set(i * size, j * size, i * size + size, j * size + size);//
-        // 消除警告
-        // canvas.drawBitmap(bitmap, null, rrRect, null);
-        // }
-        // }
-        // }
-        // }
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {
                 if (arrCover[i][j] == 0) {
                     bitmap = bitmaps[ID_COVER];
                 } else if (arrCover[i][j] == 2) {
                     bitmap = bitmaps[ID_FLAG];
-                    // if (gameState == STATE_LOSE) {
-                    // if (arr[i][j] != 9) {
-                    // bitmap = bitmaps[ID_ERROR_BLACK];
-                    // }
-                    // }
                 } else {
                     bitmap = bitmaps[arr[i][j]];
                 }
@@ -314,7 +286,6 @@ public class GameView extends View {
     Rect rrRect = new Rect();
     int row, col;
 
-    @SuppressLint("NewApi")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 
@@ -713,7 +684,6 @@ public class GameView extends View {
             }
 
         if (count == mineNum) {
-
             for (int i = 0; i < WIDTH; i++)
                 for (int j = 0; j < HEIGHT; j++) {
                     if (arrCover[i][j] == 0)// 剩下没标记的全部做标记

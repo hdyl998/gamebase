@@ -1,6 +1,7 @@
 package com.hdyl.baselib.utils;
 
 import android.content.Context;
+import android.graphics.Paint;
 
 import com.hdyl.baselib.base.App;
 
@@ -34,4 +35,14 @@ public class Tools {
         return (int) (dpValue * scale + 0.5f);
     }
 
+    /**
+     * 得到字体高度，用于画Y轴字体与线居中
+     *
+     * @param paint
+     * @return
+     */
+    public static int getFontHeight(Paint paint) {
+        Paint.FontMetrics fm = paint.getFontMetrics();
+        return (int) (Math.ceil(fm.descent - fm.ascent) + 2) / 2;
+    }
 }

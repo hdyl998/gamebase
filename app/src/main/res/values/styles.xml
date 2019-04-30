@@ -52,4 +52,9 @@
 
 
     </style>
+
+    <style name="AppProgressBar" parent="android:Widget.ProgressBar">
+        <item name="android:indeterminateDrawable">@drawable/progress_app</item>
+    </style>
+
 </resources>

@@ -7,7 +7,7 @@
 //import android.util.AttributeSet;
 //import android.view.View;
 //
-//import com.hdyl.tetris2.shape.Cell;
+//import com.hdyl.tetris2.shape.MineCell;
 //import com.hdyl.tetris2.shape.GameShape;
 //
 ///**
@@ -36,9 +36,9 @@
 //            return;
 //        }
 //        int x = 0, y = 0;
-//        for (Cell[] cells : gameShape.getArr()) {
+//        for (MineCell[] cells : gameShape.getArr()) {
 //            x = 0;
-//            for (Cell cell : cells) {
+//            for (MineCell cell : cells) {
 //
 //                rectF.left=0;
 //

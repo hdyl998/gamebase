@@ -13,7 +13,7 @@ import java.util.List;
  */
 
 public class BaseAnim {
-    public int during = 500;
+    public int during = 120;
     public int costTime = during;
 
     public int cellArrs[][];
@@ -71,10 +71,10 @@ public class BaseAnim {
 
 //    public void draw(Canvas canvas, float size) {
 //        RectF rect = new RectF();
-//        Cell[][] cellArrs = this.getCellArrs();
+//        MineCell[][] cellArrs = this.getCellArrs();
 //        for (int i = 0; i < 4; i++) {
 //            for (int j = 0; j < 4; j++) {
-//                Cell cell = cellArrs[i][j];
+//                MineCell cell = cellArrs[i][j];
 //                if (cell.isFull()) {
 //                    rect.left = j * size;
 //                    rect.right = rect.left + size;
