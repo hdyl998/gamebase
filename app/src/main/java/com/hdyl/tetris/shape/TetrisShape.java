@@ -158,7 +158,7 @@ public abstract class TetrisShape {
     }
 
     /***
-     * 锋获得取小的Y Data
+     * 得到Y到顶的距离,用于去掉空格空间
      *
      * @return
      */
@@ -173,7 +173,7 @@ public abstract class TetrisShape {
     }
 
     /***
-     * 获取图片x长度
+     * 获取图形x长度
      * @return
      */
     public int getXLen(){
@@ -186,6 +186,25 @@ public abstract class TetrisShape {
             }
             if (max < cell.getX()) {
                 max = cell.getX();
+            }
+        }
+        return max-min+1;
+    }
+
+    /***
+     * 获取图形Y长度
+     * @return
+     */
+    public int getYLen(){
+        int min = Integer.MAX_VALUE;
+        int max = 0;
+
+        for (PositionCell cell : getCellArray().getCells()) {
+            if (min > cell.getY()) {
+                min = cell.getY();
+            }
+            if (max < cell.getY()) {
+                max = cell.getY();
             }
         }
         return max-min+1;

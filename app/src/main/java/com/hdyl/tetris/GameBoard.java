@@ -126,7 +126,7 @@ public class GameBoard {
         countTetrisShape(curShape);
         nextShape = TetrisShapeFactory.createRandomShape();
         gameData.xOffset = (xCount - curShape.getXLen()) / 2;//图形的宽度是2
-        gameData.yOffset = -curShape.getMinYData();
+        gameData.yOffset = -curShape.getMinYData() - curShape.getYLen() + 1;//
     }
 
     private TetrisShape countTetrisShape(TetrisShape shape) {
@@ -220,7 +220,9 @@ public class GameBoard {
      * @return
      */
     private int getYHeight(int x, int y) {
-
+        if (y < 0) {
+            y = 0;
+        }
         for (int y1 = y + 1; y1 < yCount; y1++) {
             if (cellArrs[y1][x].isFull()) {
                 return y1 - y;
@@ -356,7 +358,7 @@ public class GameBoard {
                 addScore = 1500;
                 break;
         }
-        if (GameConfig.getInstance().isAnimXiaohang()&&list.size()>0) {
+        if (GameConfig.getInstance().isAnimXiaohang() && list.size() > 0) {
             lineDispearAnim.addAnim(cellArrs, list);
         }
         if (list.size() > 0) {
