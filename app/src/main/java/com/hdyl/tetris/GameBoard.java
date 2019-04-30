@@ -125,7 +125,7 @@ public class GameBoard {
         curShape = nextShape;
         countTetrisShape(curShape);
         nextShape = TetrisShapeFactory.createRandomShape();
-        gameData.xOffset = xCount / 2 - 1;//图形的宽度是2，得向左偏移1个单位为宜
+        gameData.xOffset = (xCount - curShape.getXLen()) / 2;//图形的宽度是2
         gameData.yOffset = -curShape.getMinYData();
     }
 
@@ -435,7 +435,7 @@ public class GameBoard {
         for (PositionCell cell : cellArray.getCells()) {
             int x = cell.getX() + gameData.xOffset;
             int y = cell.getY() + gameData.yOffset;
-            if (isIillagleXY(x, y) == false) {
+            if (!isIillagleXY(x, y)) {
                 return true;
             }
             if (this.cellArrs[y][x].isFull()) {

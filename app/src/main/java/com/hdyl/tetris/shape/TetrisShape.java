@@ -2,7 +2,6 @@ package com.hdyl.tetris.shape;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Rect;
 import android.graphics.RectF;
 import android.util.Log;
 
@@ -172,6 +171,26 @@ public abstract class TetrisShape {
         }
         return y;
     }
+
+    /***
+     * 获取图片x长度
+     * @return
+     */
+    public int getXLen(){
+        int min = Integer.MAX_VALUE;
+        int max = 0;
+
+        for (PositionCell cell : getCellArray().getCells()) {
+            if (min > cell.getX()) {
+                min = cell.getX();
+            }
+            if (max < cell.getX()) {
+                max = cell.getX();
+            }
+        }
+        return max-min+1;
+    }
+
 
     public void setResIndex(int resIndex) {
         this.resIndex = resIndex;

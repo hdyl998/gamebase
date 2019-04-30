@@ -246,8 +246,7 @@ public class MainTetrisActivity extends AppCompatActivity implements GameBoard.O
     }
 
     private void stopRun() {
-        handler.removeCallbacks(null);
-        handler.removeCallbacks(runnable);
+        handler.removeCallbacksAndMessages(null);
     }
 
     @Override

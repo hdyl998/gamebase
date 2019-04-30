@@ -12,4 +12,5 @@ public class SuperZShape extends TetrisShape {
                 "001,111,100"
         };
     }
+
 }
