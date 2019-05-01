@@ -126,7 +126,7 @@ public class GameBoard {
         countTetrisShape(curShape);
         nextShape = TetrisShapeFactory.createRandomShape();
         gameData.xOffset = (xCount - curShape.getXLen()) / 2;//图形的宽度是2
-        gameData.yOffset = -curShape.getMinYData() - curShape.getYLen() + 1;//
+        gameData.yOffset = -curShape.getMinYData();//
     }
 
     private TetrisShape countTetrisShape(TetrisShape shape) {

@@ -3,10 +3,6 @@ package com.hdyl.tetris;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 
-import com.hdyl.baselib.utils.log.LogUitls;
-
-import java.util.List;
-
 /**
  * Created by Administrator on 2017/9/9.
  */
@@ -62,9 +58,8 @@ public abstract class BaseAnim {
             }
         }
     }
-
+    RectF rect = new RectF();
     public void draw(Canvas canvas, float size) {
-        RectF rect = new RectF();
         Cell[][] cellArrs = this.getCellArrs();
         for (int i = 0; i < GameBoard.yCount; i++) {
             for (int j = 0; j < GameBoard.xCount; j++) {
