@@ -43,5 +43,6 @@ public abstract class IMineUIProvider {
     public final static int ID_FLAG = 11;
     public final static int ID_ERROR_MINE = 12;
     public final static int ID_ERROR_BLACK = 13;
+    public final static int ID_QUESTION = 14;
 
 }

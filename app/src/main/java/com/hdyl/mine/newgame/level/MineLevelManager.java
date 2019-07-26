@@ -37,7 +37,7 @@ public class MineLevelManager {
                 provider = extremeMineLevel;
                 break;
             case MINE_LEVEL_USERDEFINE:
-                provider = new UserMineLevel().setNote("自定义");
+                provider = new UserMineLevel();
                 break;
             default:
                 provider = easyMineLevel;

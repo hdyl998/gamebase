@@ -26,6 +26,7 @@ public class UserMineLevel extends MineLevel {
         height = arr[1];
         num = arr[2];
         initLevelInfo(width, height, num);
+        setNote("自定义");
     }
 
     public void save() {

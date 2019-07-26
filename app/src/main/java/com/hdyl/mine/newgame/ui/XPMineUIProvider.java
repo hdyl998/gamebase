@@ -19,7 +19,7 @@ public class XPMineUIProvider extends IMineUIProvider {
                 R.drawable.unopen,// 10打开的
                 R.drawable.flag,// 标志11
                 R.drawable.mineclick,// 点到雷12
-                R.drawable.minewrong,// 非雷，但标记错误13
+                R.drawable.minewrong// 非雷，但标记错误13
         };
         Bitmap[] bitmaps = new Bitmap[ids.length];
         for (int i = 0; i < bitmaps.length; i++) {
