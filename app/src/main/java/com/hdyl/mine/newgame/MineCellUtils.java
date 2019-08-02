@@ -77,6 +77,7 @@ public class MineCellUtils {
 
     public static int toggleCover(int var) {
         int coverType = getCoverType(var);
+        System.out.println(coverType);
         switch (coverType) {
             case COVER_TYPE_COVER:
                 var = setFlag(var, FUN_FLAG, COVER_MASK);
