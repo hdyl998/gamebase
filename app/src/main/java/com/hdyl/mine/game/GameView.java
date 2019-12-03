@@ -58,7 +58,7 @@ public class GameView extends View {
         }
         isFlag = MySharepreferences.getBoolean(gameActivity, "aa", "isFlag");
 
-        int ids[] = null;
+        int []ids = null;
         if (AppSet.getInstence().theme == 0) {
             ids = new int[]{R.drawable.open, R.drawable._1, R.drawable._2, R.drawable._3, R.drawable._4, R.drawable._5, R.drawable._6, R.drawable._7, R.drawable._8, R.drawable.mine,// 9雷
                     R.drawable.unopen,// 10打开的

@@ -62,6 +62,8 @@ public class MineCell {
     private @interface ValueEmnu {
     }
 
+
+
     public boolean isOpen() {
         return isFlagValue(FLAG_OPEN);
     }
@@ -111,7 +113,7 @@ public class MineCell {
             case FLAG_COVER:
                 return uiProvider.getBitmapCover();
             case FLAG_FLAG:
-                return uiProvider.getBitmapFlag();
+                return uiProvider.getBitmapCoverFlag();
         }
         return null;
     }

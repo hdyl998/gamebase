@@ -27,8 +27,8 @@ public class GameView extends View {
     private int SHeight = 20;//图片高度
     private Bitmap[] bts;//图片数组
     private int iconCount = 5;//图片数量
-    private int cCount = 12;//x轴上摆20个
-    private int rCount = 16;//y轴上摆10个
+    private final int cCount = 12;//x轴上摆20个
+    private final int rCount = 16;//y轴上摆10个
     private int noPicture = -1;//不绘制的地方，就是已经消除的地方
     private List<Point> listPoint = new ArrayList<Point>();//记录可以消除的点的
 

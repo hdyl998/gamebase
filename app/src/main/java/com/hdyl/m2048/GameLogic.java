@@ -598,7 +598,7 @@ public class GameLogic {
     }
 
     public void undo() {
-        if (isStackEmpty() == false) {
+        if (!isStackEmpty()) {
             animBoard.clearAllAnimation();
             GameData gameData = stacks.pop();
             setGameData(gameData);

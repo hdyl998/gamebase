@@ -27,8 +27,20 @@ public abstract class IMineUIProvider {
         return bitmaps[ID_COVER];
     }
 
-    public Bitmap getBitmapFlag() {
+    public Bitmap getBitmapCoverFlag() {
         return bitmaps[ID_FLAG];
+    }
+
+    public Bitmap getBitmapCoverQuestion() {
+        return bitmaps[ID_QUESTION];
+    }
+
+    public Bitmap getBitmapErrorMine(){
+        return bitmaps[ID_ERROR_MINE];
+    }
+
+    public Bitmap getBitmapErrorBlack(){
+        return bitmaps[ID_ERROR_BLACK];
     }
 
 

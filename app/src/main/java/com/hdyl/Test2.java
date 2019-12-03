@@ -25,9 +25,9 @@ public class Test2 {
 
         public String getInfo(double earn) {
             double result = earn * (1f * rate - 1);
-            return String.format("%d 级建筑升级，扩建%d,收益为%.2f，收益比为%.0f，总收益比为%.0f",
+            return String.format("%d 级建筑升级，扩建%d,收益为%.2f，收益比为%.0f，总收益比为%.0f,目前的收益比为：%.0f",
                     level-1,cardCurrent,result, result / cardCurrent*100000,
-                    result / cardTotal*100000);
+                    earn*rate / cardTotal*100000,earn/(cardTotal-cardCurrent)*100000);
         }
 
     }
@@ -70,13 +70,13 @@ public class Test2 {
      * @param args
      */
     public static void main(String[] args) {
-        printInfo(14,166.1);
-        printInfo(14,152.7);
-        printInfo(13,110.5);
-        printInfo(13,99.6);
-        printInfo(12,53);
-        printInfo(10,15.3);
-        printInfo(6,0.5081);
+        printInfo(15,241.7);
+        printInfo(14,186.5);
+        printInfo(14,170.5);
+        printInfo(13,125.7);
+        printInfo(13,104);
+        printInfo(12,64.1);
+        printInfo(12,59.9);
     }
 
 
