@@ -1,6 +1,7 @@
 package com.hdyl.mine.newgame;
 
 import android.content.Context;
+import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -20,5 +21,22 @@ public class NewGameView extends View {
 
     public NewGameView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+    }
+
+    MineGameBoard gameBoard=new MineGameBoard();
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+
+
+    }
+
+
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+
+        gameBoard.newGame();
     }
 }

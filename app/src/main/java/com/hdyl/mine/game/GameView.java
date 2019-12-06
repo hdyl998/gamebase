@@ -165,7 +165,7 @@ public class GameView extends View {
                 int width = MySharepreferences.getInt(gameActivity, "aa", "width");
                 int height = MySharepreferences.getInt(gameActivity, "aa", "height");
                 int num = MySharepreferences.getInt(gameActivity, "aa", "num");
-                int arr[] = MineUtils.checkCorrectUserDefineMineNum(width, height, num);
+                int []arr = MineUtils.checkCorrectUserDefineMineNum(width, height, num);
                 width = arr[0];
                 height = arr[1];
                 num = arr[2];

@@ -7,31 +7,12 @@ public class Test {
     public static void main(String[] args) {
 
 
+        boolean b=false;
+        Object obj=b;
+        System.out.println(obj.getClass()==Boolean.class);
 
-        MineItem item=new MineItem();
-
-
-        item.printCoverInfo();
-        item.toggleCover();
-        item.printCoverInfo();
-        item.toggleCover();
-        item.printCoverInfo();
-        item.toggleCover();
-
-        item.printCoverInfo();
-
-        item.toggleCover();
-        item.printCoverInfo();
-        item.toggleCover();
-        item.printCoverInfo();
-        item.toggleCover();
-
-        item.printCoverInfo();
-
-        System.out.println("isError"+item.isError());
-
-        item.setError();
-
-        System.out.println("isError"+item.isError());
+        obj=11L;
+        System.out.println(obj.getClass());
+        System.out.println(obj.getClass()==long.class);
     }
 }

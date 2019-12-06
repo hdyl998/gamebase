@@ -18,7 +18,7 @@ public class GoWayManager {
         return manager;
     }
 
-    private HashMap<Integer, IGoWay> hashMap = new HashMap<>(7);
+    private HashMap<Integer, IGoWay> hashMap = new HashMap<>();
 
 
     public IGoWay getGoWay(int chessType) {

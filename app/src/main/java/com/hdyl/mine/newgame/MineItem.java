@@ -9,6 +9,7 @@ import com.hdyl.mine.newgame.ui.MineUiProviderManager;
 public class MineItem {
 
 
+    public final static int NUM_NONE = -1;
     public static final int NUM_EMPTY = 0;//数字空
     public static final int NUM_MINE = 9;//数字雷
 

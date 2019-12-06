@@ -2,6 +2,7 @@ package com.hdyl.mine.newgame;
 
 import android.graphics.Point;
 
+import com.hdyl.baselib.utils.log.Printer;
 import com.hdyl.mine.game.MineSetting;
 import com.hdyl.mine.newgame.level.MineLevel;
 import com.hdyl.tetris.GameBoard;
@@ -135,9 +136,27 @@ public class MineGameBoard {
         return mineLevel;
     }
 
+
+
+    interface LoopCallBack{
+        void accept(int x,int y,MineCell cell);
+    }
+
+    private void loopFun(int i,int j,LoopCallBack callBack){
+        for (int x = i - 1; x < i + 2; x++)
+            for (int y = j - 1; y < j + 2; y++) {
+                if (isIn(x, y)) {// 检查9格没出界,且检查标记数量
+                    callBack.accept(x,y,cellArrs[x][y]);
+                }
+            }
+    }
+
+
     // 点击了打开的数字
     private void clickNumber(int i, int j) {
         int count = 0;
+
+
         for (int x = i - 1; x < i + 2; x++)
             for (int y = j - 1; y < j + 2; y++) {
                 if (isIn(x, y) && cellArrs[x][y].isFlag()) {// 检查9格没出界,且检查标记数量

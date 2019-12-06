@@ -31,7 +31,7 @@ public class CellArray {
             }
             yCount++;
         }
-        PositionCell cells[] = new PositionCell[list.size()];
+        PositionCell []cells = new PositionCell[list.size()];
         return list.toArray(cells);
     }
 
