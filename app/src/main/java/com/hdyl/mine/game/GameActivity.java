@@ -118,8 +118,8 @@ public class GameActivity extends MineBaseActivity implements OnClickListener {
             case R.id.suoluetu1:// 隐藏缩略图
                 shoulueTuView1.setVisibility(View.GONE);
 
-                int nX = scrollView1.getWidth() / gameView.size;
-                int nY = scrollView1.getHeight() / gameView.size;
+                float nX = 1f*scrollView1.getWidth() / gameView.size;
+                float nY =1f* scrollView1.getHeight() / gameView.size;
                 // Log.e("aa1",nX+"  "+nY);
                 int x = (int) (gameView.size * (shoulueTuView.x - nX / 2));
                 int y = (int) (gameView.size * (shoulueTuView.y - nY / 2));
