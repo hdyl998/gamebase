@@ -52,8 +52,7 @@ public class TetrisShapeFactory {
     public static TetrisShape createRandomShape() {
         int index = new Random().nextInt(listClazz.length);
         try {
-            TetrisShape shape = listClazz[index].newInstance();
-            return shape;
+            return listClazz[index].newInstance();
         } catch (Exception e) {
             e.printStackTrace();
         }

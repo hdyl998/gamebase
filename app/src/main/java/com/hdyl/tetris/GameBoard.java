@@ -304,7 +304,7 @@ public class GameBoard {
      * 方块向下移动一格,外部计时器调用
      */
     public void downALine(int count) {
-        if (isGamePlaying() == false) {
+        if (!isGamePlaying()) {
             return;
         }
         for (int i = 0; i < count; i++) {

@@ -390,7 +390,7 @@ public class GameView extends View {
             }
             pointsChecked.clear();
             // for (int x = i - 1; x < i + 2; x++)
-            // for (int y = j - 1; y < j + 2; y++) {
+            // for (int y = j -; y < j + 2; y++) {
             // if (isIn(x, y) && arrCover[x][y] == 0) {// 检查9格没出界
             // arrCover[x][y] = 1;
             // if (arr[x][y] == 0)
@@ -431,7 +431,7 @@ public class GameView extends View {
         return arr[i][j] == num && arrCover[i][j] == COVER_OPEN;
     }
 
-    private boolean isCover(int i, int j) {
+    private boolean  isCover(int i, int j) {
         return arrCover[i][j] == COVER_COVER || arrCover[i][j] == COVER_FLAG;
     }
 
@@ -648,6 +648,7 @@ public class GameView extends View {
     // 点击了数字
     private void clickNumber(int i, int j) {
         int count = 0;
+        //查看周围9格，统计flag的数字
         for (int x = i - 1; x < i + 2; x++)
             for (int y = j - 1; y < j + 2; y++) {
                 if (isIn(x, y) && arrCover[x][y] == 2) {// 检查9格没出界,且检查标记数量
@@ -858,7 +859,7 @@ public class GameView extends View {
     }
 
     int[][] arr;// 数字数组
-    int[][] arrCover;// 标记数组
+    int[][] arrCover;// 标记数组 // 0 COVER 1 OPEN 2 COVER WITH_FLAG
     Bitmap bitmap;
     int size = 100;
     Bitmap[] bitmaps;
