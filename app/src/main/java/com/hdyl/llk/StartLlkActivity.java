@@ -4,6 +4,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,12 +53,8 @@ public class StartLlkActivity extends BaseActivity {
 
                 SpUtils.putInt("aa", "config", Constants.PIC_TYPE);
 
-                if (Constants.PIC_TYPE == 0) {
-                    Tools.setTextViewDrawable(tvTypeTextView, R.drawable.ic_luncher_2, 2);
-                } else {
-                    Tools.setTextViewDrawable(tvTypeTextView, R.drawable.fruit_5, 2);
-                }
-                Constants.initBitmap();
+
+                upateUi();
                 break;
         }
     }
@@ -82,6 +79,9 @@ public class StartLlkActivity extends BaseActivity {
 
     TextView tvTypeTextView;
 
+    ImageView ivTypeStyle;
+
+
     @Override
     protected void initData() {
         view = findViewById(R.id.ll);
@@ -90,17 +90,29 @@ public class StartLlkActivity extends BaseActivity {
 
         findViewById(R.id.textViewGood2).setOnClickListener(this);
 
+        ivTypeStyle= (ImageView) findViewById(R.id.ivTypeStyle);
+
+
         findViewById(R.id.iv_stat).setOnClickListener(this);
         tvTypeTextView = (TextView) findViewById(R.id.textViewType);
         tvTypeTextView.setOnClickListener(this);
         Constants.PIC_TYPE = SpUtils.getInt("aa", "config", 0);// 获得配置
+
+        upateUi();
+
+    }
+
+    private void upateUi(){
         if (Constants.PIC_TYPE == 0) {
-            Tools.setTextViewDrawable(tvTypeTextView, R.drawable.ic_luncher_2, 2);
+
+            ivTypeStyle.setImageResource( R.drawable.ss_32200n);
         } else {
-            Tools.setTextViewDrawable(tvTypeTextView, R.drawable.fruit_5, 2);
+            ivTypeStyle.setImageResource( R.drawable.fruit_5);
         }
         Constants.initBitmap();
+
     }
+
 
     @Override
     protected int setView() {

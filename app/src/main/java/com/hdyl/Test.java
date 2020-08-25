@@ -4,35 +4,53 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.view.View;
 
+import com.hdyl.mine.R;
 import com.hdyl.mine.newgame.MineCellUtils;
 import com.hdyl.mine.newgame.MineItem;
 
+import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 
 public class Test {
     public static void main(String[] args) {
 
 
-        System.out.println(Integer.toBinaryString(16842919));
+        String path="C:\\Users\\HanDong\\Desktop\\新建文件夹";
 
-        System.out.println(Integer.MAX_VALUE >> 2);
+        File file=new File(path);
 
-        System.out.println(Integer.MAX_VALUE);
-        System.out.println(Integer.MAX_VALUE/4);
+//        for (File ff : file.listFiles()) {
+//            String name=ff.getName();
+//            ff.renameTo(new File(path,"ss_"+name));
+//        }
 
-        System.out.println(Integer.toBinaryString(fun(Integer.MAX_VALUE >> 2, View.MeasureSpec.AT_MOST)));
+        System.out.println("{");
+        for (File ff : file.listFiles()) {
 
-        System.out.println(Integer.toBinaryString(MODE_MASK));
-        System.out.println(Integer.toBinaryString(View.MeasureSpec.AT_MOST & MODE_MASK));
+            System.out.println("R.drawable."+ff.getName().substring(0,ff.getName().length()-4)+",");
+        }
 
-        System.out.println(Integer.toBinaryString(Integer.MAX_VALUE));
-        System.out.println(Integer.toBinaryString(0xffffffff));
-        System.out.println(0xffffffff);
-        System.out.println(Integer.toBinaryString(-1));
-        System.out.println(Long.toBinaryString(-1));
-        System.out.println(Long.toBinaryString(-2));
-        System.out.println(Long.toBinaryString(-3));
-        System.out.println();
+        System.out.println("}");
+//        System.out.println(Integer.toBinaryString(16842919));
+//
+//        System.out.println(Integer.MAX_VALUE >> 2);
+//
+//        System.out.println(Integer.MAX_VALUE);
+//        System.out.println(Integer.MAX_VALUE/4);
+//
+//        System.out.println(Integer.toBinaryString(fun(Integer.MAX_VALUE >> 2, View.MeasureSpec.AT_MOST)));
+//
+//        System.out.println(Integer.toBinaryString(MODE_MASK));
+//        System.out.println(Integer.toBinaryString(View.MeasureSpec.AT_MOST & MODE_MASK));
+//
+//        System.out.println(Integer.toBinaryString(Integer.MAX_VALUE));
+//        System.out.println(Integer.toBinaryString(0xffffffff));
+//        System.out.println(0xffffffff);
+//        System.out.println(Integer.toBinaryString(-1));
+//        System.out.println(Long.toBinaryString(-1));
+//        System.out.println(Long.toBinaryString(-2));
+//        System.out.println(Long.toBinaryString(-3));
+//        System.out.println();
 
     }
     private static final int MODE_SHIFT = 30;

@@ -51,26 +51,39 @@
         android:layout_above="@+id/imageView1"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="30dp"
-        android:drawableLeft="@drawable/aa30"
+        android:drawableLeft="@drawable/ss_31210n"
         android:drawablePadding="5dp"
-        android:drawableRight="@drawable/aa30"
+        android:drawableRight="@drawable/ss_31210n"
         android:gravity="center_vertical"
         android:text="@string/app_name_llk"
         android:textColor="@color/red"
         android:textSize="36sp"
         android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/textViewType"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+
+    <LinearLayout
         android:layout_above="@+id/iv_stat"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="24dp"
         android:gravity="center_vertical"
-        android:text="点击切换风格："
-        android:textColor="@color/white"
-        android:textSize="18sp" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textViewType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="点击切换风格："
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/ivTypeStyle"
+            android:layout_width="@dimen/n100"
+            android:layout_height="@dimen/n100" />
+    </LinearLayout>
+
+
 
     <TextView
         android:id="@+id/textViewGood2"
@@ -78,7 +91,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:drawablePadding="5dp"
-        android:drawableTop="@drawable/fruit_5"
+        android:drawableTop="@drawable/ss_11060n"
         android:gravity="center"
         android:padding="5dp"
         android:text="精选"
@@ -92,7 +105,7 @@
         android:layout_alignParentTop="true"
         android:layout_toLeftOf="@+id/textViewGood2"
         android:drawablePadding="5dp"
-        android:drawableTop="@drawable/ic_luncher_2"
+        android:drawableTop="@drawable/ss_11011n"
         android:gravity="center"
         android:padding="5dp"
         android:text="评分"

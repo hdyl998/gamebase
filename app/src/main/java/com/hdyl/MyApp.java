@@ -25,7 +25,7 @@ public class MyApp extends App {
         UMConfigure.init(this, UMConfigure.DEVICE_TYPE_PHONE, null);
         MobclickAgent.openActivityDurationTrack(false);
 
-        registerActivityLifecycleCallbacks(new MyActivityLifecycleCallbacks());
+//        registerActivityLifecycleCallbacks(new MyActivityLifecycleCallbacks());
     }
 
 

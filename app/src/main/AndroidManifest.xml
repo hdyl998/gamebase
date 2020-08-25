@@ -34,8 +34,8 @@
     <application
         android:name="com.hdyl.MyApp"
         android:allowBackup="true"
-        android:icon="@drawable/icon_mine"
-        android:label="@string/app_name_mine"
+        android:icon="@drawable/ss_32200n"
+        android:label="@string/app_name_ss"
         android:theme="@style/AppTheme">
         <activity
             android:name="com.hdyl.tetris2.MainTetris2Activity"
@@ -65,10 +65,7 @@
             android:label="@string/app_name_mine"
             android:screenOrientation="portrait">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
 
         </activity>
 
@@ -129,7 +126,14 @@
             android:screenOrientation="portrait"></activity>
         <activity
             android:name="com.hdyl.llk.StartLlkActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
         <activity
             android:name="com.hdyl.llk.LevelActivity"
             android:screenOrientation="portrait"></activity>
